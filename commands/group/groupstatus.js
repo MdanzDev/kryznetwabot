@@ -1,0 +1,47 @@
+module.exports = {
+    name: "groupstatus",
+    aliases: ["gcsw", "swgc", "upgcsw", "upswgc"],
+    category: "group",
+    permissions: {
+        admin: true,
+        group: true
+    },
+    code: async (ctx) => {
+        const input = ctx.text || ctx.quoted?.body;
+        const type = ctx.isMedia(["image", "video"]);
+        if (!input && !type)
+            return await ctx.reply(
+                `${ctx.format.generateInstruction(["send"], ["text"])}\n` +
+                ctx.format.generateCmdExample(ctx.used, "halo, dunia!")
+            );
+
+        try {
+            let content;
+            if (type) {
+                const buffer = await ctx.msg.media.download() || await ctx.quoted.media.download();
+                content = {
+                    [type]: buffer,
+                    caption: input
+                };
+            } else {
+                content = {
+                    text: input
+                };
+            }
+            await ctx.reply({
+                ...content,
+                contextInfo: {
+                    statusAudienceMetadata: {
+                        audienceType: 1,
+                        listName: ctx.sender.pushName,
+                        listEmoji: "🏷️"
+                    }
+                },
+                groupStatus: true
+            });
+            await ctx.reply(ctx.format.info("Group status berhasil dikirim!"));
+        } catch (error) {
+            await ctx.helper.handleError(ctx, error, false);
+        }
+    }
+};

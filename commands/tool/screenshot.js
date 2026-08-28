@@ -1,0 +1,32 @@
+module.exports = {
+    name: "screenshot",
+    aliases: ["ss"],
+    category: "tool",
+    permissions: {
+        coin: 10
+    },
+    code: async (ctx) => {
+        const url = ctx.args[0] || ctx.helper.extractUrlFromText(ctx.quoted?.body);
+        if (!url)
+            return await ctx.reply(
+                `${ctx.format.generateInstruction(["send"], ["text"])}\n` +
+                ctx.format.generateCmdExample(ctx.used, "https://itsreimau.is-a.dev")
+            );
+        if (!ctx.helper.isUrl(url)) return await ctx.reply(ctx.format.info(config.msg.invalidUrl));
+
+        try {
+            const apiUrl = ctx.api.createUrl("nexray", "/tools/ssweb", {
+                url
+            });
+            const result = (await ctx.request.get(apiUrl)).data.result.file_url;
+            await ctx.reply({
+                image: {
+                    url: result
+                },
+                caption: `❖ ${ctx.format.bold("URL")}: ${url}`
+            });
+        } catch (error) {
+            await ctx.helper.handleError(ctx, error, true);
+        }
+    }
+};
