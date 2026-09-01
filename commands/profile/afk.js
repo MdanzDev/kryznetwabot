@@ -9,6 +9,6 @@ module.exports = {
             timestamp: Date.now()
         };
         senderDb.save();
-        await ctx.reply(ctx.format.info(`Anda akan AFK, ${input ? `dengan alasan ${ctx.format.inlineCode(input)}` : "tanpa alasan apapun"}`));
+        await ctx.reply(ctx.format.info(`Anda akan AFK — ${input ? `dengan alasan ${ctx.format.inlineCode(input)}` : "tanpa alasan apapun"}`));
     }
 };

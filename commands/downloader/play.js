@@ -49,8 +49,8 @@ module.exports = {
                 });
                 downloadResult = (await ctx.request.get(downloadApiUrl)).data.result.url;
             } else {
-                const searchApiUrl = ctx.api.createUrl("ammaricano", "/api/search/youtube", {
-                    query: input
+                const searchApiUrl = ctx.api.createUrl("nexray", "/search/youtube", {
+                    q: input
                 });
                 searchResult = (await ctx.request.get(searchApiUrl)).data.result[searchIndex];
                 await ctx.reply(

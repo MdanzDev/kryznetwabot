@@ -26,8 +26,8 @@ module.exports = {
             });
 
         try {
-            const apiUrl = ctx.api.createUrl("ammaricano", "/api/search/youtube", {
-                query: input
+            const apiUrl = ctx.api.createUrl("nexray", "/search/youtube", {
+                q: input
             });
             const result = (await ctx.request.get(apiUrl)).data.result;
             const resultText = result.map(res =>

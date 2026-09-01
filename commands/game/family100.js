@@ -84,9 +84,9 @@ module.exports = {
                 }
             });
 
-            collector.on("end", async (reason) => {
+            collector.on("end", async () => {
                 const remaining = [...game.answers].map(ctx.format.ucwords).join(", ").replace(/, ([^,]*)$/, ", dan $1");
-                if (reason === "timeout" && sessions.has(ctx.id)) {
+                if (sessions.has(ctx.id)) {
                     sessions.delete(ctx.id);
                     await ctx.reply({
                         text: ctx.format.info(`Waktu habis! Jawaban yang belum terjawab: ${remaining}`),

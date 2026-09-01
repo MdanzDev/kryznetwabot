@@ -7,10 +7,10 @@ module.exports = [{
     },
     code: async (ctx) => {
         const target = ctx.isGroup() ? {
-            jid: ctx.id
+            id: ctx.id
         } : await ctx.target(["text_group"]);
         const daysAmount = parseInt(ctx.args[target.source === "text_group" ? 1 : 0]);
-        if (!target.jid || !daysAmount)
+        if (!target.id || !daysAmount)
             return await ctx.reply(
                 `${ctx.format.generateInstruction(["send"], ["text"])}\n` +
                 `${ctx.format.generateCmdExample(ctx.used, "1234567890 8 -s")}\n` +
@@ -22,7 +22,7 @@ module.exports = [{
                 })
             );
 
-        if (!await ctx.group(target.jid)) return await ctx.reply(ctx.format.info("Grup tidak valid atau bot tidak ada di grup tersebut!"));
+        if (!await ctx.group(target.id)) return await ctx.reply(ctx.format.info("Grup tidak valid atau bot tidak ada di grup tersebut!"));
 
         try {
             const flag = ctx.flag({
@@ -32,7 +32,7 @@ module.exports = [{
                     default: false
                 }
             });
-            const group = await ctx.group(target.jid);
+            const group = await ctx.group(target.id);
             const groupOwner = await group.owner();
             let groupMentions;
             if (!flag.silent && groupOwner && !config.system.restrict) {
@@ -42,7 +42,7 @@ module.exports = [{
                 }];
             }
 
-            const targetDb = ctx.getDb("groups", target.jid);
+            const targetDb = ctx.getDb("groups", target.id);
             if (daysAmount && daysAmount > 0) {
                 targetDb.sewaExpiration = Date.now() + (daysAmount * 24 * 60 * 60 * 1000);
                 targetDb.save();
@@ -79,9 +79,9 @@ module.exports = [{
     },
     code: async (ctx) => {
         const target = ctx.isGroup() ? {
-            jid: ctx.id
+            id: ctx.id
         } : await ctx.target(["text_group"]);
-        if (!target.jid)
+        if (!target.id)
             return await ctx.reply(
                 `${ctx.format.generateInstruction(["send"], ["text"])}\n` +
                 `${ctx.format.generateCmdExample(ctx.used, "1234567890 -s")}\n` +
@@ -93,10 +93,10 @@ module.exports = [{
                 })
             );
 
-        if (!await ctx.group(target.jid)) return await ctx.reply(ctx.format.info("Grup tidak valid atau bot tidak ada di grup tersebut!"));
+        if (!await ctx.group(target.id)) return await ctx.reply(ctx.format.info("Grup tidak valid atau bot tidak ada di grup tersebut!"));
 
         try {
-            const targetDb = ctx.getDb("groups", target.jid);
+            const targetDb = ctx.getDb("groups", target.id);
             targetDb.sewa = false;
             targetDb.sewaExpiration = null;
             targetDb.save();
@@ -108,7 +108,7 @@ module.exports = [{
                     default: false
                 }
             });
-            const group = await ctx.group(target.jid);
+            const group = await ctx.group(target.id);
             const groupOwner = await group.owner();
             if (!flag.silent && groupOwner && !config.system.restrict) {
                 const groupMentions = [{

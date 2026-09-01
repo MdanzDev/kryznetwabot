@@ -106,8 +106,8 @@ module.exports = {
                 }
             });
 
-            collector.on("end", async (reason) => {
-                if (reason === "timeout" && sessions.has(ctx.id)) {
+            collector.on("end", async () => {
+                if (sessions.has(ctx.id)) {
                     sessions.delete(ctx.id);
                     await ctx.reply({
                         text: ctx.format.info(`Waktu habis! Jawaban: ${game.answer} (${game.answerKey.toUpperCase()})`),

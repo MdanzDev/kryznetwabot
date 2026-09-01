@@ -4,7 +4,7 @@ module.exports = {
     category: "misc",
     code: async (ctx) => {
         const target = await ctx.target();
-        if (!target.jid)
+        if (!target.id)
             return await ctx.reply({
                 text: `${ctx.format.generateInstruction(["send"], ["text"])}\n` +
                     `${ctx.format.generateCmdExample(ctx.used, "@6281234567891")}\n` +
@@ -14,13 +14,13 @@ module.exports = {
                 mentions: ["6281234567891@s.whatsapp.net"]
             });
         try {
-            const result = await ctx.core.profilePictureUrl(target.jid);
+            const result = await ctx.core.profilePictureUrl(target.id);
             await ctx.reply({
                 image: {
                     url: result
                 },
-                caption: `❖ ${ctx.format.bold("Akun")}: @${ctx.getId(target.jid)}`,
-                mentions: [target.jid]
+                caption: `❖ ${ctx.format.bold("Akun")}: @${ctx.getId(target.id)}`,
+                mentions: [target.id]
             });
         } catch (error) {
             await ctx.helper.handleError(ctx, error);

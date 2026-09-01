@@ -6,7 +6,7 @@ module.exports = {
     name: "hangman",
     category: "game",
     code: async (ctx) => {
-        const sessionsKey = `${ctx.id}_${ctx.sender.jid}`;
+        const sessionsKey = `${ctx.id}_${ctx.sender.lid}`;
         if (sessions.has(sessionsKey)) return await ctx.reply(ctx.format.info("Sesi permainan sedang berjalan!"));
 
         try {
@@ -37,7 +37,7 @@ module.exports = {
             const collector = ctx.MessageCollector({
                 time: game.timeout,
                 filter: (collCtx) => {
-                    if (ctx.helper.areJidsSameUser(collCtx.sender.jid, ctx.sender.jid)) return false;
+                    if (ctx.helper.areJidsSameUser(collCtx.sender.lid, ctx.sender.lid)) return false;
                     if (collCtx.msg.body?.startsWith(`surrender_`)) return true;
                     const body = collCtx.msg.body?.toLowerCase() || "";
                     return body.length === 1 && /[a-z]/.test(body);
@@ -96,8 +96,8 @@ module.exports = {
                 );
             });
 
-            collector.on("end", async (reason) => {
-                if (reason === "timeout" && sessions.has(ctx.id)) {
+            collector.on("end", async () => {
+                if (sessions.has(ctx.id)) {
                     sessions.delete(sessionsKey);
                     await ctx.reply({
                         text: ctx.format.info(`Waktu habis! Jawaban: ${word}`),

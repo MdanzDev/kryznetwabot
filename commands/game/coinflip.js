@@ -18,8 +18,9 @@ module.exports = {
         if (!isUnlimited && senderDb?.coin < 500) return await ctx.reply(ctx.format.info("Koin Anda tidak cukup! Minimal memiliki 500 koin untuk bermain."));
 
         try {
-            const flip = Math.random() < 0.5 ? "garuda" : "melati";
-            const isWin = input === flip;
+            const winRate = 0.40;
+            const isWin = Math.random() < winRate;
+            const flip = isWin ? input : (input === "garuda" ? "melati" : "garuda");
             let responseText = "";
             let prizeText = "";
 

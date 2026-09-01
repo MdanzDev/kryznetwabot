@@ -8,7 +8,7 @@ module.exports = {
         const input = ctx.args[0];
         if (input === "y") {
             const usersDb = ctx.db.users;
-            usersDb.reset(user => user.jid === ctx.sender.lid);
+            usersDb.reset(user => user.id === ctx.sender.lid);
             return await ctx.reply(ctx.format.info("Database Anda telah berhasil direset!"));
         } else if (input === "n") {
             return await ctx.reply(ctx.format.info("Proses reset database telah dibatalkan."));

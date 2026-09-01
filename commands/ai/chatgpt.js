@@ -1,3 +1,5 @@
+const { AIRich } = require("baileys");
+
 module.exports = {
     name: "chatgpt",
     aliases: ["ai", "gpt"],
@@ -35,11 +37,7 @@ module.exports = {
                 (senderDb.sessionId ||= {}).chatgpt = [result.chatId, result.sessionId];
                 senderDb.save();
             }
-            await ctx.reply({
-                richResponse: [{
-                    text: result.reply
-                }]
-            });
+            await new AIRich(ctx.core).addText(result.reply).send(ctx.id);
         } catch (error) {
             await ctx.helper.handleError(ctx, error, true);
         }

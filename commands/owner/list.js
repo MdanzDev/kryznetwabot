@@ -10,9 +10,9 @@ module.exports = [{
         let resultText = "";
         let userMentions = [];
         for (const user of users) {
-            const userId = ctx.getId(user.jid);
+            const userId = ctx.getId(user.id);
             resultText += `❖ @${userId}\n`;
-            userMentions.push(user.jid);
+            userMentions.push(user.id);
         }
         await ctx.reply({
             text: resultText.trim() || ctx.format.info(config.msg.notFound),
@@ -27,7 +27,7 @@ module.exports = [{
         owner: true
     },
     code: async (ctx) => {
-        const groups = await ctx.client.groupFetchAllParticipating();
+        const groups = await ctx.core.groupFetchAllParticipating();
         const groupList = Object.values(groups);
         let groupMentions = [];
         const resultText = groupList.map(group =>
@@ -48,8 +48,8 @@ module.exports = [{
         let resultText = "";
         let userMentions = [];
         for (const user of users) {
-            const userId = ctx.getId(user.jid);
-            userMentions.push(user.jid);
+            const userId = ctx.getId(user.id);
+            userMentions.push(user.id);
             if (user.premiumExpiration) {
                 const daysLeft = ctx.format.convertMsToDuration(user.premiumExpiration - Date.now(), ["hari", "jam"]);
                 resultText += `❖ @${userId} (${daysLeft} tersisa)\n`;
@@ -74,16 +74,16 @@ module.exports = [{
         let resultText = "";
         let groupMentions = [];
         for (const group of groups) {
-            const groupSubject = await ctx.group(group.jid).name();
+            const groupSubject = await ctx.group(group.id).name();
             groupMentions.push({
-                groupJid: group.jid,
+                groupJid: group.id,
                 groupSubject
             });
             if (group.sewaExpiration) {
                 const daysLeft = ctx.format.convertMsToDuration(group.sewaExpiration - Date.now(), ["hari", "jam"]);
-                resultText += `❖ @${group.jid} (${daysLeft} tersisa)\n`;
+                resultText += `❖ @${group.id} (${daysLeft} tersisa)\n`;
             } else {
-                resultText += `❖ @${group.jid} (Permanen)\n`;
+                resultText += `❖ @${group.id} (Permanen)\n`;
             }
         }
         await ctx.reply({

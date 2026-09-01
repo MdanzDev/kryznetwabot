@@ -11,8 +11,8 @@ module.exports = [{
         let resultText = "";
         let userMentions = [];
         for (const mutedUser of muteList) {
-            const userId = ctx.getId(mutedUser.jid);
-            userMentions.push(mutedUser.jid);
+            const userId = ctx.getId(mutedUser.id);
+            userMentions.push(mutedUser.id);
             if (mutedUser.expiration) {
                 const timeDiff = mutedUser.expiration - Date.now();
                 const daysLeft = ctx.format.convertMsToDuration(timeDiff, ["hari", "jam"]);
@@ -54,8 +54,8 @@ module.exports = [{
         let resultText = "";
         let userMentions = [];
         for (const warning of warnings) {
-            const userId = ctx.getId(warning.jid);
-            userMentions.push(warning.jid);
+            const userId = ctx.getId(warning.id);
+            userMentions.push(warning.id);
             resultText += `❖ @${userId} (${warning.count}/${ctx.db.group?.maxwarnings || 3})\n`;
         }
         await ctx.reply({

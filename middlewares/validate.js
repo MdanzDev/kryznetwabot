@@ -21,7 +21,7 @@ module.exports = (bot) => {
                 (senderDb.lastSentMsg ||= {})[msg] = now;
                 senderDb.save();
                 return await ctx.reply({
-                    text: ctx.format.info(`${msg} Respon selanjutnya akan berupa reaksi emoji ${ctx.format.inlineCode(reaction)}.`),
+                    text: ctx.format.info(`${msg} — selanjutnya akan berupa reaksi emoji ${ctx.format.inlineCode(reaction)}.`),
                     buttons
                 });
             } else {

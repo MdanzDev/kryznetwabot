@@ -6,10 +6,10 @@ module.exports = (bot) => {
 
         const botDb = bot.getDb("bot");
         const botRestart = botDb?.restart || {};
-        if (botRestart?.jid && botRestart?.timestamp && botRestart?.readyAt) {
+        if (botRestart?.id && botRestart?.timestamp && botRestart?.readyAt) {
             bot.readyAt = botRestart.readyAt;
             const timeago = bot.format.convertMsToDuration(Date.now() - botRestart.timestamp);
-            await bot.sendMessage(botRestart.jid, {
+            await bot.sendMessage(botRestart.id, {
                 text: bot.format.info(`Berhasil dimulai ulang! Membutuhkan waktu ${timeago}.`),
                 edit: botRestart.key
             });

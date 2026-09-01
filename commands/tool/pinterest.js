@@ -13,10 +13,10 @@ module.exports = {
                 ctx.format.generateCmdExample(ctx.used, "rei ayanami")
             );
         try {
-            const apiUrl = ctx.api.createUrl("ammaricano", "/api/search/pinterest", {
-                query: input
+            const apiUrl = ctx.api.createUrl("nexray", "/search/pinterest", {
+                q: input
             });
-            const result = ctx.helper.getRandomElement((await ctx.request.get(apiUrl)).data.result.pins).media.images.orig.url;
+            const result = ctx.helper.getRandomElement((await ctx.request.get(apiUrl)).data.result).images_url;
             await ctx.reply({
                 image: {
                     url: result

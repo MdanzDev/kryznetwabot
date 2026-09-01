@@ -43,8 +43,8 @@ module.exports = [{
     },
     code: async (ctx) => {
         await ctx.reply({
-            text: `@${ctx.getId(ctx.sender.jid)}`,
-            mentions: [ctx.sender.jid]
+            text: `@${ctx.getId(ctx.sender.lid)}`,
+            mentions: [ctx.sender.lid]
         });
     }
 }];

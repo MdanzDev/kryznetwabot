@@ -8,7 +8,7 @@ module.exports = [{
     code: async (ctx) => {
         const target = await ctx.target();
         const daysAmount = parseInt(ctx.args[target.source === "quoted" ? 0 : 1], 10);
-        if (!target.jid)
+        if (!target.id)
             return await ctx.reply({
                 text: `${ctx.format.generateInstruction(["send"], ["text"])}\n` +
                     `${ctx.format.generateCmdExample(ctx.used, "@6281234567891 8 -s")}\n` +
@@ -31,17 +31,17 @@ module.exports = [{
                     default: false
                 }
             });
-            const targetDb = ctx.getDb("users", target.jid);
+            const targetDb = ctx.getDb("users", target.id);
             targetDb.premium = true;
             if (daysAmount && daysAmount > 0) {
                 targetDb.premiumExpiration = Date.now() + (daysAmount * 24 * 60 * 60 * 1000);
                 targetDb.save();
-                if (!flag.silent && !config.system.restrict) await ctx.sendMessage(target.jid, ctx.format.info(`Anda telah ditambahkan sebagai pengguna premium oleh owner selama ${daysAmount} hari!`));
+                if (!flag.silent && !config.system.restrict) await ctx.sendMessage(target.id, ctx.format.info(`Anda telah ditambahkan sebagai pengguna premium oleh owner selama ${daysAmount} hari!`));
                 await ctx.reply(ctx.format.info(`Berhasil menambahkan premium selama ${daysAmount} hari kepada pengguna itu!`));
             } else {
                 targetDb.premiumExpiration = null;
                 targetDb.save();
-                if (!flag.silent && !config.system.restrict) await ctx.sendMessage(target.jid, ctx.format.info("Anda telah ditambahkan sebagai pengguna premium selamanya oleh owner!"));
+                if (!flag.silent && !config.system.restrict) await ctx.sendMessage(target.id, ctx.format.info("Anda telah ditambahkan sebagai pengguna premium selamanya oleh owner!"));
                 await ctx.reply(ctx.format.info("Berhasil menambahkan premium selamanya kepada pengguna itu!"));
             }
         } catch (error) {
@@ -57,7 +57,7 @@ module.exports = [{
     },
     code: async (ctx) => {
         const target = await ctx.target();
-        if (!target.jid)
+        if (!target.id)
             return await ctx.reply({
                 text: `${ctx.format.generateInstruction(["send"], ["text"])}\n` +
                     `${ctx.format.generateCmdExample(ctx.used, "@6281234567891 -s")}\n` +
@@ -71,7 +71,7 @@ module.exports = [{
             });
 
         try {
-            const targetDb = ctx.getDb("users", target.jid);
+            const targetDb = ctx.getDb("users", target.id);
             targetDb.premium = false;
             targetDb.premiumExpiration = null;
             targetDb.save();
@@ -83,7 +83,7 @@ module.exports = [{
                     default: false
                 }
             });
-            if (!flag.silent && !config.system.restrict) await ctx.sendMessage(target.jid, ctx.format.info("Anda telah dihapus sebagai pengguna premium oleh owner!"));
+            if (!flag.silent && !config.system.restrict) await ctx.sendMessage(target.id, ctx.format.info("Anda telah dihapus sebagai pengguna premium oleh owner!"));
             await ctx.reply(ctx.format.info("Berhasil menghapuskan premium kepada pengguna itu!"));
         } catch (error) {
             await ctx.helper.handleError(ctx, error);

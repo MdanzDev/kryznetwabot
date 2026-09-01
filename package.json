@@ -1,6 +1,6 @@
 {
   "name": "nirwabot",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Useless WhatsApp Bot",
   "main": "index.js",
   "directories": {
@@ -23,7 +23,7 @@
     "@neoxr/helper": "^2.3.15",
     "axios": "^1.20.0",
     "axios-retry": "^4.5.0",
-    "baileys": "github:itsliaaa/baileys",
+    "baileys": "github:rexxzyid/elaina-baileys",
     "cfonts": "^3.3.1",
     "didyoumean": "^1.2.2",
     "glob": "^13.0.6",

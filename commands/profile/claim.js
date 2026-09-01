@@ -47,12 +47,12 @@ module.exports = {
 
         if (!claim) return await ctx.reply(ctx.format.info("Hadiah tidak valid!"));
         if (ctx.sender.isOwner() || senderDb?.premium) return await ctx.reply(ctx.format.info("Anda sudah memiliki koin tak terbatas!"));
-        if (level < claim.level) return await ctx.reply(ctx.format.info(`Anda perlu mencapai level ${claim.level} untuk mengklaim hadiah ini. Levelmu saat ini adalah ${level}.`));
+        if (level < claim.level) return await ctx.reply(ctx.format.info(`Anda perlu mencapai level ${claim.level} untuk mengklaim hadiah ini. Level Anda saat ini adalah ${level}.`));
 
         const currentTime = Date.now();
         const lastClaim = (senderDb?.lastClaim ?? {})[input] || 0;
         const remainingTime = claim.cooldown - (currentTime - lastClaim);
-        if (remainingTime > 0) return await ctx.reply(ctx.format.info(`Anda telah mengklaim hadiah ${input}. Tunggu ${ctx.format.convertMsToDuration(remainingTime)} untuk mengklaim lagi.`));
+        if (remainingTime > 0) return await ctx.reply(ctx.format.info(`Anda telah mengklaim hadiah ${input}! Tunggu ${ctx.format.convertMsToDuration(remainingTime)} untuk mengklaim lagi.`));
 
         try {
             senderDb.coin = (senderDb?.coin || 0) + claim.reward;

@@ -6,7 +6,7 @@ module.exports = {
         const users = ctx.db.users.getAll();
         const userDb = ctx.db.user;
         const leaderboardData = users.map(user => ({
-            jid: user.jid,
+            id: user.id,
             level: user.level || 0,
             winGame: user.winGame || 0
         })).sort((a, b) => b.winGame - a.winGame || b.level - a.level);
@@ -17,7 +17,7 @@ module.exports = {
             `❖ ${ctx.format.bold("Level")}: ${userDb?.level || 0} (${userDb?.xp || 0}/100)\n` +
             `❖ ${ctx.format.bold("Koin")}: ${ctx.sender.isOwner() || userDb?.premium ? "Unlimited" : (userDb?.coin || 0)}\n` +
             `❖ ${ctx.format.bold("Menang")}: ${userDb?.winGame || 0}\n` +
-            `❖ ${ctx.format.bold("Peringkat")}: ${leaderboardData.findIndex(user => ctx.helper.areJidsSameUser(user.jid, ctx.sender.lid)) + 1}`
+            `❖ ${ctx.format.bold("Peringkat")}: ${leaderboardData.findIndex(user => ctx.helper.areJidsSameUser(user.id, ctx.sender.lid)) + 1}`
         );
     }
 };

@@ -14,7 +14,7 @@ module.exports = [{
             );
         if (input.length > 1000) return await ctx.reply(ctx.format.info("Maksimal 1000 karakter!"));
         try {
-            const result = ctx.api.createUrl("ammaricano", "/api/image/brat", {
+            const result = ctx.api.createUrl("azbry", "/api/maker/brat", {
                 text: input
             });
             await ctx.reply({
@@ -45,7 +45,7 @@ module.exports = [{
             );
         if (input.length > 1000) return await ctx.reply(ctx.format.info("Maksimal 1000 karakter!"));
         try {
-            const result = ctx.api.createUrl("ammaricano", "/api/image/brat/animated", {
+            const result = ctx.api.createUrl("azbry", "/api/maker/bratvid", {
                 text: input
             });
             await ctx.reply({

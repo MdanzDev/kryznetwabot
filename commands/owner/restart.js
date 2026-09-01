@@ -13,7 +13,7 @@ module.exports = {
             const waitMsg = await ctx.reply(ctx.format.info(config.msg.wait));
             const botDb = ctx.db.bot;
             botDb.restart = {
-                jid: ctx.id,
+                id: ctx.id,
                 key: waitMsg.key,
                 timestamp: Date.now(),
                 readyAt: ctx.me.readyAt

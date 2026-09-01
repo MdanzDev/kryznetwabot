@@ -7,7 +7,7 @@ module.exports = [{
     },
     code: async (ctx) => {
         const target = await ctx.target();
-        if (!target.jid)
+        if (!target.id)
             return await ctx.reply({
                 text: `${ctx.format.generateInstruction(["send"], ["text"])}\n` +
                     `${ctx.format.generateCmdExample(ctx.used, "@6281234567891 -s")}\n` +
@@ -21,7 +21,7 @@ module.exports = [{
             });
 
         try {
-            const targetDb = ctx.getDb("users", target.jid);
+            const targetDb = ctx.getDb("users", target.id);
             targetDb.banned = true;
             targetDb.save();
 
@@ -32,7 +32,7 @@ module.exports = [{
                     default: false
                 }
             });
-            if (!flag.silent && !config.system.restrict) await ctx.sendMessage(target.jid, ctx.format.info("Anda telah dibanned oleh owner!"));
+            if (!flag.silent && !config.system.restrict) await ctx.sendMessage(target.id, ctx.format.info("Anda telah dibanned oleh owner!"));
             await ctx.reply(ctx.format.info("Berhasil dibanned!"));
         } catch (error) {
             await ctx.helper.handleError(ctx, error);
@@ -47,7 +47,7 @@ module.exports = [{
     },
     code: async (ctx) => {
         const target = await ctx.target();
-        if (!target.jid)
+        if (!target.id)
             return await ctx.reply({
                 text: `${ctx.format.generateInstruction(["send"], ["text"])}\n` +
                     `${ctx.format.generateCmdExample(ctx.used, "@6281234567891 -s")}\n` +
@@ -61,7 +61,7 @@ module.exports = [{
             });
 
         try {
-            const targetDb = ctx.getDb("users", target.jid);
+            const targetDb = ctx.getDb("users", target.id);
             targetDb.banned = false;
             targetDb.save();
 
@@ -72,7 +72,7 @@ module.exports = [{
                     default: false
                 }
             });
-            if (!flag.silent && !config.system.restrict) await ctx.sendMessage(target.jid, ctx.format.info("Anda telah diunbanned oleh owner!"));
+            if (!flag.silent && !config.system.restrict) await ctx.sendMessage(target.id, ctx.format.info("Anda telah diunbanned oleh owner!"));
             await ctx.reply(ctx.format.info("Berhasil diunbanned!"));
         } catch (error) {
             await ctx.helper.handleError(ctx, error);

@@ -84,7 +84,7 @@ module.exports = {
             } else {
                 const userDb = ctx.db.user;
                 const groups = Object.values(await ctx.core.groupFetchAllParticipating()).filter(g => !g.announce && !g.isCommunity && !g.isCommunityAnnounce);
-                const text = `✦ — Halo, @${ctx.getId(ctx.sender.jid)}! Saya adalah bot WhatsApp bernama ${config.bot.name}, dimiliki oleh ${config.owner.name}.\n` +
+                const text = `✦ — Halo, @${ctx.getId(ctx.sender.lid)}! Saya adalah bot WhatsApp bernama ${config.bot.name}, dimiliki oleh ${config.owner.name}.\n` +
                     "\n" +
                     `❖ ${ctx.format.bold("Status")}: ${ctx.sender.isOwner() ? "Owner" : (userDb?.premium ? `Premium (${userDb?.premiumExpiration ? `${ctx.format.convertMsToDuration(userDb.premiumExpiration - Date.now(), ["hari", "jam"])} tersisa` : "Selamanya"})` : "Freemium")}\n` +
                     `❖ ${ctx.format.bold("Level")}: ${userDb?.level || 0} (${userDb?.xp || 0}/100)\n` +
@@ -113,7 +113,7 @@ module.exports = {
                         url: config.bot.thumbnail
                     },
                     caption: text,
-                    mentions: [ctx.sender.jid],
+                    mentions: [ctx.sender.lid],
                     footer: config.msg.footer,
                     optionText: "Opsi",
                     optionTitle: "Pilih Opsi",

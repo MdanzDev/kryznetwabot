@@ -10,7 +10,7 @@ module.exports = [{
     },
     code: async (ctx) => {
         const target = await ctx.target(["quoted", "mentioned"]);
-        if (!target.jid)
+        if (!target.id)
             return await ctx.reply({
                 text: `${ctx.format.generateInstruction(["send"], ["text"])}\n` +
                     `${ctx.format.generateCmdExample(ctx.used, "@6281234567891")}\n` +
@@ -20,14 +20,14 @@ module.exports = [{
                 mentions: ["6281234567891@s.whatsapp.net"]
             });
 
-        if (ctx.helper.areJidsSameUser(target.jid, ctx.me.lid)) return await ctx.reply(ctx.format.info("Tidak bisa mengubah warning bot!"));
-        if (await ctx.group().isOwner(target.jid)) return await ctx.reply(ctx.format.info("Tidak bisa memberikan warning ke owner grup!"));
+        if (ctx.helper.areJidsSameUser(target.id, ctx.me.lid)) return await ctx.reply(ctx.format.info("Tidak bisa mengubah warning bot!"));
+        if (await ctx.group().isOwner(target.id)) return await ctx.reply(ctx.format.info("Tidak bisa memberikan warning ke owner grup!"));
 
         try {
             const groupDb = ctx.db.group;
             const warnings = groupDb?.warnings || [];
             const maxWarnings = groupDb?.maxwarnings || 3;
-            const targetIndex = warnings.findIndex(warning => ctx.helper.areJidsSameUser(warning.jid, target.jid));
+            const targetIndex = warnings.findIndex(warning => ctx.helper.areJidsSameUser(warning.id, target.id));
 
             let newWarningCount;
             if (targetIndex !== -1) {
@@ -36,7 +36,7 @@ module.exports = [{
             } else {
                 newWarningCount = 1;
                 warnings.push({
-                    jid: target.jid,
+                    id: target.id,
                     count: newWarningCount
                 });
             }
@@ -47,7 +47,7 @@ module.exports = [{
             if (newWarningCount >= maxWarnings) {
                 await ctx.reply(ctx.format.info(`Pengguna mencapai batas warning (${newWarningCount}/${maxWarnings}).`));
                 await ctx.group().kick(target);
-                groupDb.warnings = warnings.filter(warning => warning.jid !== target);
+                groupDb.warnings = warnings.filter(warning => warning.id !== target);
             } else {
                 await ctx.reply(ctx.format.info(`Berhasil menambahkan warning menjadi ${newWarningCount}/${maxWarnings}.`));
             }
@@ -67,7 +67,7 @@ module.exports = [{
     },
     code: async (ctx) => {
         const target = await ctx.target(["quoted", "mentioned"]);
-        if (!target.jid)
+        if (!target.id)
             return await ctx.reply({
                 text: `${ctx.format.generateInstruction(["send"], ["text"])}\n` +
                     `${ctx.format.generateCmdExample(ctx.used, "@6281234567891")}\n` +
@@ -77,14 +77,14 @@ module.exports = [{
                 mentions: ["6281234567891@s.whatsapp.net"]
             });
 
-        if (ctx.helper.areJidsSameUser(target.jid, ctx.me.lid)) return await ctx.reply(ctx.format.info("Tidak bisa mengubah warning bot!"));
-        if (await ctx.group().isOwner(target.jid)) return await ctx.reply(ctx.format.info("Tidak bisa memberikan warning ke owner grup!"));
+        if (ctx.helper.areJidsSameUser(target.id, ctx.me.lid)) return await ctx.reply(ctx.format.info("Tidak bisa mengubah warning bot!"));
+        if (await ctx.group().isOwner(target.id)) return await ctx.reply(ctx.format.info("Tidak bisa memberikan warning ke owner grup!"));
 
         try {
             const groupDb = ctx.db.group;
             const warnings = groupDb?.warnings || [];
             const maxWarnings = groupDb?.maxwarnings || 3;
-            const targetIndex = warnings.findIndex(warning => ctx.helper.areJidsSameUser(warning.jid, target.jid));
+            const targetIndex = warnings.findIndex(warning => ctx.helper.areJidsSameUser(warning.id, target.id));
 
             if (targetIndex === -1) return await ctx.reply(ctx.format.info("Pengguna tidak memiliki warning."));
             const currentCount = warnings[targetIndex].count || 0;

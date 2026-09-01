@@ -11,7 +11,7 @@ module.exports = [{
             const pendings = await ctx.group().pendingMembers();
             if (pendings.length === 0) return await ctx.reply(ctx.format.info("Tidak ada anggota yang menunggu persetujuan."));
             try {
-                const allJids = pendings.map(pending => pending.jid);
+                const allJids = pendings.map(pending => pending.lid);
                 await ctx.group().approvePendingMembers(allJids);
                 return await ctx.reply(ctx.format.info(`Berhasil menyetujui semua anggota (${allJids.length}).`));
             } catch (error) {
@@ -20,7 +20,7 @@ module.exports = [{
         }
 
         const target = await ctx.target(["text"]);
-        if (!target.jid)
+        if (!target.id)
             return await ctx.reply(
                 `${ctx.format.generateInstruction(["send"], ["text"])}\n` +
                 `${ctx.format.generateCmdExample(ctx.used, "6281234567891")}\n` +
@@ -30,10 +30,10 @@ module.exports = [{
             );
 
         const pendings = await ctx.group().pendingMembers();
-        const isPending = pendings.some(pending => ctx.helper.areJidsSameUser(pending.jid, target.jid));
+        const isPending = pendings.some(pending => ctx.helper.areJidsSameUser(pending.lid, target.id));
         if (!isPending) return await ctx.reply(ctx.format.info("Akun tidak ditemukan di daftar anggota yang menunggu persetujuan."));
         try {
-            await ctx.group().approvePendingMembers(target.jid);
+            await ctx.group().approvePendingMembers(target.id);
             await ctx.reply(ctx.format.info("Berhasil disetujui!"));
         } catch (error) {
             await ctx.helper.handleError(ctx, error);
@@ -52,7 +52,7 @@ module.exports = [{
             const pendings = await ctx.group().pendingMembers();
             if (pendings.length === 0) return await ctx.reply(ctx.format.info("Tidak ada anggota yang menunggu persetujuan."));
             try {
-                const allJids = pendings.map(pending => pending.jid);
+                const allJids = pendings.map(pending => pending.lid);
                 await ctx.group().rejectPendingMembers(allJids);
                 return await ctx.reply(ctx.format.info(`Berhasil menolak semua anggota (${allJids.length}).`));
             } catch (error) {
@@ -61,7 +61,7 @@ module.exports = [{
         }
 
         const target = await ctx.target(["text"]);
-        if (!target.jid)
+        if (!target.id)
             return await ctx.reply(
                 `${ctx.format.generateInstruction(["send"], ["text"])}\n` +
                 `${ctx.format.generateCmdExample(ctx.used, "6281234567891")}\n` +
@@ -71,10 +71,10 @@ module.exports = [{
             );
 
         const pendings = await ctx.group().pendingMembers();
-        const isPending = pendings.some(pending => ctx.helper.areJidsSameUser(pending.jid, target.jid));
+        const isPending = pendings.some(pending => ctx.helper.areJidsSameUser(pending.lid, target.id));
         if (!isPending) return await ctx.reply(ctx.format.info("Akun tidak ditemukan di daftar anggota yang menunggu persetujuan."));
         try {
-            await ctx.group().rejectPendingMembers(target.jid);
+            await ctx.group().rejectPendingMembers(target.id);
             await ctx.reply(ctx.format.info("Berhasil ditolak!"));
         } catch (error) {
             await ctx.helper.handleError(ctx, error);

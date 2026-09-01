@@ -30,12 +30,12 @@ module.exports = {
                 length: 3
             }, () => emojis[Math.floor(Math.random() * emojis.length)]);
 
-            const isJackpot = middleRow.every(v => v === middleRow[0]);
-            const isWin = middleRow[0] === middleRow[1] || middleRow[0] === middleRow[2] || middleRow[1] === middleRow[2];
+            const isJackpot = middleRow[0] === middleRow[1] && middleRow[1] === middleRow[2];
+            const isWin = !isJackpot && (middleRow[0] === middleRow[1] || middleRow[0] === middleRow[2] || middleRow[1] === middleRow[2]);
 
-            const slotText = `${topRow[1]} | ${middleRow[1]} | ${bottomRow[1]}\n` +
-                `${topRow[0]} | ${middleRow[0]} | ${bottomRow[0]} <===\n` +
-                `${topRow[2]} | ${middleRow[2]} | ${bottomRow[2]}`;
+            const slotText = `${topRow[0]} | ${topRow[1]} | ${topRow[2]}\n` +
+                `${middleRow[0]} | ${middleRow[1]} | ${middleRow[2]} <===\n` +
+                `${bottomRow[0]} | ${bottomRow[1]} | ${bottomRow[2]}`;
 
             let responseText = "";
             if (isJackpot) {

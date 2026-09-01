@@ -22,7 +22,7 @@ module.exports = {
             });
 
         try {
-            const targetDb = ctx.getDb("users", target.jid);
+            const targetDb = ctx.getDb("users", target.id);
             targetDb.coin += coinAmount;
             targetDb.save();
 
@@ -33,7 +33,7 @@ module.exports = {
                     default: false
                 }
             });
-            if (!flag.silent && !config.system.restrict) await ctx.sendMessage(target.jid, ctx.format.info(`Anda telah menerima ${coinAmount} koin dari owner!`));
+            if (!flag.silent && !config.system.restrict) await ctx.sendMessage(target.id, ctx.format.info(`Anda telah menerima ${coinAmount} koin dari owner!`));
             await ctx.reply(ctx.format.info(`Berhasil menambahkan ${coinAmount} koin kepada pengguna itu!`));
         } catch (error) {
             await ctx.helper.handleError(ctx, error);
