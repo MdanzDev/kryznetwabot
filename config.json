@@ -48,10 +48,10 @@
     "author": "Kryz-Net"
   },
   "system": {
-    "alwaysOnline": true,
-    "antiCall": true,
+    "alwaysOnline": false,
+    "antiCall": false,
     "autoRead": false,
-    "autoTypingOnCmd": true,
+    "autoTypingOnCmd": false,
     "cooldown": 10000,
     "maxListeners": 50,
     "port": 3000,
@@ -60,7 +60,7 @@
     "requireBotGroupMembership": false,
     "requireGroupSewa": false,
     "selfReply": true,
-    "timeZone": "Asia/Jakarta",
+    "timeZone": "Asia/Kuala_Lumpur",
     "unavailableAtNight": false,
     "useCoin": true,
     "usePairingCode": true,
