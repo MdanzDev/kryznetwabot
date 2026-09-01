@@ -1,6 +1,2 @@
 node_modules/
-state/
-database/
-config.json
-database.json
 package-lock.json

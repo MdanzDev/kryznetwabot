@@ -1,0 +1,102 @@
+[
+  {
+    "id": "120363412708614631@g.us",
+    "members": [
+      {
+        "id": "109736766767331@lid",
+        "sent": 6,
+        "pushName": "+60 19-766 1697"
+      }
+    ],
+    "mute": [],
+    "warnings": [],
+    "maxwarnings": 3,
+    "mutebot": false,
+    "option": {},
+    "text": {},
+    "sewa": false,
+    "sewaExpiration": null,
+    "spam": [],
+    "__id": "cc8a0787-c30f-4fa4-ab6c-93c9a6f8da29"
+  },
+  {
+    "id": "120363413469331106@g.us",
+    "members": [
+      {
+        "id": "109736766767331@lid",
+        "sent": 6,
+        "pushName": "+60 19-766 1697"
+      }
+    ],
+    "mute": [],
+    "warnings": [],
+    "maxwarnings": 3,
+    "mutebot": false,
+    "option": {},
+    "text": {},
+    "sewa": false,
+    "sewaExpiration": null,
+    "spam": [],
+    "__id": "70040869-edef-4c7d-b291-6968f5bae48a"
+  },
+  {
+    "id": "120363315097792965@g.us",
+    "members": [
+      {
+        "id": "109736766767331@lid",
+        "sent": 6,
+        "pushName": "+60 19-766 1697"
+      },
+      {
+        "id": "209350178136129@lid",
+        "sent": 1,
+        "pushName": "Qil 🤵"
+      },
+      {
+        "id": "64283413094616@lid",
+        "sent": 1,
+        "pushName": "SpawnShrawns"
+      }
+    ],
+    "mute": [],
+    "warnings": [],
+    "maxwarnings": 3,
+    "mutebot": false,
+    "option": {},
+    "text": {},
+    "sewa": false,
+    "sewaExpiration": null,
+    "spam": [],
+    "__id": "2e43c736-d9bc-4fd0-873e-b1532dec47ff"
+  },
+  {
+    "id": "120363428445709727@g.us",
+    "members": [
+      {
+        "id": "113550362177584@lid",
+        "sent": 1,
+        "pushName": "athars"
+      },
+      {
+        "id": "220701726388260@lid",
+        "sent": 1,
+        "pushName": "root@syaii: ~"
+      },
+      {
+        "id": "180187283083506@lid",
+        "sent": 6,
+        "pushName": "Kachina-MD"
+      }
+    ],
+    "mute": [],
+    "warnings": [],
+    "maxwarnings": 3,
+    "mutebot": false,
+    "option": {},
+    "text": {},
+    "sewa": false,
+    "sewaExpiration": null,
+    "spam": [],
+    "__id": "ecbaed2d-a7f7-4723-beba-8f0a4b9f78bb"
+  }
+]

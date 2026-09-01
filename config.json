@@ -1,0 +1,71 @@
+{
+  "bot": {
+    "name": "NIRWABOT",
+    "phoneNumber": "60137345871",
+    "thumbnail": "https://picsum.photos/1280/720",
+    "groupJid": "",
+    "groupLink": "https://chat.whatsapp.com/FxEYZl2UyzAEI2yhaH34Ye"
+  },
+  "msg": {
+    "admin": "Perintah hanya dapat digunakan oleh admin grup!",
+    "banned": "Anda telah dibanned!",
+    "botAdmin": "Bot harus menjadi admin grup!",
+    "botGroupMembership": "Anda tidak bergabung dengan grup bot!",
+    "coin": "Koin Anda tidak cukup!",
+    "cooldown": "Perintah sedang dalam cooldown, tunggu...",
+    "gamerestrict": "Admin grup membatasi perintah game!",
+    "group": "Perintah hanya dapat digunakan dalam grup!",
+    "groupSewa": "Admin grup belum melakukan sewa!",
+    "owner": "Perintah hanya dapat digunakan oleh owner!",
+    "premium": "Anda harus menjadi pengguna premium!",
+    "private": "Perintah hanya dapat digunakan dalam obrolan pribadi!",
+    "privatePremiumOnly": "Anda harus menjadi pengguna premium untuk menggunakannya dalam obrolan pribadi.",
+    "restrict": "Perintah dibatasi untuk menghindari pemblokiran WhatsApp!",
+    "unavailableAtNight": "Bot tidak tersedia dari jam 12 malam sampai 6 pagi! Silakan kembali nanti.",
+    "footer": "Improved By Kryz ",
+    "wait": "Tunggu sebentar...",
+    "notFound": "Tidak ada yang ditemukan! Coba lagi nanti.",
+    "error": "Terjadi kesalahan saat memproses permintaan! Coba lagi nanti atau hubungi owner jika masalah terus berlanjut.",
+    "invalidUrl": "URL tidak valid!"
+  },
+  "owner": {
+    "name": "Kryz",
+    "organization": "Kryz-Net",
+    "id": "60137345871",
+    "lid": "",
+    "report": true,
+    "co": [
+      {
+        "name": "00000",
+        "organization": "Kryz-Net",
+        "id": "0000000",
+        "report": false
+      }
+    ]
+  },
+  "sticker": {
+    "packname": "",
+    "author": "Kryz-Net"
+  },
+  "system": {
+    "alwaysOnline": true,
+    "antiCall": true,
+    "autoRead": false,
+    "autoTypingOnCmd": true,
+    "cooldown": 10000,
+    "maxListeners": 50,
+    "port": 3000,
+    "privatePremiumOnly": false,
+    "restrict": false,
+    "requireBotGroupMembership": false,
+    "requireGroupSewa": false,
+    "selfReply": true,
+    "timeZone": "Asia/Jakarta",
+    "unavailableAtNight": false,
+    "useCoin": true,
+    "usePairingCode": true,
+    "customPairingCode": "KRYZNETZ",
+    "useStore": false,
+    "useServer": false
+  }
+}
