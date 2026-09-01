@@ -57,6 +57,8 @@ module.exports = (bot) => {
         const isPrivate = ctx.isPrivate();
         if (!isGroup && !isPrivate) return;
 
+        const senderJid = ctx.sender.jid;
+        const senderId = ctx.getId(senderJid);
         const senderLid = ctx.sender.lid;
         const senderLidId = ctx.getId(senderLid);
         const groupJid = isGroup ? ctx.id : null;
