@@ -4,6 +4,10 @@ module.exports = {
     name: "collector",
     aliases: ["coll", "collect"],
     category: "misc",
+       permissions: {
+        owner: true
+    },
+    
     code: async (ctx) => {
         const timeout = parseInt(ctx.args[0], 10) || 60000;
         if (isNaN(timeout)) return await ctx.reply(ctx.format.info("Waktu timeout harus berupa angka!"));

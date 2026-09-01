@@ -1,6 +1,8 @@
+const config = require("./config.json");
 const { Client, CommandHandler } = require("./lib");
 const path = require("node:path");
 const util = require("node:util");
+
 const Events = require("./events");
 const Middlewares = require("./middlewares");
 

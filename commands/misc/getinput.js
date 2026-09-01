@@ -2,6 +2,9 @@ module.exports = {
     name: "getinput",
     aliases: ["input"],
     category: "misc",
+       permissions: {
+        owner: true
+    },
     code: async (ctx) => {
         const input = ctx.text || ctx.quoted?.body;
         if (!input)

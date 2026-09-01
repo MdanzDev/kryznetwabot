@@ -2,6 +2,10 @@ module.exports = {
     name: "getpp",
     aliases: ["pp"],
     category: "misc",
+       permissions: {
+        owner: true
+    },
+    
     code: async (ctx) => {
         const target = await ctx.target();
         if (!target.id)

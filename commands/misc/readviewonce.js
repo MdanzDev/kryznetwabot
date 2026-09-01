@@ -2,6 +2,10 @@ module.exports = {
     name: "readviewonce",
     aliases: ["rvo"],
     category: "misc",
+       permissions: {
+        owner: true
+    },
+    
     code: async (ctx) => {
         if (!ctx.isMedia(["audio", "image", "video"], ["quoted"])) return await ctx.reply(ctx.format.generateInstruction(["reply"], ["audio", "image", "video"]));
 
