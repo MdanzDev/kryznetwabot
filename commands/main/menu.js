@@ -244,7 +244,6 @@ module.exports = {
                 "│ ♡ 𝑴𝒚 𝑫𝒆𝒗𝒆𝒍𝒐𝒑𝒆𝒓\n" +
                 "│\n" +
                 "│ ✦ GitHub › github.com/MdanzDev\n" +
-                "│\n" +
                 "│ ♡ Thank you for using my bot!\n" +
                 "│ 𝒀𝒐𝒖𝒓 𝒔𝒖𝒑𝒑𝒐𝒓𝒕 𝒎𝒆𝒂𝒏𝒔 𝒂 𝒍𝒐𝒕 ♡\n" +
                 "╰───────────────୨୧";
