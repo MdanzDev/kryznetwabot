@@ -225,7 +225,6 @@ module.exports = {
                 }\n` +
                 `┊ ♡ Users    › ${ctx.db.users.totalEntries}\n` +
                 `┊ ♡ Groups   › ${ctx.db.groups.totalEntries}/${groups.length}\n` +
-                `┊ ♡ Library  › Baileys (${ctx.helper.getBaileysVersion()})\n` +
                 "╰┈┈┈┈┈┈┈┈୨୧\n" +
 
                 "\n" +
