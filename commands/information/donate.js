@@ -20,12 +20,32 @@ module.exports = {
                     .replace(/%command%/g, ctx.used.command)
                     .replace(/%footer%/g, config.msg.footer)
                     .replace(/%readmore%/g, "\u200E".repeat(4001))
-                : "❖ 60137345871 (TNG E-Wallet & ShopeePay)\n" +
-                  "❖ 64685895149199 (DuitNow || ShopeePay)\n" +
-                  "❖ 131771767889 (DuitNow || TNG E-Wallet)\n" +
-                  "❖ https://founder.kryz-net.space (PortFolio)";
+                : "╭───────────────୨୧\n" +
+                  "│  ₊˚⊹♡  𝑺𝒖𝒑𝒑𝒐𝒓𝒕 𝑫𝒆𝒗  ♡⊹˚₊\n" +
+                  "│  (｡･ω･｡)ﾉ♡ Thank you for considering!\n" +
+                  "╰───────────────୨୧\n\n" +
+                  "╭┈┈┈┈┈┈┈┈୨୧\n" +
+                  "┊ ✦ 𝑫𝒐𝒏𝒂𝒔𝒊 ୨୧\n" +
+                  "┊\n" +
+                  "┊ ❖ 60137345871\n" +
+                  "┊    (TNG E-Wallet & ShopeePay)\n" +
+                  "┊\n" +
+                  "┊ ❖ 64685895149199\n" +
+                  "┊    (DuitNow || ShopeePay)\n" +
+                  "┊\n" +
+                  "┊ ❖ 131771767889\n" +
+                  "┊    (DuitNow || TNG E-Wallet)\n" +
+                  "┊\n" +
+                  "┊ ❖ https://founder.kryz-net.space\n" +
+                  "┊    (Portfolio)\n" +
+                  "╰┈┈┈┈┈┈┈┈୨୧\n\n" +
+                  "╭───────────────୨୧\n" +
+                  "│ ♡ Setiap dukungan kamu berarti\n" +
+                  "│ banget buat developer kecil ini~\n" +
+                  "│ (｡•̀ᴗ-)✧ Makasih banyak ya! ♡\n" +
+                  "╰───────────────୨୧";
 
-            const result = await ctx.reply({
+            await ctx.reply({
                 image: {
                     url: qrisLink
                 },
