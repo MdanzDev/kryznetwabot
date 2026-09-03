@@ -1,5 +1,3 @@
-const axios = require("axios");
-
 module.exports = {
     name: "menu",
     aliases: ["allmenu", "help"],
@@ -10,7 +8,7 @@ module.exports = {
             const { cmd } = ctx.bot;
 
             // ╭──────────────୨୧
-            // │ Menu Categories
+            // │ MENU CATEGORIES
             // ╰──────────────୨୧
 
             const categories = {
@@ -31,10 +29,10 @@ module.exports = {
             // Get commands from selected categories
             const getCommands = (selectedCategories) => {
                 const result = {};
-                const allCmds = Array.from(cmd.values());
+                const allCommands = Array.from(cmd.values());
 
                 for (const category of selectedCategories) {
-                    const commands = allCmds
+                    const commands = allCommands
                         .filter(command => command.category === category)
                         .map(command => ({
                             name: command.name,
@@ -94,7 +92,8 @@ module.exports = {
                 let text =
                     "╭───────────────୨୧\n" +
                     "│  ₊˚⊹♡  𝑴𝒆𝒏𝒖  ♡⊹˚₊\n" +
-                    "│\n";
+                    "│  (｡･ω･｡)ﾉ♡ Here are my commands!\n" +
+                    "╰───────────────୨୧\n\n";
 
                 for (const [category, commands] of Object.entries(commandsData)) {
                     text +=
@@ -116,7 +115,7 @@ module.exports = {
 
                 text +=
                     "╭───────────────୨୧\n" +
-                    "│ ♡ 𝑲𝒆𝒚 𝑷𝒆𝒓𝒎𝒊𝒔𝒔𝒊𝒐𝒏 ♡\n" +
+                    "│ ♡ 𝑷𝒆𝒓𝒎𝒊𝒔𝒔𝒊𝒐𝒏 𝑲𝒆𝒚 ♡\n" +
                     "│\n" +
                     "│ ⓒ Coin\n" +
                     "│ Ⓖ Group\n" +
@@ -190,54 +189,69 @@ module.exports = {
 
             const text =
                 "╭───────────────୨୧\n" +
-                `│  ₊˚⊹♡  𝑯𝒆𝒍𝒍𝒐, @${ctx.getId(
+                "│  ₊˚⊹♡  𝑯𝒆𝒍𝒍𝒐 𝑻𝒉𝒆𝒓𝒆!  ♡⊹˚₊\n" +
+                "│\n" +
+                `│ ૮ ˶ᵔ ᵕ ᵔ˶ ა  @${ctx.getId(
                     ctx.sender.lid
-                )}!  ♡⊹˚₊\n` +
-                "│\n" +
-                `│ ૮ ˶ᵔ ᵕ ᵔ˶ ა  I'm ${config.bot.name}!\n` +
-                "│ Your cute little WhatsApp assistant ♡\n" +
-                "│\n" +
+                )}\n` +
+                `│ ♡ I'm ${config.bot.name}!\n` +
+                "│ Your little WhatsApp assistant ♡\n" +
+                "╰───────────────୨୧\n" +
 
-                "│ ╭─୨୧ 𝑷𝒓𝒐𝒇𝒊𝒍𝒆\n" +
-                `│ │ ✦ Status › ${status}\n` +
-                `│ │ ✦ Level  › ${userDb?.level || 0} (${userDb?.xp || 0}/100)\n` +
-                `│ │ ✦ Coins  › ${
+                "\n" +
+
+                "╭┈┈┈┈┈┈┈┈୨୧\n" +
+                "┊ ✦ 𝑷𝒓𝒐𝒇𝒊𝒍𝒆 ୨୧\n" +
+                "┊\n" +
+                `┊ ♡ Status › ${status}\n` +
+                `┊ ♡ Level  › ${userDb?.level || 0} (${userDb?.xp || 0}/100)\n` +
+                `┊ ♡ Coins  › ${
                     ctx.sender.isOwner() || userDb?.premium
                         ? "Unlimited ♡"
                         : userDb?.coin || 0
                 }\n` +
-                "│ ╰────────────\n" +
+                "╰┈┈┈┈┈┈┈┈୨୧\n" +
 
-                "│\n" +
-                "│ ╭─୨୧ 𝑺𝒚𝒔𝒕𝒆𝒎\n" +
-                `│ │ ✦ Mode     › ${ctx.format.ucwords(
+                "\n" +
+
+                "╭┈┈┈┈┈┈┈┈୨୧\n" +
+                "┊ ✦ 𝑺𝒚𝒔𝒕𝒆𝒎 ୨୧\n" +
+                "┊\n" +
+                `┊ ♡ Mode     › ${ctx.format.ucwords(
                     ctx.db.bot?.mode || "public"
                 )}\n` +
-                `│ │ ✦ Uptime   › ${
+                `┊ ♡ Uptime   › ${
                     ctx.me?.readyAt
                         ? ctx.format.convertMsToDuration(
                             Date.now() - ctx.me.readyAt
                         )
                         : "Unknown"
                 }\n` +
-                `│ │ ✦ Database › ${
-                    ctx.db.users.totalEntries
-                } users\n` +
-                `│ │ ✦ Groups   › ${
-                    ctx.db.groups.totalEntries
-                }/${groups.length}\n` +
-                `│ │ ✦ Library  › Baileys (${
-                    ctx.helper.getBaileysVersion()
-                })\n` +
-                "│ ╰────────────\n" +
+                `┊ ♡ Users    › ${ctx.db.users.totalEntries}\n` +
+                `┊ ♡ Groups   › ${ctx.db.groups.totalEntries}/${groups.length}\n` +
+                `┊ ♡ Library  › Baileys (${ctx.helper.getBaileysVersion()})\n` +
+                "╰┈┈┈┈┈┈┈┈୨୧\n" +
 
+                "\n" +
+
+                "╭───────────────୨୧\n" +
+                "│ ₊˚⊹♡  𝑾𝒉𝒂𝒕 𝒘𝒊𝒍𝒍 𝒊𝒕 𝒃𝒆?  ♡⊹˚₊\n" +
                 "│\n" +
-                "│ ₊˚⊹♡  𝑷𝒊𝒄𝒌 𝒂 𝒎𝒆𝒏𝒖 𝒃𝒆𝒍𝒐𝒘!  ♡⊹˚₊\n" +
+                "│ ૮₍ ˶ᵔ ᵕ ᵔ˶ ₎ა Choose a menu below!\n" +
                 "│\n" +
-                "│ (｡•̀ᴗ-)✧  Have fun using me!\n" +
-                "│ (づ｡◕‿‿◕｡)づ  Enjoy your stay!\n" +
+                "│ (｡•̀ᴗ-)✧ Explore my commands!\n" +
+                "│ (づ｡◕‿‿◕｡)づ Have fun!\n" +
+                "╰───────────────୨୧\n" +
+
+                "\n" +
+
+                "╭───────────────୨୧\n" +
+                "│ ♡ 𝑴𝒚 𝑫𝒆𝒗𝒆𝒍𝒐𝒑𝒆𝒓\n" +
                 "│\n" +
-                "│ ♡ Don't forget to support the developer ♡\n" +
+                "│ ✦ GitHub › github.com/MdanzDev\n" +
+                "│\n" +
+                "│ ♡ Thank you for using my bot!\n" +
+                "│ 𝒀𝒐𝒖𝒓 𝒔𝒖𝒑𝒑𝒐𝒓𝒕 𝒎𝒆𝒂𝒏𝒔 𝒂 𝒍𝒐𝒕 ♡\n" +
                 "╰───────────────୨୧";
 
             // ╭────────────────────────୨୧
@@ -259,26 +273,13 @@ module.exports = {
             });
 
             // ╭────────────────────────୨୧
-            // │ ANIMATED GIF
-            // ╰────────────────────────୨୧
-
-            const gifUrl =
-                "https://cdn.imageurlgenerator.com/uploads/3ed45693-e262-427e-a0f4-c397a8b61b41.gif";
-
-            const gifResponse = await axios.get(gifUrl, {
-                responseType: "arraybuffer",
-                timeout: 15000
-            });
-
-            const gifBuffer = Buffer.from(gifResponse.data);
-
-            // ╭────────────────────────୨୧
-            // │ SEND MENU
+            // │ SEND MAIN MENU
             // ╰────────────────────────୨୧
 
             await ctx.reply({
-                video: gifBuffer,
-                gifPlayback: true,
+                image: {
+                    url: config.bot.thumbnail
+                },
 
                 caption: text,
 
@@ -290,11 +291,6 @@ module.exports = {
 
                 optionText: "♡ Menu Selection",
                 optionTitle: "୨୧ Pilih Opsi",
-                offerText: config.bot.name,
-                offerCode: config.system.customPairingCode,
-                offerUrl: config.bot.groupLink,
-                offerExpiration:
-                    Date.now() + 2592000000,
 
                 nativeFlow: [
                     {
@@ -303,10 +299,15 @@ module.exports = {
                         sections: [
                             {
                                 title: "୨୧ Pilih Kategori Menu",
-                                highlight_label: "🌕",
+                                highlight_label: "♡",
                                 rows
                             }
                         ]
+                    },
+
+                    {
+                        text: "♡ GitHub",
+                        url: "https://github.com/MdanzDev/"
                     },
 
                     {
