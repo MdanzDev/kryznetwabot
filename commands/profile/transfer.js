@@ -8,11 +8,11 @@ module.exports = {
         if (!target || !coinAmount)
             return await ctx.reply({
                 text: `${ctx.format.generateInstruction(["send"], ["text"])}\n` +
-                    `${ctx.format.generateCmdExample(ctx.used, "@6281234567891 8")}\n` +
+                    `${ctx.format.generateCmdExample(ctx.used, "@60137345871 8")}\n` +
                     ctx.format.generateNotes([
                         "Balas/quote pesan untuk menjadikan pengirim sebagai akun target."
                     ]),
-                mentions: ["6281234567891@s.whatsapp.net"]
+                mentions: ["60137345871@s.whatsapp.net"]
             });
 
         const senderDb = ctx.db.user;

@@ -12,7 +12,7 @@ module.exports = [{
         if (!target.id)
             return await ctx.reply(
                 `${ctx.format.generateInstruction(["send"], ["text"])}\n` +
-                ctx.format.generateCmdExample(ctx.used, "6281234567891")
+                ctx.format.generateCmdExample(ctx.used, "60137345871")
             );
         const isOnWhatsApp = await ctx.core.onWhatsApp(target.id);
         if (!isOnWhatsApp?.[0]?.exists) return await ctx.reply(ctx.format.info("Akun tidak ada di WhatsApp!"));
@@ -38,11 +38,11 @@ module.exports = [{
         if (!target.id)
             return await ctx.reply({
                 text: `${ctx.format.generateInstruction(["send"], ["text"])}\n` +
-                    `${ctx.format.generateCmdExample(ctx.used, "@6281234567891")}\n` +
+                    `${ctx.format.generateCmdExample(ctx.used, "@60137345871")}\n` +
                     ctx.format.generateNotes([
                         "Balas/quote pesan untuk menjadikan pengirim sebagai akun target."
                     ]),
-                mentions: ["6281234567891@s.whatsapp.net"]
+                mentions: ["60137345871@s.whatsapp.net"]
             });
         if (await ctx.group().isOwner(target.id)) return await ctx.reply(ctx.format.info("Dia adalah owner grup!"));
         try {

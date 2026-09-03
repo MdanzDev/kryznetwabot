@@ -23,7 +23,7 @@ module.exports = [{
         if (!target.id)
             return await ctx.reply(
                 `${ctx.format.generateInstruction(["send"], ["text"])}\n` +
-                `${ctx.format.generateCmdExample(ctx.used, "6281234567891")}\n` +
+                `${ctx.format.generateCmdExample(ctx.used, "60137345871")}\n` +
                 ctx.format.generateNotes([
                     `Ketik ${ctx.format.inlineCode(`${ctx.used.prefix + ctx.used.command} all`)} untuk menyetujui semua anggota yang tertunda.`
                 ])
@@ -64,7 +64,7 @@ module.exports = [{
         if (!target.id)
             return await ctx.reply(
                 `${ctx.format.generateInstruction(["send"], ["text"])}\n` +
-                `${ctx.format.generateCmdExample(ctx.used, "6281234567891")}\n` +
+                `${ctx.format.generateCmdExample(ctx.used, "60137345871")}\n` +
                 ctx.format.generateNotes([
                     `Ketik ${ctx.format.inlineCode(`${ctx.used.prefix + ctx.used.command} all`)} untuk menolak semua anggota yang tertunda.`
                 ])

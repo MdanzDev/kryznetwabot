@@ -20,12 +20,12 @@ module.exports = [{
         if (!target.id)
             return await ctx.reply({
                 text: `${ctx.format.generateInstruction(["send"], ["text"])}\n` +
-                    `${ctx.format.generateCmdExample(ctx.used, "@6281234567891 8")}\n` +
+                    `${ctx.format.generateCmdExample(ctx.used, "@60137345871 8")}\n` +
                     ctx.format.generateNotes([
                         "Balas/quote pesan untuk menjadikan pengirim sebagai akun target.",
                         `Ketik ${ctx.format.inlineCode(`${ctx.used.prefix + ctx.used.command} bot`)} untuk me-mute bot.`
                     ]),
-                mentions: ["6281234567891@s.whatsapp.net"]
+                mentions: ["60137345871@s.whatsapp.net"]
             });
 
         if (daysAmount && daysAmount <= 0) return await ctx.reply(ctx.format.info("Durasi mute (dalam hari) harus lebih dari 0!"));
@@ -78,12 +78,12 @@ module.exports = [{
         if (!target.id)
             return await ctx.reply({
                 text: `${ctx.format.generateInstruction(["send"], ["text"])}\n` +
-                    `${ctx.format.generateCmdExample(ctx.used, "@6281234567891")}\n` +
+                    `${ctx.format.generateCmdExample(ctx.used, "@60137345871")}\n` +
                     ctx.format.generateNotes([
                         "Balas/quote pesan untuk menjadikan pengirim sebagai akun target.",
                         `Ketik ${ctx.format.inlineCode(`${ctx.used.prefix + ctx.used.command} bot`)} untuk me-unmute bot.`
                     ]),
-                mentions: ["6281234567891@s.whatsapp.net"]
+                mentions: ["60137345871@s.whatsapp.net"]
             });
 
         if (ctx.helper.areJidsSameUser(target.id, ctx.me.lid)) return await ctx.reply(ctx.format.info(`Ketik ${ctx.format.inlineCode(`${ctx.used.prefix + ctx.used.command} bot`)} untuk me-unmute bot.`));
