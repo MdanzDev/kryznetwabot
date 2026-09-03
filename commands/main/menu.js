@@ -77,7 +77,7 @@ module.exports = {
                         text: "Hubungi Owner",
                         id: `${ctx.used.prefix}owner`
                     }, {
-                        text: "Donasi",
+                        text: "Support Dev Kecil (Kryz)",
                         id: `${ctx.used.prefix}donate`
                     }]
                 });
@@ -115,7 +115,7 @@ module.exports = {
                     caption: text,
                     mentions: [ctx.sender.lid],
                     footer: config.msg.footer,
-                    optionText: "Opsi",
+                    optionText: "Menu Selection",
                     optionTitle: "Pilih Opsi",
                     offerText: config.bot.name,
                     offerCode: config.system.customPairingCode,
