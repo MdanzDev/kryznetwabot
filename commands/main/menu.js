@@ -186,10 +186,6 @@ module.exports = {
                 status = "Freemium";
             }
 
-            // ╭────────────────────────୨୧
-            // │ MAIN MENU TEXT
-            // ╰────────────────────────୨୧
-
             const text =
                 "╭───────────────୨୧\n" +
                 "│  ₊˚⊹♡  𝑯𝒆𝒍𝒍𝒐 𝑻𝒉𝒆𝒓𝒆!  ♡⊹˚₊\n" +
@@ -228,7 +224,7 @@ module.exports = {
                         : "Unknown"
                 }\n` +
                 `┊ ♡ Users    › ${ctx.db.users.totalEntries}\n` +
-                `┊ ♡ Groups   › ${ctx.db.groups.totalEntries}/${groups.length}\n` +
+                `┊ ♡ Groups   › ${ctx.db.groups.totalEntries}/${groups.length}\n`
                 "╰┈┈┈┈┈┈┈┈୨୧\n" +
 
                 "\n" +
@@ -240,6 +236,17 @@ module.exports = {
                 "│\n" +
                 "│ (｡•̀ᴗ-)✧ Explore my commands!\n" +
                 "│ (づ｡◕‿‿◕｡)づ Have fun!\n" +
+                "╰───────────────୨୧\n" +
+
+                "\n" +
+
+                "╭───────────────୨୧\n" +
+                "│ ♡ 𝑴𝒚 𝑫𝒆𝒗𝒆𝒍𝒐𝒑𝒆𝒓\n" +
+                "│\n" +
+                "│ ✦ GitHub › github.com/MdanzDev\n" +
+                "│\n" +
+                "│ ♡ Thank you for using my bot!\n" +
+                "│ 𝒀𝒐𝒖𝒓 𝒔𝒖𝒑𝒑𝒐𝒓𝒕 𝒎𝒆𝒂𝒏𝒔 𝒂 𝒍𝒐𝒕 ♡\n" +
                 "╰───────────────୨୧";
 
             // ╭────────────────────────୨୧
@@ -265,39 +272,17 @@ module.exports = {
             // ╰────────────────────────୨୧
 
             await ctx.reply({
-                text,
+                image: {
+                    url: config.bot.thumbnail
+                },
+
+                caption: text,
 
                 mentions: [
                     ctx.sender.lid
                 ],
 
                 footer: config.msg.footer,
-
-                contextInfo: {
-                    externalAdReply: {
-                        title: "MdanzDev",
-                        body: `♡ ${config.bot.name} — Cute WhatsApp Assistant ♡`,
-                        mediaType: 1,
-
-                        renderLargerThumbnail: true,
-
-                        // FIXED: pass a raw JPEG buffer instead of a URL string.
-                        // thumbnailUrl depends on the fork implementing its own
-                        // fetch-and-embed logic and often gets silently dropped.
-                        // ctx.helper.getJpegThumbnail() already returns a buffer
-                        // (see the `location` block above where it's used the
-                        // same way), so reuse it here for consistency.
-                        thumbnail:
-                            await ctx.helper.getJpegThumbnail(
-                                config.bot.thumbnail
-                            ),
-
-                        sourceUrl:
-                            "https://github.com/MdanzDev/",
-
-                        showAdAttribution: false
-                    }
-                },
 
                 optionText: "♡ Menu Selection",
                 optionTitle: "୨୧ Pilih Opsi",
@@ -313,6 +298,11 @@ module.exports = {
                                 rows
                             }
                         ]
+                    },
+
+                    {
+                        text: "♡ GitHub",
+                        url: "https://github.com/MdanzDev/"
                     },
 
                     {
