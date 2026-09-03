@@ -116,7 +116,6 @@ module.exports = {
                 text +=
                     "╭───────────────୨୧\n" +
                     "│ ♡ 𝑷𝒆𝒓𝒎𝒊𝒔𝒔𝒊𝒐𝒏 𝑲𝒆𝒚 ♡\n" +
-                    "│\n" +
                     "│ ⓒ Coin\n" +
                     "│ Ⓖ Group\n" +
                     "│ Ⓞ Owner\n" +
@@ -187,10 +186,13 @@ module.exports = {
                 status = "Freemium";
             }
 
+            // ╭────────────────────────୨୧
+            // │ MAIN MENU TEXT
+            // ╰────────────────────────୨୧
+
             const text =
                 "╭───────────────୨୧\n" +
                 "│  ₊˚⊹♡  𝑯𝒆𝒍𝒍𝒐 𝑻𝒉𝒆𝒓𝒆!  ♡⊹˚₊\n" +
-                "│\n" +
                 `│ ૮ ˶ᵔ ᵕ ᵔ˶ ა  @${ctx.getId(
                     ctx.sender.lid
                 )}\n` +
@@ -202,7 +204,6 @@ module.exports = {
 
                 "╭┈┈┈┈┈┈┈┈୨୧\n" +
                 "┊ ✦ 𝑷𝒓𝒐𝒇𝒊𝒍𝒆 ୨୧\n" +
-                "┊\n" +
                 `┊ ♡ Status › ${status}\n` +
                 `┊ ♡ Level  › ${userDb?.level || 0} (${userDb?.xp || 0}/100)\n` +
                 `┊ ♡ Coins  › ${
@@ -216,7 +217,6 @@ module.exports = {
 
                 "╭┈┈┈┈┈┈┈┈୨୧\n" +
                 "┊ ✦ 𝑺𝒚𝒔𝒕𝒆𝒎 ୨୧\n" +
-                "┊\n" +
                 `┊ ♡ Mode     › ${ctx.format.ucwords(
                     ctx.db.bot?.mode || "public"
                 )}\n` +
@@ -229,7 +229,6 @@ module.exports = {
                 }\n` +
                 `┊ ♡ Users    › ${ctx.db.users.totalEntries}\n` +
                 `┊ ♡ Groups   › ${ctx.db.groups.totalEntries}/${groups.length}\n` +
-                `┊ ♡ Library  › Baileys (${ctx.helper.getBaileysVersion()})\n` +
                 "╰┈┈┈┈┈┈┈┈୨୧\n" +
 
                 "\n" +
@@ -241,17 +240,6 @@ module.exports = {
                 "│\n" +
                 "│ (｡•̀ᴗ-)✧ Explore my commands!\n" +
                 "│ (づ｡◕‿‿◕｡)づ Have fun!\n" +
-                "╰───────────────୨୧\n" +
-
-                "\n" +
-
-                "╭───────────────୨୧\n" +
-                "│ ♡ 𝑴𝒚 𝑫𝒆𝒗𝒆𝒍𝒐𝒑𝒆𝒓\n" +
-                "│\n" +
-                "│ ✦ GitHub › github.com/MdanzDev\n" +
-                "│\n" +
-                "│ ♡ Thank you for using my bot!\n" +
-                "│ 𝒀𝒐𝒖𝒓 𝒔𝒖𝒑𝒑𝒐𝒓𝒕 𝒎𝒆𝒂𝒏𝒔 𝒂 𝒍𝒐𝒕 ♡\n" +
                 "╰───────────────୨୧";
 
             // ╭────────────────────────୨୧
@@ -277,17 +265,31 @@ module.exports = {
             // ╰────────────────────────୨୧
 
             await ctx.reply({
-                image: {
-                    url: config.bot.thumbnail
-                },
-
-                caption: text,
+                text,
 
                 mentions: [
                     ctx.sender.lid
                 ],
 
                 footer: config.msg.footer,
+
+                contextInfo: {
+                    externalAdReply: {
+                        title: "MdanzDev",
+                        body: `♡ ${config.bot.name} — Cute WhatsApp Assistant ♡`,
+                        mediaType: 1,
+
+                        renderLargerThumbnail: true,
+
+                        thumbnailUrl:
+                            config.bot.thumbnail,
+
+                        sourceUrl:
+                            "https://github.com/MdanzDev/",
+
+                        showAdAttribution: false
+                    }
+                },
 
                 optionText: "♡ Menu Selection",
                 optionTitle: "୨୧ Pilih Opsi",
@@ -303,11 +305,6 @@ module.exports = {
                                 rows
                             }
                         ]
-                    },
-
-                    {
-                        text: "♡ GitHub",
-                        url: "https://github.com/MdanzDev/"
                     },
 
                     {
