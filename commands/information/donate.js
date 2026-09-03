@@ -5,7 +5,7 @@ module.exports = {
     code: async (ctx) => {
         try {
             const botText = ctx.db.bot.text || {};
-            const qrisLink = "https://files.catbox.moe/theran.png";
+            const qrisLink = botText?.qris || "https://files.catbox.moe/theran.png";
             const customText = botText?.donate;
             const text = customText ? customText.replace(/%tag%/g, `@${ctx.getId(ctx.sender.lid)}`).replace(/%name%/g, config.bot.name).replace(/%prefix%/g, ctx.used.prefix).replace(/%command%/g, ctx.used.command).replace(/%footer%/g, config.msg.footer).replace(/%readmore%/g, "\u200E".repeat(4001)) :
                 "❖ 60137345871 (TNG E-Wallet & ShopeePay)\n" +
