@@ -9,6 +9,15 @@ module.exports = {
             timestamp: Date.now()
         };
         senderDb.save();
-        await ctx.reply(ctx.format.info(`Anda akan AFK — ${input ? `dengan alasan ${ctx.format.inlineCode(input)}` : "tanpa alasan apapun"}`));
+
+        const text =
+            "╭───────────────୨୧\n" +
+            "│  ₊˚⊹♡  𝑨𝑭𝑲 𝑴𝒐𝒅𝒆  ♡⊹˚₊\n" +
+            `│ (｡･ω･｡) Kamu sekarang masuk mode AFK~\n` +
+            `│ ♡ Alasan › ${input ? ctx.format.inlineCode(input) : "Tanpa alasan"}\n` +
+            "│ (｡•̀ᴗ-)✧ Kirim pesan apapun untuk selesai AFK! ♡\n" +
+            "╰───────────────୨୧";
+
+        await ctx.reply(text);
     }
 };

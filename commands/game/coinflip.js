@@ -15,29 +15,54 @@ module.exports = {
 
         const senderDb = ctx.db.user;
         const isUnlimited = ctx.sender.isOwner() || senderDb?.premium;
-        if (!isUnlimited && senderDb?.coin < 500) return await ctx.reply(ctx.format.info("Koin Anda tidak cukup! Minimal memiliki 500 koin untuk bermain."));
+        if (!isUnlimited && senderDb?.coin < 500) return await ctx.reply(ctx.format.info("(｡•́︿•̀｡) Koin kamu tidak cukup! Minimal memiliki 500 koin untuk bermain ya~ ♡"));
 
         try {
             const winRate = 0.40;
             const isWin = Math.random() < winRate;
             const flip = isWin ? input : (input === "garuda" ? "melati" : "garuda");
-            let responseText = "";
             let prizeText = "";
 
             if (isWin) {
                 const prize = 1000;
                 if (!isUnlimited) senderDb.coin += prize;
-                responseText = "Selamat!";
-                prizeText = `+${prize} koin`;
+                prizeText = `+${prize} koin 🪙`;
             } else {
                 const forfeit = 500;
                 if (!isUnlimited) senderDb.coin -= forfeit;
-                responseText = "Kalah!";
-                prizeText = `-${forfeit} koin`;
+                prizeText = `-${forfeit} koin 💔`;
             }
 
             if (!isUnlimited) senderDb.save();
-            await ctx.reply(ctx.format.info(`${responseText} Koin jatuh di sisi ${flip}. ${prizeText}`));
+
+            const statusKaomoji = isWin ? "૮ ˶ᵔ ᵕ ᵔ˶ ა" : "(｡•́︿•̀｡)";
+            const statusTitle = isWin ? "𝒀𝒆𝒚, 𝑴𝒆𝒏𝒂𝒏𝒈!" : "𝒀𝒂𝒉, 𝑲𝒂𝒍𝒂𝒉~";
+            const text =
+                "╭───────────────୨୧\n" +
+                `│  ₊˚⊹♡  ${statusTitle}  ♡⊹˚₊\n` +
+                `│ ${statusKaomoji} Koin jatuh di sisi: ${ctx.format.bold(flip.toUpperCase())}!\n` +
+                `│ ✦ Hadiah  › ${prizeText}\n` +
+                `│ ♡ Tebakan › ${input}\n` +
+                "│ (｡•̀ᴗ-)✧ Mau coba lagi? Tekan tombol di bawah ya! ♡\n" +
+                "╰───────────────୨୧";
+
+            await ctx.reply({
+                text,
+                buttons: [
+                    {
+                        text: "♡ Main (Melati)",
+                        id: `${ctx.used.prefix}coinflip melati`
+                    },
+                    {
+                        text: "୨୧ Main (Garuda)",
+                        id: `${ctx.used.prefix}coinflip garuda`
+                    },
+                    {
+                        text: "♡ Cek Koin",
+                        id: `${ctx.used.prefix}coin`
+                    }
+                ]
+            });
         } catch (error) {
             await ctx.helper.handleError(ctx, error);
         }

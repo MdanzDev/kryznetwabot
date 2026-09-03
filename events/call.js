@@ -31,17 +31,17 @@ module.exports = (bot) => {
                 } = bot.helper.calculateDelays(reportOwners.length);
                 for (let i = 0; i < reportOwners.length; i++) {
                     await bot.sendMessage(reportOwners[i] + Baileys.S_WHATSAPP_NET, {
-                        text: bot.format.info(`Akun @${fromPnId} telah dibanned secara otomatis karena alasan ${bot.format.inlineCode("Anti Call")}.`),
+                        text: bot.format.info(`(｡•ˇ‸ˇ•｡) Akun @${fromPnId} telah dibanned secara otomatis karena melanggar ${bot.format.inlineCode("Anti Call")}.`),
                         mentions: [fromPnJid]
                     });
                     await bot.helper.delay(delays[i]);
                 }
             }
             await bot.sendMessage(fromJid, {
-                text: bot.format.info("Anda telah dibanned secara otomatis karena melanggar aturan!"),
+                text: bot.format.info("(╥﹏╥) Kamu telah dibanned secara otomatis karena melakukan panggilan! Tolong hubungi owner untuk bantuan ya~ ♡"),
                 buttons: [{
-                    text: "Hubungi Owner",
-                    id: `${botDb.lastPrefix}owner`
+                    text: "♡ Hubungi Owner",
+                    id: `${botDb.lastPrefix || "/"}owner`
                 }]
             });
         }

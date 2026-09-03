@@ -40,9 +40,16 @@ module.exports = {
                 });
                 searchResult = (await ctx.request.get(searchApiUrl)).data.result[searchIndex];
                 await ctx.reply(
-                    `❖ ${ctx.format.bold("Judul")}: ${searchResult.title}\n` +
-                    `❖ ${ctx.format.bold("Artis")}: ${searchResult.artist}\n` +
-                    `❖ ${ctx.format.bold("URL")}: ${searchResult.url}`
+                    "╭───────────────୨୧\n" +
+                    "│  ₊˚⊹♡  𝑵𝒐𝒘 𝑷𝒍𝒂𝒚𝒊𝒏𝒈  ♡⊹˚₊\n" +
+                    "│ (｡･ω･｡)ﾉ Sedang menyiapkan lagu untukmu~ ✧\n" +
+                    "╰───────────────୨୧\n\n" +
+                    "╭┈┈┈┈┈┈┈┈୨୧\n" +
+                    "┊ ✦ 𝑰𝒏𝒇𝒐 𝑳𝒂𝒈𝒖 ୨୧\n" +
+                    `┊ ♡ Judul  › ${searchResult.title}\n` +
+                    `┊ ♡ Artis  › ${searchResult.artist}\n` +
+                    "┊ ❖ Sumber › SPOTIFY ♡\n" +
+                    "╰┈┈┈┈┈┈┈┈୨୧"
                 );
                 const downloadApiUrl = ctx.api.createUrl("nexray", "/downloader/spotify", {
                     url: searchResult.url
@@ -54,9 +61,16 @@ module.exports = {
                 });
                 searchResult = (await ctx.request.get(searchApiUrl)).data.result[searchIndex];
                 await ctx.reply(
-                    `❖ ${ctx.format.bold("Judul")}: ${searchResult.title}\n` +
-                    `❖ ${ctx.format.bold("Artis")}: ${searchResult.channel}\n` +
-                    `❖ ${ctx.format.bold("URL")}: ${searchResult.url}`
+                    "╭───────────────୨୧\n" +
+                    "│  ₊˚⊹♡  𝑵𝒐𝒘 𝑷𝒍𝒂𝒚𝒊𝒏𝒈  ♡⊹˚₊\n" +
+                    "│ (｡･ω･｡)ﾉ Sedang menyiapkan lagu untukmu~ ✧\n" +
+                    "╰───────────────୨୧\n\n" +
+                    "╭┈┈┈┈┈┈┈┈୨୧\n" +
+                    "┊ ✦ 𝑰𝒏𝒇𝒐 𝑳𝒂𝒈𝒖 ୨୧\n" +
+                    `┊ ♡ Judul   › ${searchResult.title}\n` +
+                    `┊ ♡ Channel › ${searchResult.channel}\n` +
+                    "┊ ❖ Sumber  › YOUTUBE ♡\n" +
+                    "╰┈┈┈┈┈┈┈┈୨୧"
                 );
                 const downloadApiUrl = ctx.api.createUrl("nexray", "/downloader/savetube", {
                     url: searchResult.url,

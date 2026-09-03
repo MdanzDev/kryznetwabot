@@ -5,22 +5,26 @@ module.exports = {
         private: true
     },
     code: async (ctx) => {
-        const input = ctx.args[0];
-        if (input === "y") {
+        const input = ctx.args[0]?.toLowerCase();
+        if (input === "y" || input === "yes") {
             const usersDb = ctx.db.users;
             usersDb.reset(user => user.id === ctx.sender.lid);
-            return await ctx.reply(ctx.format.info("Database Anda telah berhasil direset!"));
-        } else if (input === "n") {
-            return await ctx.reply(ctx.format.info("Proses reset database telah dibatalkan."));
+            return await ctx.reply(ctx.format.info("(｡•́︿•̀｡) Database kamu telah berhasil direset kembali ke awal~ ♡"));
+        } else if (input === "n" || input === "no") {
+            return await ctx.reply(ctx.format.info("૮ ˶ᵔ ᵕ ᵔ˶ ა Proses reset database telah dibatalkan. Data kamu aman! ♡"));
         }
 
         await ctx.reply({
-            text: ctx.format.info("Yakin ingin mereset database Anda? Tindakan ini akan menghapus semua data yang tersimpan dan tidak dapat dipulihkan."),
+            text: "╭───────────────୨୧\n" +
+                  "│  ₊˚⊹♡  𝑲𝒐𝒏𝒇𝒊𝒓𝒎𝒂𝒔𝒊 𝑹𝒆𝒔𝒆𝒕  ♡⊹˚₊\n" +
+                  "│ (｡•́︿•̀｡) Kamu yakin ingin mereset database?\n" +
+                  "│ Semua level, koin, dan data kamu akan terhapus lho...\n" +
+                  "╰───────────────୨୧",
             buttons: [{
-                text: "Ya",
+                text: "♡ Ya, Reset Data",
                 id: `${ctx.used.prefix + ctx.used.command} yes`
             }, {
-                text: "Tidak",
+                text: "୨୧ Batalkan",
                 id: `${ctx.used.prefix + ctx.used.command} no`
             }]
         });

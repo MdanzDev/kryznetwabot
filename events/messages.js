@@ -19,18 +19,18 @@ async function handleWarning(ctx, senderLid, senderLidId, groupJid, groupDb) {
     groupDb.warnings = warnings;
 
     await ctx.reply({
-        text: ctx.format.info(`Warning ${currentWarnings}/${maxWarnings} untuk @${senderLidId}!`),
+        text: ctx.format.info(`(｡•ˇ‸ˇ•｡) Warning ${currentWarnings}/${maxWarnings} untuk @${senderLidId} ya~ ♡`),
         mentions: [senderLid]
     });
 
     if (currentWarnings >= maxWarnings) {
         const isBotAdmin = await ctx.group(groupJid, !config.system.selfReply).isBotAdmin();
         if (isBotAdmin) {
-            await ctx.reply(ctx.format.info(`Anda telah menerima ${maxWarnings} warning dan akan dikeluarkan dari grup!`));
+            await ctx.reply(ctx.format.info(`(╥﹏╥) Kamu telah menerima ${maxWarnings} warning dan terpaksa dikeluarkan dari grup...`));
             if (!config.system.restrict) await ctx.group().kick(senderLid);
             groupDb.warnings = warnings.filter(warning => warning.id !== senderLid);
         } else {
-            await ctx.reply(ctx.format.info(`Tidak dapat mengeluarkan Anda yang telah mencapai ${maxWarnings} warning.`));
+            await ctx.reply(ctx.format.info(`(｡•́︿•̀｡) Aku tidak dapat mengeluarkan kamu yang telah mencapai ${maxWarnings} warning karena belum jadi admin grup~ ♡`));
         }
     }
     groupDb.save();
@@ -94,10 +94,13 @@ module.exports = (bot) => {
 
         if (isCmd?.didyoumean)
             await ctx.reply({
-                text: ctx.format.info(`Apakah maksud Anda ${ctx.format.inlineCode(isCmd.prefix + isCmd.didyoumean)}?`),
+                text: ctx.format.info(`(｡･ω･｡) Apakah maksud kamu ${ctx.format.inlineCode(isCmd.prefix + isCmd.didyoumean)}?`),
                 buttons: [{
-                    text: "Ya, benar!",
+                    text: "♡ Ya, benar!",
                     id: `${isCmd.prefix + isCmd.didyoumean} ${isCmd.input}`
+                }, {
+                    text: "୨୧ Bantuan Menu",
+                    id: `${isCmd.prefix}menu`
                 }]
             });
 
@@ -129,7 +132,7 @@ module.exports = (bot) => {
                     }
                 }
                 if (matchedCommand) {
-                    await ctx.reply(ctx.format.info(`Download dari ${platform}...`));
+                    await ctx.reply(ctx.format.info(`(｡･ω･｡) Sedang mendownload dari ${platform}... Tunggu sebentar ya~ ✧`));
                     await bot.forceCommand(ctx.id, matchedCommand, url, ctx.sender);
                 }
             }
@@ -147,7 +150,13 @@ module.exports = (bot) => {
                 }
                 const timeago = ctx.format.convertMsToDuration(timeElapsed);
                 const rewardMsg = coins > 0 ? `+${coins} koin` : "";
-                await ctx.reply(ctx.format.info(`Anda telah kembali setelah AFK ${senderAfk.reason ? `dengan alasan ${ctx.format.inlineCode(senderAfk.reason)}` : "tanpa alasan"} selama ${timeago}. ${rewardMsg}`.trim()));
+                await ctx.reply({
+                    text: ctx.format.info(`૮ ˶ᵔ ᵕ ᵔ˶ ა Selamat datang kembali! Kamu telah selesai AFK ${senderAfk.reason ? `dengan alasan ${ctx.format.inlineCode(senderAfk.reason)}` : "tanpa alasan"} selama ${timeago}. ${rewardMsg}`.trim()),
+                    buttons: [{
+                        text: "♡ Profile Saya",
+                        id: `${botDb.lastPrefix || "/"}profile`
+                    }]
+                });
                 senderDb.afk = {};
                 senderDb.save();
             }
@@ -205,11 +214,11 @@ module.exports = (bot) => {
                         media
                     }
                     of antiActions) {
-                    if (groupDb?.option?.[type] && ctx.isMedia([media], ["primary"])) await handleAntiViolation(ctx, type, `Jangan kirim ${media}!`, senderLid, senderLidId, groupJid, groupDb);
+                    if (groupDb?.option?.[type] && ctx.isMedia([media], ["primary"])) await handleAntiViolation(ctx, type, `(｡•ˇ‸ˇ•｡) Jangan kirim ${media} di grup ini ya~ ♡`, senderLid, senderLidId, groupJid, groupDb);
                 }
 
-                if (groupDb?.option?.antigcsw && msg.message?.groupStatusMessageV2?.contextInfo?.isGroupStatus) await handleAntiViolation(ctx, "antigcsw", "Jangan kirim SW!", senderLid, senderLidId, groupJid, groupDb);
-                if (groupDb?.option?.antilink && msg.body && ctx.helper.isUrl(msg.body)) await handleAntiViolation(ctx, "antilink", "Jangan kirim link!", senderLid, senderLidId, groupJid, groupDb);
+                if (groupDb?.option?.antigcsw && msg.message?.groupStatusMessageV2?.contextInfo?.isGroupStatus) await handleAntiViolation(ctx, "antigcsw", "(｡•ˇ‸ˇ•｡) Jangan kirim status WhatsApp di grup ini ya~ ♡", senderLid, senderLidId, groupJid, groupDb);
+                if (groupDb?.option?.antilink && msg.body && ctx.helper.isUrl(msg.body)) await handleAntiViolation(ctx, "antilink", "(｡•ˇ‸ˇ•｡) Jangan kirim tautan/link di grup ini ya~ ♡", senderLid, senderLidId, groupJid, groupDb);
                 if (groupDb?.option?.antispam) {
                     const now = Date.now();
                     const spamData = groupDb?.spam || [];
@@ -226,13 +235,13 @@ module.exports = (bot) => {
                     groupDb.spam = spamData;
 
                     if (newCount > 5) {
-                        await handleAntiViolation(ctx, "antilink", "Jangan spam, ngelag woy!");
+                        await handleAntiViolation(ctx, "antispam", "(｡•ˇ‸ˇ•｡) Jangan spam chat ya, nanti bot pusing~ ♡");
                         groupDb.spam = spamData.filter(spam => spam.id !== senderLid);
                     }
                     groupDb.save();
                 }
-                if (groupDb?.option?.antitagsw && msg.message?.protocolMessage?.type === 25) await handleAntiViolation(ctx, "antitagsw", "Jangan kirim tag SW!", senderLid, senderLidId, groupJid, groupDb);
-                if (groupDb?.option?.antitoxic && msg.body && /(anj(k|g)|ajn?|a?njin|bajingan|b(a?n)?gsa?t|ko?nto?l|me?me?k|pe?pe?k|meki|titi(t|d)|pe?ler|tetek|toket|ngewe|go?blo?k|to?lo?l|idiot|(k|ng)e?nto?(t|d)|jembut|bego|dajj?al|janc(u|o)k|pantek|puki|kimak|kampang|lonte|col(i|mek?)|pelacur|henceu?t|nigga|fuck|dick|bitch|tits|bastard|asshole|dontol|kontoi|ontol)/i.test(msg.body)) await handleAntiViolation(ctx, "antitoxic", "Jangan kirim toxic!", senderLid, senderLidId, groupJid, groupDb);
+                if (groupDb?.option?.antitagsw && msg.message?.protocolMessage?.type === 25) await handleAntiViolation(ctx, "antitagsw", "(｡•ˇ‸ˇ•｡) Jangan kirim tag status WhatsApp di sini ya~ ♡", senderLid, senderLidId, groupJid, groupDb);
+                if (groupDb?.option?.antitoxic && msg.body && /(anj(k|g)|ajn?|a?njin|bajingan|b(a?n)?gsa?t|ko?nto?l|me?me?k|pe?pe?k|meki|titi(t|d)|pe?ler|tetek|toket|ngewe|go?blo?k|to?lo?l|idiot|(k|ng)e?nto?(t|d)|jembut|bego|dajj?al|janc(u|o)k|pantek|puki|kimak|kampang|lonte|col(i|mek?)|pelacur|henceu?t|nigga|fuck|dick|bitch|tits|bastard|asshole|dontol|kontoi|ontol)/i.test(msg.body)) await handleAntiViolation(ctx, "antitoxic", "(｡•ˇ‸ˇ•｡) Tolong jangan berkata kasar/toxic ya, jaga kesopanan~ ♡", senderLid, senderLidId, groupJid, groupDb);
             }
 
             const afkMentions = ctx.quoted ? [ctx.quoted.sender] : await ctx.getMentioned();
@@ -242,7 +251,7 @@ module.exports = (bot) => {
                     if (mentionAfk.reason || mentionAfk.timestamp) {
                         const timeago = ctx.format.convertMsToDuration(Date.now() - mentionAfk.timestamp);
                         await ctx.reply({
-                            text: ctx.format.info(`Jangan ganggu! @${ctx.getId(mention)} sedang AFK ${mentionAfk.reason ? `dengan alasan ${ctx.format.inlineCode(mentionAfk.reason)}` : "tanpa alasan"} selama ${timeago}.`),
+                            text: ctx.format.info(`(｡•́︿•̀｡) Jangan ganggu dulu ya~ @${ctx.getId(mention)} sedang AFK ${mentionAfk.reason ? `dengan alasan ${ctx.format.inlineCode(mentionAfk.reason)}` : "tanpa alasan"} selama ${timeago}. ♡`),
                             mentions: [mention]
                         });
                     }

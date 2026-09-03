@@ -7,6 +7,27 @@ module.exports = {
         const newStatus = !senderDb?.autodownload;
         senderDb.autodownload = newStatus;
         senderDb.save();
-        await ctx.reply(ctx.format.info(`Auto download berhasil ${newStatus ? "diaktifkan" : "dinonaktifkan"}!`));
+
+        const statusText = newStatus ? "diaktifkan ✨" : "dinonaktifkan 💤";
+        const text =
+            "╭───────────────୨୧\n" +
+            "│  ₊˚⊹♡  𝑨𝒖𝒕𝒐 𝑫𝒐𝒘𝒏𝒍𝒐𝒂𝒅  ♡⊹˚₊\n" +
+            `│ (｡･ω･｡) Auto download link berhasil ${statusText}!\n` +
+            "│ (｡•̀ᴗ-)✧ Sekarang kirim link sosial media langsung diproses ya~ ♡\n" +
+            "╰───────────────୨୧";
+
+        await ctx.reply({
+            text,
+            buttons: [
+                {
+                    text: newStatus ? "୨୧ Matikan Auto DL" : "♡ Aktifkan Auto DL",
+                    id: `${ctx.used.prefix}autodownload`
+                },
+                {
+                    text: "♡ Profile Saya",
+                    id: `${ctx.used.prefix}profile`
+                }
+            ]
+        });
     }
 };

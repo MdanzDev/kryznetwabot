@@ -21,7 +21,7 @@ module.exports = (bot) => {
                 (senderDb.lastSentMsg ||= {})[msg] = now;
                 senderDb.save();
                 return await ctx.reply({
-                    text: ctx.format.info(`${msg} — selanjutnya akan berupa reaksi emoji ${ctx.format.inlineCode(reaction)}.`),
+                    text: ctx.format.info(`${msg}\n(｡･ω･｡) Selanjutnya akan berupa reaksi emoji ${ctx.format.inlineCode(reaction)} ya~ ♡`),
                     buttons
                 });
             } else {
@@ -40,8 +40,11 @@ module.exports = (bot) => {
                     senderDb.save();
                 } else {
                     return restrict(config.msg.coin, "💰", [{
-                        text: "Cek Koin",
+                        text: "♡ Cek Koin",
                         id: `${ctx.used.prefix}coin`
+                    }, {
+                        text: "୨୧ Klaim Daily",
+                        id: `${ctx.used.prefix}claim daily`
                     }]);
                 }
             }
@@ -49,10 +52,10 @@ module.exports = (bot) => {
             if (perms.owner && !isOwner) return restrict(config.msg.owner, "👑");
             if (perms.premium && !senderDb?.premium && !isOwner)
                 return restrict(config.msg.premium, "💎", [{
-                    text: "Harga Premium",
+                    text: "♡ Harga Premium",
                     id: `${ctx.used.prefix}price`
                 }, {
-                    text: "Hubungi Owner",
+                    text: "୨୧ Hubungi Owner",
                     id: `${ctx.used.prefix}owner`
                 }]);
             if (perms.private && isGroup) return restrict(config.msg.private, "📩");
@@ -61,17 +64,17 @@ module.exports = (bot) => {
 
         if (senderDb?.banned && ctx.used.command !== "owner")
             return restrict(config.msg.banned, "🚫", [{
-                text: "Hubungi Owner",
+                text: "♡ Hubungi Owner",
                 id: `${ctx.used.prefix}owner`
             }]);
         if (new Cooldown(ctx, config.system.cooldown, "multi").onCooldown && !isOwner && !senderDb?.premium) return restrict(config.msg.cooldown, "💤");
         if (groupDb?.option?.gamerestrict && isGroup && !isOwner && !isAdmin && ctx.bot.cmd.get(ctx.used.command)?.category === "game") return restrict(config.msg.gamerestrict, "🎮");
         if (config.system.privatePremiumOnly && isPrivate && !isOwner && !senderDb?.premium && !["price", "owner"].includes(ctx.used.command))
             return restrict(config.msg.privatePremiumOnly, "💎", [{
-                text: "Harga Premium",
+                text: "♡ Harga Premium",
                 id: `${ctx.used.prefix}price`
             }, {
-                text: "Hubungi Owner",
+                text: "୨୧ Hubungi Owner",
                 id: `${ctx.used.prefix}owner`
             }]);
         if (config.system.requireBotGroupMembership && !isOwner && !senderDb?.premium && ctx.used.command !== "botgroup" && config.bot.groupJid) {
@@ -88,16 +91,19 @@ module.exports = (bot) => {
             }
             if (!isMember)
                 return restrict(config.msg.botGroupMembership, "🚫", [{
-                    text: "Grup Bot",
+                    text: "♡ Grup Bot",
                     id: `${ctx.used.prefix}botgroup`
+                }, {
+                    text: "୨୧ Hubungi Owner",
+                    id: `${ctx.used.prefix}owner`
                 }]);
         }
         if (config.system.requireGroupSewa && isGroup && !isOwner && !["price", "owner"].includes(ctx.used.command) && !groupDb?.sewa)
             return restrict(config.msg.groupSewa, "🔒", [{
-                text: "Harga Sewa",
+                text: "♡ Harga Sewa",
                 id: `${ctx.used.prefix}price`
             }, {
-                text: "Hubungi Owner",
+                text: "୨୧ Hubungi Owner",
                 id: `${ctx.used.prefix}owner`
             }]);
         if (config.system.unavailableAtNight && !isOwner && !senderDb?.premium) {

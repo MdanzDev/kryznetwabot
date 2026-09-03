@@ -10,7 +10,7 @@ module.exports = (bot) => {
             bot.readyAt = botRestart.readyAt;
             const timeago = bot.format.convertMsToDuration(Date.now() - botRestart.timestamp);
             await bot.sendMessage(botRestart.id, {
-                text: bot.format.info(`Berhasil dimulai ulang! Membutuhkan waktu ${timeago}.`),
+                text: bot.format.info(`(｡･ω･｡)ﾉ♡ Berhasil dimulai ulang! Membutuhkan waktu ${timeago}~ ✧`),
                 edit: botRestart.key
             });
             botDb.restart = {};

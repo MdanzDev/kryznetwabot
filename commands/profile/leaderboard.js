@@ -16,25 +16,59 @@ module.exports = {
 
         const userRank = leaderboardData.findIndex(user => ctx.helper.areJidsSameUser(user.id, senderLid)) + 1;
         const topUsers = leaderboardData.slice(0, 10);
-        let resultText = "";
         const mentions = [];
 
+        const medals = ["🥇", "🥈", "🥉"];
+
+        let itemsText = "";
         topUsers.forEach((user, i) => {
             const isSelf = ctx.helper.areJidsSameUser(user.id, senderLid);
             const displayUser = isSelf ? `@${senderId}` : (user.pushName || ctx.getId(user.id));
             if (isSelf) mentions.push(senderLid);
-            resultText += `❖ ${displayUser} - Menang: ${user.winGame}, Level: ${user.level}, Peringkat: ${i + 1}\n`;
+            const badge = medals[i] || `✧ #${i + 1}`;
+            itemsText += `┊ ${badge} ${ctx.format.bold(displayUser)}\n` +
+                         `┊    ♡ Level › ${user.level} (${user.winGame} Win)\n`;
+            if (i < topUsers.length - 1) itemsText += "┊\n";
         });
 
+        let rankText = "";
         if (userRank > 10) {
             const userStats = leaderboardData[userRank - 1];
-            resultText += `❖ @${senderId} - Menang: ${userStats.winGame}, Level: ${userStats.level}, Peringkat: ${userRank}\n`;
             mentions.push(senderLid);
+            rankText = "\n╭┈┈┈┈┈┈┈┈୨୧\n" +
+                       "┊ ✦ 𝑷𝒐𝒔𝒊𝒔𝒊 𝑲𝒂𝒎𝒖 ୨୧\n" +
+                       `┊ ✧ #${userRank} @${senderId}\n` +
+                       `┊    ♡ Level › ${userStats.level} (${userStats.winGame} Win)\n` +
+                       "╰┈┈┈┈┈┈┈┈୨୧\n";
         }
 
+        const text =
+            "╭───────────────୨୧\n" +
+            "│  ₊˚⊹♡  𝑳𝒆𝒂𝒅𝒆𝒓𝒃𝒐𝒂𝒓𝒅  ♡⊹˚₊\n" +
+            "│  ૮ ˶ᵔ ᵕ ᵔ˶ ა Top 10 Pemain Terbaik!\n" +
+            "╰───────────────୨୧\n\n" +
+            "╭┈┈┈┈┈┈┈┈୨୧\n" +
+            "┊ ✦ 𝑷𝒆𝒓𝒊𝒏𝒈𝒌𝒂𝒕 ୨୧\n" +
+            itemsText +
+            "╰┈┈┈┈┈┈┈┈୨୧" +
+            rankText + "\n" +
+            "╭───────────────୨୧\n" +
+            "│ (｡•̀ᴗ-)✧ Main terus & raih posisi puncak! ♡\n" +
+            "╰───────────────୨୧";
+
         await ctx.reply({
-            text: resultText.trim(),
-            mentions
+            text: text.trim(),
+            mentions,
+            buttons: [
+                {
+                    text: "♡ Profile Saya",
+                    id: `${ctx.used.prefix}profile`
+                },
+                {
+                    text: "୨୧ Main Game",
+                    id: `${ctx.used.prefix}menu game`
+                }
+            ]
         });
     }
 };

@@ -46,14 +46,26 @@ module.exports = {
 
             sessions.set(ctx.id, true);
 
+            const promptText =
+                "╭───────────────୨୧\n" +
+                "│  ₊˚⊹♡  𝑴𝒂𝒕𝒉 𝑸𝒖𝒊𝒛  ♡⊹˚₊\n" +
+                `│ ૮ ˶ᵔ ᵕ ᵔ˶ ა Selesaikan soal ini yuk!\n` +
+                `│ ✦ Soal › ${ctx.format.bold(result.str)}\n` +
+                "╰───────────────୨୧\n\n" +
+                "╭┈┈┈┈┈┈┈┈୨୧\n" +
+                "┊ ✦ 𝑰𝒏𝒇𝒐 𝑺𝒐𝒂𝒍 ୨୧\n" +
+                `┊ ♡ Level › ${levels[result.mode]}\n` +
+                `┊ ♡ Bonus › +${game.coin} koin\n` +
+                `┊ ♡ Waktu › ${ctx.format.convertMsToDuration(game.timeout)}\n` +
+                "╰┈┈┈┈┈┈┈┈୨୧\n\n" +
+                "╭───────────────୨୧\n" +
+                "│ (｡•̀ᴗ-)✧ Kirim jawabanmu langsung ya! ♡\n" +
+                "╰───────────────୨୧";
+
             await ctx.reply({
-                text: `✦ — ${result.str}\n` +
-                    "\n" +
-                    `❖ ${ctx.format.bold("Level")}: ${levels[result.mode]}\n` +
-                    `❖ ${ctx.format.bold("Bonus")}: ${game.coin} koin\n` +
-                    `❖ ${ctx.format.bold("Batas waktu")}: ${ctx.format.convertMsToDuration(game.timeout)}`,
+                text: promptText,
                 buttons: [{
-                    text: "Menyerah",
+                    text: "୨୧ Menyerah",
                     id: `surrender_${ctx.used.command}`
                 }]
             });
@@ -62,19 +74,11 @@ module.exports = {
                 time: game.timeout
             });
             const playAgain = [{
-                text: "Main Lagi",
+                text: "♡ Main Lagi",
                 id: `${ctx.used.prefix + ctx.used.command} ${input}`
             }, {
-                text: "Daftar Level",
-                sections: [{
-                    title: "Pilih Level",
-                    highlight_label: "🌕",
-                    rows: Object.keys(levels).map(level => ({
-                        title: levels[level],
-                        description: `Klik untuk memainkan level ${levels[level]}`,
-                        id: `${ctx.used.prefix + ctx.used.command} ${level}`
-                    }))
-                }]
+                text: "୨୧ Cek Koin",
+                id: `${ctx.used.prefix}coin`
             }];
 
             collector.on("collect", async (collCtx) => {
@@ -89,14 +93,14 @@ module.exports = {
                     participantDb.winGame += 1;
                     participantDb.save();
                     await collCtx.reply({
-                        text: ctx.format.info(`Benar! +${game.coin} koin`),
+                        text: ctx.format.info(`૮ ˶ᵔ ᵕ ᵔ˶ ა Benar sekali! +${game.coin} koin berhasil didapatkan! ♡`),
                         buttons: playAgain
                     });
                 } else if (participantAnswer === `surrender_${ctx.used.command}`) {
                     sessions.delete(ctx.id);
                     collector.stop();
                     await collCtx.reply({
-                        text: ctx.format.info(`Anda menyerah! Jawaban: ${ctx.format.ucwords(game.answer)}`),
+                        text: ctx.format.info(`(｡•́︿•̀｡) Kamu menyerah! Jawabannya adalah: ${ctx.format.ucwords(game.answer)}~ ♡`),
                         buttons: playAgain
                     });
                 }
@@ -106,7 +110,7 @@ module.exports = {
                 if (sessions.has(ctx.id)) {
                     sessions.delete(ctx.id);
                     await ctx.reply({
-                        text: ctx.format.info(`Waktu habis! Jawaban: ${ctx.format.ucwords(game.answer)}`),
+                        text: ctx.format.info(`(｡•́︿•̀｡) Waktu habis! Jawabannya adalah: ${ctx.format.ucwords(game.answer)}~ ♡`),
                         buttons: playAgain
                     });
                 }

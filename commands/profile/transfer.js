@@ -16,10 +16,10 @@ module.exports = {
             });
 
         const senderDb = ctx.db.user;
-        if (ctx.sender.isOwner() || senderDb?.premium) return await ctx.reply(ctx.format.info("Koin tak terbatas tidak dapat ditransfer!"));
-        if (coinAmount <= 0) return await ctx.reply(ctx.format.info("Jumlah koin tidak boleh kurang dari atau sama dengan 0!"));
-        if (senderDb?.coin < coinAmount) return await ctx.reply(ctx.format.info("Koin Anda tidak mencukupi untuk transfer ini!"));
-        if (ctx.checkOwner(target.id)) return await ctx.reply(ctx.format.info("Tidak dapat mentransfer koin ke akun owner!"));
+        if (ctx.sender.isOwner() || senderDb?.premium) return await ctx.reply(ctx.format.info("(｡•́︿•̀｡) Koin tak terbatas tidak dapat ditransfer ya~ ♡"));
+        if (coinAmount <= 0) return await ctx.reply(ctx.format.info("(｡•́︿•̀｡) Jumlah koin harus lebih dari 0 ya~"));
+        if (senderDb?.coin < coinAmount) return await ctx.reply(ctx.format.info("(｡•́︿•̀｡) Koin kamu tidak mencukupi untuk transfer ini nih..."));
+        if (ctx.checkOwner(target.id)) return await ctx.reply(ctx.format.info("(｡•́︿•̀｡) Kamu tidak dapat mentransfer koin ke akun owner~ ♡"));
 
         try {
             const targetDb = ctx.getDb("users", target.id);
@@ -27,7 +27,25 @@ module.exports = {
             senderDb.coin -= coinAmount;
             targetDb.save();
             senderDb.save();
-            await ctx.reply(ctx.format.info(`Berhasil mentransfer ${coinAmount} koin ke pengguna itu!`));
+            await ctx.reply({
+                text: "╭───────────────୨୧\n" +
+                      "│  ₊˚⊹♡  𝑻𝒓𝒂𝒏𝒔𝒇𝒆𝒓 𝑩𝒆𝒓𝒉𝒂𝒔𝒊𝒍!  ♡⊹˚₊\n" +
+                      `│ ૮ ˶ᵔ ᵕ ᵔ˶ ა Berhasil mentransfer koin!\n` +
+                      `│ ✦ Jumlah › ${coinAmount} koin\n` +
+                      `│ ♡ Sisa koin kamu › ${senderDb.coin} koin\n` +
+                      "│ (｡•̀ᴗ-)✧ Terima kasih sudah berbagi! ♡\n" +
+                      "╰───────────────୨୧",
+                buttons: [
+                    {
+                        text: "♡ Cek Koin",
+                        id: `${ctx.used.prefix}coin`
+                    },
+                    {
+                        text: "୨୧ Profile Saya",
+                        id: `${ctx.used.prefix}profile`
+                    }
+                ]
+            });
         } catch (error) {
             await ctx.helper.handleError(ctx, error);
         }

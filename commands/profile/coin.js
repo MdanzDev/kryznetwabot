@@ -3,7 +3,33 @@ module.exports = {
     aliases: ["koin"],
     category: "profile",
     code: async (ctx) => {
-        if (ctx.sender.isOwner() || ctx.db.user?.premium) return await ctx.reply(ctx.format.info("Anda memiliki koin tak terbatas."));
-        await ctx.reply(ctx.format.info(`Anda memiliki ${ctx.db.user.coin || 0} koin tersisa.`));
+        const isUnlimited = ctx.sender.isOwner() || ctx.db.user?.premium;
+        const amount = isUnlimited ? "Unlimited ♡" : `${ctx.db.user?.coin || 0} koin`;
+
+        const text =
+            "╭───────────────୨୧\n" +
+            "│  ₊˚⊹♡  𝑪𝒐𝒊𝒏 𝑰𝒏𝒇𝒐  ♡⊹˚₊\n" +
+            `│ ૮ ˶ᵔ ᵕ ᵔ˶ ა Koin kamu saat ini:\n` +
+            `│ ✦ ${amount}\n` +
+            "│ (｡•̀ᴗ-)✧ Gunakan untuk bermain game ya! ♡\n" +
+            "╰───────────────୨୧";
+
+        await ctx.reply({
+            text,
+            buttons: [
+                {
+                    text: "♡ Klaim Daily",
+                    id: `${ctx.used.prefix}claim daily`
+                },
+                {
+                    text: "୨୧ Profile Saya",
+                    id: `${ctx.used.prefix}profile`
+                },
+                {
+                    text: "♡ Main Game",
+                    id: `${ctx.used.prefix}menu game`
+                }
+            ]
+        });
     }
 };

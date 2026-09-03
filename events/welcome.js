@@ -19,12 +19,31 @@ async function WelcomeHandler(bot, welcome, type, isSimulate = false) {
     const customText = isWelcome ? groupDb?.text?.welcome : groupDb?.text?.goodbye;
     const metadata = await bot.core.groupMetadata(groupJid);
     const text = customText ? customText.replace(/%tag%/g, tag).replace(/%subject%/g, metadata.subject).replace(/%description%/g, metadata.description) : (isWelcome ?
-        `>ᴗ< ${bot.format.italic(`Selamat datang ${tag} di grup ${metadata.subject}!`)}` :
-        `•︵• ${bot.format.italic(`Selamat tinggal, ${tag}!`)}`);
+        "╭───────────────୨୧\n" +
+        "│  ₊˚⊹♡  𝑾𝒆𝒍𝒄𝒐𝒎𝒆!  ♡⊹˚₊\n" +
+        `│ ૮ ˶ᵔ ᵕ ᵔ˶ ა Selamat datang ${tag}!\n` +
+        `│ ♡ Di grup › ${metadata.subject}\n` +
+        "│ (｡･ω･｡)ﾉ♡ Semoga betah dan patuhi aturan ya~\n" +
+        "╰───────────────୨୧" :
+        "╭───────────────୨୧\n" +
+        "│  ₊˚⊹♡  𝑮𝒐𝒐𝒅𝒃𝒚𝒆~  ♡⊹˚₊\n" +
+        `│ (｡•́︿•̀｡) Selamat tinggal ${tag}...\n` +
+        "│ ♡ Sampai jumpa lagi di lain waktu ya!\n" +
+        "╰───────────────୨୧");
 
     await bot.sendMessage(groupJid, {
         text,
-        mentions: [participantJid]
+        mentions: [participantJid],
+        buttons: isWelcome ? [
+            {
+                text: "♡ Menu Bot",
+                id: `${botDb?.lastPrefix || "/"}menu`
+            },
+            {
+                text: "୨୧ Perkenalan",
+                id: `${botDb?.lastPrefix || "/"}intro`
+            }
+        ] : undefined
     });
 
     if (isWelcome && groupDb?.text?.intro)
@@ -32,7 +51,7 @@ async function WelcomeHandler(bot, welcome, type, isSimulate = false) {
             text: groupDb.text.intro,
             mentions: [participantJid],
             nativeFlow: [{
-                text: "Salin Teks",
+                text: "♡ Salin Teks Intro",
                 copy: groupDb.text.intro
             }]
         });
