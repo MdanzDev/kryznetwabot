@@ -281,8 +281,16 @@ module.exports = {
 
                         renderLargerThumbnail: true,
 
-                        thumbnailUrl:
-                            config.bot.thumbnail,
+                        // FIXED: pass a raw JPEG buffer instead of a URL string.
+                        // thumbnailUrl depends on the fork implementing its own
+                        // fetch-and-embed logic and often gets silently dropped.
+                        // ctx.helper.getJpegThumbnail() already returns a buffer
+                        // (see the `location` block above where it's used the
+                        // same way), so reuse it here for consistency.
+                        thumbnail:
+                            await ctx.helper.getJpegThumbnail(
+                                config.bot.thumbnail
+                            ),
 
                         sourceUrl:
                             "https://github.com/MdanzDev/",
