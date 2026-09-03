@@ -25,17 +25,12 @@ module.exports = {
                   "❖ 131771767889 (DuitNow || TNG E-Wallet)\n" +
                   "❖ https://founder.kryz-net.space (PortFolio)";
 
-            console.log("[DONATE] QR:", qrisLink);
-            console.log("[DONATE] TEXT:", text);
-
             const result = await ctx.reply({
                 image: {
                     url: qrisLink
                 },
                 caption: text
             });
-
-            console.log("[DONATE] RESULT:", result);
 
         } catch (error) {
             console.error("[DONATE ERROR]", error);
