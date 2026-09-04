@@ -8,7 +8,7 @@ module.exports = {
             const botText = ctx.db.bot.text || {};
 
             const qrisLink =
-                "https://cdn.phototourl.com/free/2026-09-03-49954342-a0c6-46a9-a862-6e21d7028414.png";
+                "https://files.catbox.moe/io9pcf.jpg";
 
             const customText = botText?.donate;
 
