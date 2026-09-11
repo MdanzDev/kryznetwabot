@@ -1,57 +1,147 @@
 [
   {
-    "id": "195197724037367@lid",
-    "pushName": "Unknown",
-    "coin": 100,
-    "level": 0,
-    "xp": 0,
-    "winGame": 0,
-    "premium": false,
-    "premiumExpiration": null,
-    "banned": false,
-    "afk": {},
-    "lastClaim": {},
-    "sessionId": {},
-    "lastSentMsg": {},
-    "botGroupMembership": {},
-    "autodownload": false,
-    "__id": "3151e1be-6cfa-46e3-b416-f94d248370a0"
-  },
-  {
-    "id": "247571092107448@lid",
-    "pushName": ".",
-    "coin": 100,
-    "level": 0,
-    "xp": 0,
-    "winGame": 0,
-    "premium": false,
-    "premiumExpiration": null,
-    "banned": false,
-    "afk": {},
-    "lastClaim": {},
-    "sessionId": {},
-    "lastSentMsg": {},
-    "botGroupMembership": {},
-    "autodownload": false,
-    "__id": "9c3ee643-2c6c-4aca-b63f-c2691131b87d"
-  },
-  {
-    "id": "239200301531287@lid",
-    "pushName": "️",
+    "id": "79444496625700@lid",
+    "pushName": "Roy Antidonasi Creative",
     "coin": 90,
     "level": 0,
-    "xp": 20,
+    "xp": 10,
     "winGame": 0,
-    "premium": true,
+    "premium": false,
     "premiumExpiration": null,
     "banned": false,
     "afk": {},
-    "lastClaim": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
     "sessionId": {},
-    "lastSentMsg": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
+    },
     "botGroupMembership": {},
     "autodownload": false,
-    "__id": "67ff97ff-31d8-4ee6-ba10-4799ef6f2ecf"
+    "__id": "034f5660-801f-4c32-96f1-605e22368684"
+  },
+  {
+    "id": "243069446258800@lid",
+    "pushName": "jauhariel.id",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
+    "sessionId": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
+    },
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "f643b6d9-f51a-4e28-807e-e89b5d216099"
+  },
+  {
+    "id": "213296682643550@lid",
+    "pushName": "Wisesa",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
+    "sessionId": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
+    },
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "951d5ef6-941d-4bd6-8a9f-ec10ce6ec2d5"
+  },
+  {
+    "id": "15608548700350@lid",
+    "pushName": "Zhen",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
+    "sessionId": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
+    },
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "52213443-096e-4e56-8bdd-1fab371fe9f9"
+  },
+  {
+    "id": "70545458634809@lid",
+    "pushName": "Aiman Akif",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
+    "sessionId": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
+    },
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "9ce4176d-af20-419b-b24c-df48c4f013db"
+  },
+  {
+    "id": "67251436843065@lid",
+    "pushName": "ɑrꪱ๋𝘴yy𝗑𝗏ꪱ๋ 𝟕𝙏 ⟡ rest .",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
+    "sessionId": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
+    },
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "28b3c2e0-1f73-4b20-ad51-6521e3ecc7e3"
   },
   {
     "id": "113550362177584@lid",
@@ -64,15 +154,1168 @@
     "premiumExpiration": null,
     "banned": false,
     "afk": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
+    "sessionId": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
+    },
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "6ed91400-a38c-4645-9088-fa188ded7a66"
+  },
+  {
+    "id": "100798872690841@lid",
+    "pushName": "F",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
+    "sessionId": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
+    },
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "9aeaf46f-c828-47fe-a0f8-6107543d048f"
+  },
+  {
+    "id": "180187283083506@lid",
+    "pushName": "Unknown",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
+    "sessionId": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
+    },
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "714f7f8c-2c78-4cf0-9e21-8817c2f0e9da"
+  },
+  {
+    "id": "256074808602776@lid",
+    "pushName": "Kukuh ZErvida",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
+    "sessionId": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
+    },
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "70ef2234-28fa-4c90-95c5-fb1b0aad5639"
+  },
+  {
+    "id": "196564211503128@lid",
+    "pushName": "mustika payment",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
+    "sessionId": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
+    },
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "6ae7f477-7c1e-4486-98bd-e7db0425977d"
+  },
+  {
+    "id": "202177414955090@lid",
+    "pushName": "Kanaa",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
+    "sessionId": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
+    },
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "e169a29e-4608-442e-8140-fb1800a5a78e"
+  },
+  {
+    "id": "209337477787865@lid",
+    "pushName": "Vrypt",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
+    "sessionId": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
+    },
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "ef015f05-c55f-4851-9c86-0ea4c2f7d7ee"
+  },
+  {
+    "id": "8672226873554@lid",
+    "pushName": "META Chat",
+    "coin": 1101,
+    "level": 2,
+    "xp": 80,
+    "winGame": 8,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
+    "sessionId": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
+    },
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "9adfac97-7e8f-492c-a498-3f2f24bdaca5"
+  },
+  {
+    "id": "92835986579686@lid",
+    "pushName": "2511",
+    "coin": 219,
+    "level": 3,
+    "xp": 80,
+    "winGame": 15,
+    "premium": true,
+    "premiumExpiration": 1788591972539,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
+    "sessionId": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
+    },
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "1352647a-5582-4dda-b9e5-3a4b5b24c067"
+  },
+  {
+    "id": "128991507804290@lid",
+    "pushName": ".",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
+    "sessionId": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
+    },
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "078edb7d-7f6f-4672-b33c-221709285555"
+  },
+  {
+    "id": "156461984399568@lid",
+    "pushName": "noone",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
+    "sessionId": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
+    },
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "c0bd1bfc-3f5f-43c7-830b-6077e128eae4"
+  },
+  {
+    "id": "138852266156264@lid",
+    "pushName": "NUQMAN®",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
+    "sessionId": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
+    },
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "d480e66e-95d3-4839-b107-53400aa5518d"
+  },
+  {
+    "id": "246540400591008@lid",
+    "pushName": "ShallowVernal",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
+    "sessionId": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
+    },
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "d45f3774-1d62-4654-af45-79fde79cf110"
+  },
+  {
+    "id": "220701726388260@lid",
+    "pushName": "root@syaii: ~",
+    "coin": 830,
+    "level": 2,
+    "xp": 90,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
+    "sessionId": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057,
+      "(｡•́︿•̀｡) Koin kamu kurang nih... ⓒ isi dulu ya~": 1788538559766
+    },
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "e4268780-68d7-4b88-ae5b-f14c1a2aceff"
+  },
+  {
+    "id": "209856598429778@lid",
+    "pushName": "noturfav",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
+    "sessionId": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
+    },
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "d82771b0-c69b-41a7-bbd4-d6131539712b"
+  },
+  {
+    "id": "136644619460777@lid",
+    "pushName": "Qwetls",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
+    "sessionId": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
+    },
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "0402f54f-230a-4738-882c-ad594df4e23a"
+  },
+  {
+    "id": "167319057764383@lid",
+    "pushName": "Ryzumi Starlette",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
+    "sessionId": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
+    },
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "9a8c87ec-9a53-4b5b-adbc-ff369dc96a2f"
+  },
+  {
+    "id": "262809619308739@lid",
+    "pushName": "Unknown",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
+    "sessionId": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
+    },
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "9b9f12cc-4aeb-4c14-a3ff-37ca540b5e15"
+  },
+  {
+    "id": "239569198915754@lid",
+    "pushName": "Gaga",
+    "coin": 100,
+    "level": 0,
+    "xp": 70,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
+    "sessionId": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
+    },
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "ba339fda-703e-417d-bf5c-57f2ab939e77"
+  },
+  {
+    "id": "44947319291911@lid",
+    "pushName": "ᅠ",
+    "coin": 95,
+    "level": 0,
+    "xp": 70,
+    "winGame": 2,
+    "premium": true,
+    "premiumExpiration": 1788768155416,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
+    "sessionId": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
+    },
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "58784fcd-0700-491b-afc9-775b87a1ea26"
+  },
+  {
+    "id": "109736766767331@lid",
+    "pushName": "+60 19-766 1697",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
+    "sessionId": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
+    },
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "7506ba61-cf79-47d3-b62d-36f7ad59c132"
+  },
+  {
+    "id": "32075520450693@lid",
+    "pushName": "Hazel | Founder Of ZelApi",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
+    "sessionId": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
+    },
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "dc35e981-67c3-46d0-921b-8e592d1af82c"
+  },
+  {
+    "id": "17411864588419@lid",
+    "pushName": "navy || @naffzxstore",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
+    "sessionId": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
+    },
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "07448a69-8f25-4d69-bf43-892a2b8d9452"
+  },
+  {
+    "id": "18223965729017@lid",
+    "pushName": "Dika Greyrat",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
+    "sessionId": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
+    },
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "aa594c68-4f08-44ef-915d-ebbeaf0e2e6d"
+  },
+  {
+    "id": "26156887752812@lid",
+    "pushName": "Nalli Shop",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
+    "sessionId": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
+    },
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "770e9fcc-829e-43d1-8475-724484f98dd7"
+  },
+  {
+    "id": "65138346446989@lid",
+    "pushName": "Kangwifiinc",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
+    "sessionId": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
+    },
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "6612c37e-2c72-4180-a78a-cf228a46034d"
+  },
+  {
+    "id": "175845238960142@lid",
+    "pushName": "Enki",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
+    "sessionId": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
+    },
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "1421fc1c-0998-4069-ab7f-5763dda06ba6"
+  },
+  {
+    "id": "185431253635160@lid",
+    "pushName": "r",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
+    "sessionId": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
+    },
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "27473ecb-8862-4fbb-bcfa-de8df51a22d3"
+  },
+  {
+    "id": "12060972871747@lid",
+    "pushName": "elkhaff",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
+    "sessionId": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
+    },
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "5a4a6278-4e84-4862-9a96-1113d1123be6"
+  },
+  {
+    "id": "57625995673696@lid",
+    "pushName": "Dlc22",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
+    "sessionId": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
+    },
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "7429dfad-2004-4184-8988-45c98b8b238c"
+  },
+  {
+    "id": "233762772246609@lid",
+    "pushName": "🍓🐰",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
+    "sessionId": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
+    },
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "0242d1a5-9075-4eea-87b4-3d158946c431"
+  },
+  {
+    "id": "234600358014997@lid",
+    "pushName": "Unknown",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
+    "sessionId": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
+    },
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "5d25fc55-1475-4f09-9b43-41b7bc01632c"
+  },
+  {
+    "id": "36623840481365@lid",
+    "pushName": "Clarissa ZD",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
+    "sessionId": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
+    },
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "a3a90e6f-a9b1-42f7-9dd0-34b62c652008"
+  },
+  {
+    "id": "252965269024867@lid",
+    "pushName": "Kimjung😃",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
+    "sessionId": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
+    },
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "e2c23440-e0b2-4284-b9ea-2f4833ba4d89"
+  },
+  {
+    "id": "229248291860512@lid",
+    "pushName": "fatehah coway",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
+    "sessionId": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
+    },
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "0979562a-8bef-424e-99ac-bc179d14f9e2"
+  },
+  {
+    "id": "184271293694067@lid",
+    "pushName": "Idaa~",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
+    "sessionId": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
+    },
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "2533c724-a35e-43d3-b3fd-b3486b1338ad"
+  },
+  {
+    "id": "207983824916593@lid",
+    "pushName": "FatenNadhirah🤍",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
     "lastClaim": {},
     "sessionId": {},
     "lastSentMsg": {},
     "botGroupMembership": {},
     "autodownload": false,
-    "__id": "cd4060f2-5bac-4f95-9653-856b938db133"
+    "__id": "33d82732-1b44-4816-8238-e5b53ee0bc29"
   },
   {
-    "id": "196564211503128@lid",
+    "id": "32113638277372@lid",
+    "pushName": "intan_hakiim",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {},
+    "sessionId": {},
+    "lastSentMsg": {},
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "e8e52111-bdac-4af5-a8ed-7f452a84c4ed"
+  },
+  {
+    "id": "87875416760466@lid",
+    "pushName": "shasha",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {},
+    "sessionId": {},
+    "lastSentMsg": {},
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "16473328-e3db-40e9-b3d1-348cd1ac3472"
+  },
+  {
+    "id": "192230170071257@lid",
+    "pushName": "P",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {},
+    "sessionId": {},
+    "lastSentMsg": {},
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "b998809e-2f3c-44b6-8b63-246ff7abcd57"
+  },
+  {
+    "id": "254120464257194@lid",
+    "pushName": "Sanka Vollerei",
+    "coin": 90,
+    "level": 0,
+    "xp": 10,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {},
+    "sessionId": {},
+    "lastSentMsg": {},
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "136767cd-267e-4914-a5e3-b64a4ba88517"
+  },
+  {
+    "id": "128643665772629@lid",
+    "pushName": "C:\\Users\\ItsReimau",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {},
+    "sessionId": {},
+    "lastSentMsg": {},
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "ef1ba5c5-b80a-4bcb-8df9-1ae814356062"
+  },
+  {
+    "id": "152785056223480@lid",
+    "pushName": "Hapiz",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {},
+    "sessionId": {},
+    "lastSentMsg": {},
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "de293c68-e286-4d2b-85f4-4626d8e789fb"
+  },
+  {
+    "id": "82708504006866@lid",
+    "pushName": "aLmAhLaMy",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {},
+    "sessionId": {},
+    "lastSentMsg": {},
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "b611e52f-1702-4c1f-ad46-c4fa5c3da707"
+  },
+  {
+    "id": "197109454258337@lid",
+    "pushName": "Megumi Kato",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {},
+    "sessionId": {},
+    "lastSentMsg": {},
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "3ee009d5-60b5-4fe8-bafb-74fd9db0cc93"
+  },
+  {
+    "id": "99794051702898@lid",
+    "pushName": "Pik?",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {},
+    "sessionId": {},
+    "lastSentMsg": {},
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "67748cee-f649-4750-89ca-4e7d8878d5d2"
+  },
+  {
+    "id": "239161026052320@lid",
+    "pushName": "✓ Verified",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {},
+    "sessionId": {},
+    "lastSentMsg": {},
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "8229688f-a464-4461-b18d-595d47766692"
+  },
+  {
+    "id": "57260671819853@lid",
+    "pushName": "Taufik S.GPT,S.CLD,S\nTAUFIK S.CLD,S.GPT,S.DSK",
+    "coin": 80,
+    "level": 0,
+    "xp": 20,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {},
+    "sessionId": {},
+    "lastSentMsg": {},
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "3b03769e-14a2-42c1-b8ac-2e10fd5689bd"
+  },
+  {
+    "id": "93166430621949@lid",
+    "pushName": "Masdika",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {},
+    "sessionId": {},
+    "lastSentMsg": {},
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "f12cdfd7-9b8a-454a-ae88-be929e11ab58"
+  },
+  {
+    "id": "178125916868735@lid",
+    "pushName": "ꜰᴇxꜱᴜᴘʀᴇᴍᴇ",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {},
+    "sessionId": {},
+    "lastSentMsg": {},
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "a500e253-defa-4d46-9d71-b3bae80274a9"
+  },
+  {
+    "id": "231447248040034@lid",
+    "pushName": "H.",
+    "coin": 50,
+    "level": 0,
+    "xp": 80,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {},
+    "sessionId": {},
+    "lastSentMsg": {},
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "563ca5ce-658c-4341-aca1-8485aaec523d"
+  },
+  {
+    "id": "31452464947454@lid",
+    "pushName": ".",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {},
+    "sessionId": {},
+    "lastSentMsg": {},
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "f378ad70-dfc9-42b4-92da-175477a2a023"
+  },
+  {
+    "id": "187093187854531@lid",
+    "pushName": "Aleeya Sofia",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {},
+    "sessionId": {},
+    "lastSentMsg": {},
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "f32c79d7-5390-4c03-9b43-5df6cd0a8f30"
+  },
+  {
+    "id": "15479716466876@lid",
     "pushName": "Unknown",
     "coin": 100,
     "level": 0,
@@ -87,11 +1330,11 @@
     "lastSentMsg": {},
     "botGroupMembership": {},
     "autodownload": false,
-    "__id": "0ade17c1-c665-40c8-be29-c5992ebc365b"
+    "__id": "35fda1e7-197c-4552-8073-cb267f6968ef"
   },
   {
-    "id": "233762772246609@lid",
-    "pushName": "🍓🐰",
+    "id": "280865544351813@lid",
+    "pushName": "Unknown",
     "coin": 100,
     "level": 0,
     "xp": 0,
@@ -102,16 +1345,14 @@
     "afk": {},
     "lastClaim": {},
     "sessionId": {},
-    "lastSentMsg": {
-      "Perintah hanya dapat digunakan oleh owner!": 1788279071175
-    },
+    "lastSentMsg": {},
     "botGroupMembership": {},
     "autodownload": false,
-    "__id": "b786dd31-e377-4f43-a9b8-3e78fc9011f1"
+    "__id": "9d754960-eda9-48ce-a499-e5631689f22f"
   },
   {
-    "id": "39101919158413@lid",
-    "pushName": ".",
+    "id": "28411611336751@lid",
+    "pushName": "MAHBUB SHAON",
     "coin": 100,
     "level": 0,
     "xp": 0,
@@ -122,16 +1363,14 @@
     "afk": {},
     "lastClaim": {},
     "sessionId": {},
-    "lastSentMsg": {
-      "Perintah hanya dapat digunakan oleh owner!": 1788279071175
-    },
+    "lastSentMsg": {},
     "botGroupMembership": {},
     "autodownload": false,
-    "__id": "b847dc4f-11f7-4280-ab8a-4ff927d0cea3"
+    "__id": "e1d8ddd3-9681-47f8-96a8-fb1ce40cdd27"
   },
   {
-    "id": "27050140283092@lid",
-    "pushName": "dxl.",
+    "id": "52669284659438@lid",
+    "pushName": "ʝιʝι · دليلي",
     "coin": 100,
     "level": 0,
     "xp": 0,
@@ -142,12 +1381,46 @@
     "afk": {},
     "lastClaim": {},
     "sessionId": {},
-    "lastSentMsg": {
-      "Perintah hanya dapat digunakan oleh owner!": 1788279071175
-    },
+    "lastSentMsg": {},
     "botGroupMembership": {},
     "autodownload": false,
-    "__id": "b9e8eaec-3e2d-4e65-9804-b9c95e51731f"
+    "__id": "dd988a65-ce1d-4948-8c1e-e701f6aecc56"
+  },
+  {
+    "id": "247708296155340@lid",
+    "pushName": "Nurul Yatie",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {},
+    "sessionId": {},
+    "lastSentMsg": {},
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "90d64006-a7d8-46c5-8548-45b8b9b079c2"
+  },
+  {
+    "id": "51196027003027@lid",
+    "pushName": "Shaiff 🇲🇾",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {},
+    "sessionId": {},
+    "lastSentMsg": {},
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "4af3ac42-748f-45f9-a3b0-48b91fdcf0b7"
   },
   {
     "id": "217093970645136@lid",
@@ -162,16 +1435,14 @@
     "afk": {},
     "lastClaim": {},
     "sessionId": {},
-    "lastSentMsg": {
-      "Perintah hanya dapat digunakan oleh owner!": 1788279071175
-    },
+    "lastSentMsg": {},
     "botGroupMembership": {},
     "autodownload": false,
-    "__id": "7789a7b6-f876-4421-8ea1-e69d8b13c7ab"
+    "__id": "19bed47c-087a-4729-b7f9-49b69b87906d"
   },
   {
-    "id": "93742073659528@lid",
-    "pushName": "K4GUM3",
+    "id": "38745000648788@lid",
+    "pushName": "balpreet1707",
     "coin": 100,
     "level": 0,
     "xp": 0,
@@ -182,36 +1453,14 @@
     "afk": {},
     "lastClaim": {},
     "sessionId": {},
-    "lastSentMsg": {
-      "Perintah hanya dapat digunakan oleh owner!": 1788279071175
-    },
+    "lastSentMsg": {},
     "botGroupMembership": {},
     "autodownload": false,
-    "__id": "28b6297d-7eb9-4a56-8968-e4dbc40942fe"
+    "__id": "2e0a14ea-6c3c-4b4b-900a-24c508f70eb0"
   },
   {
-    "id": "109736766767331@lid",
-    "pushName": "+60 19-766 1697",
-    "coin": 100,
-    "level": 0,
-    "xp": 20,
-    "winGame": 0,
-    "premium": false,
-    "premiumExpiration": null,
-    "banned": false,
-    "afk": {},
-    "lastClaim": {},
-    "sessionId": {},
-    "lastSentMsg": {
-      "Perintah hanya dapat digunakan oleh owner!": 1788279071175
-    },
-    "botGroupMembership": {},
-    "autodownload": false,
-    "__id": "377abe7c-43bc-43fe-b700-8d355ba81195"
-  },
-  {
-    "id": "175162339139698@lid",
-    "pushName": "~`Tenxzy™✓",
+    "id": "246591822819514@lid",
+    "pushName": "sora-on-rust",
     "coin": 100,
     "level": 0,
     "xp": 0,
@@ -222,16 +1471,14 @@
     "afk": {},
     "lastClaim": {},
     "sessionId": {},
-    "lastSentMsg": {
-      "Perintah hanya dapat digunakan oleh owner!": 1788279071175
-    },
+    "lastSentMsg": {},
     "botGroupMembership": {},
     "autodownload": false,
-    "__id": "78fdf628-a52f-4946-89fb-0492a564cd8b"
+    "__id": "647b5e7f-cab2-46c9-9b1c-810869d709ea"
   },
   {
-    "id": "209350178136129@lid",
-    "pushName": "Qil 🤵",
+    "id": "280951158476814@lid",
+    "pushName": "Nadhirah Ariff 🤗",
     "coin": 100,
     "level": 0,
     "xp": 0,
@@ -242,12 +1489,208 @@
     "afk": {},
     "lastClaim": {},
     "sessionId": {},
-    "lastSentMsg": {
-      "Perintah hanya dapat digunakan oleh owner!": 1788279071175
-    },
+    "lastSentMsg": {},
     "botGroupMembership": {},
     "autodownload": false,
-    "__id": "9bb288a9-a061-47ac-8963-fb87c0b30943"
+    "__id": "2264e54e-e71b-4e3f-8173-b34d22333dad"
+  },
+  {
+    "id": "201223680565414@lid",
+    "pushName": "Fadhil",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {},
+    "sessionId": {},
+    "lastSentMsg": {},
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "ab5e7502-1fd7-4766-bc93-1875619111a6"
+  },
+  {
+    "id": "137628015927492@lid",
+    "pushName": "NOOR HANAN MOHAMAD",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {},
+    "sessionId": {},
+    "lastSentMsg": {},
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "d8118750-de6f-42b5-9e91-f2ba085c0be5"
+  },
+  {
+    "id": "212794188251150@lid",
+    "pushName": "Yusmalizai",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {},
+    "sessionId": {},
+    "lastSentMsg": {},
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "55e3e569-853c-488e-acd2-df322be1542e"
+  },
+  {
+    "id": "195197724037367@lid",
+    "pushName": "𝐀𝐒𝐘𝐑𝐀𝐅",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {},
+    "sessionId": {},
+    "lastSentMsg": {},
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "43c941ee-f676-4399-be7e-16c8d5091023"
+  },
+  {
+    "id": "203186329669748@lid",
+    "pushName": "miquella",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {},
+    "sessionId": {},
+    "lastSentMsg": {},
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "34ec87d0-90aa-4c9f-b444-281bf344ccc0"
+  },
+  {
+    "id": "53910848942302@lid",
+    "pushName": "『VXG』C5|⁷ᴛ|𝐀𝐄𝐒⁰⁹|𝐀𝐅⁰¹/𝘠𝘽7",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {},
+    "sessionId": {},
+    "lastSentMsg": {},
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "24cfaf56-44a0-489e-bb03-4d18632e1cff"
+  },
+  {
+    "id": "22029021483050@lid",
+    "pushName": "Dhaniz Enterprise",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {},
+    "sessionId": {},
+    "lastSentMsg": {},
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "c0bc5c2e-091c-451b-8306-ca06d0686fa1"
+  },
+  {
+    "id": "196971595866129@lid",
+    "pushName": "Yuni R.",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {},
+    "sessionId": {},
+    "lastSentMsg": {},
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "d7a32497-340d-4d24-8c29-359100e18871"
+  },
+  {
+    "id": "227367867944963@lid",
+    "pushName": "Ad",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {},
+    "sessionId": {},
+    "lastSentMsg": {},
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "671dd3e8-76e6-45e0-93b8-239b586b1280"
+  },
+  {
+    "id": "181351101771809@lid",
+    "pushName": "HowYee",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {},
+    "sessionId": {},
+    "lastSentMsg": {},
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "41ca6f7b-7b41-4e4b-9ece-3e17b0c846cb"
+  },
+  {
+    "id": "145153000001549@lid",
+    "pushName": "ramsy",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {},
+    "sessionId": {},
+    "lastSentMsg": {},
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "ed0a87f1-27bd-47b4-8b3d-2b45c38c1c96"
   },
   {
     "id": "139874334158871@lid",
@@ -262,183 +1705,33 @@
     "afk": {},
     "lastClaim": {},
     "sessionId": {},
-    "lastSentMsg": {
-      "Perintah hanya dapat digunakan oleh owner!": 1788279071175
-    },
-    "botGroupMembership": {},
-    "autodownload": false,
-    "__id": "07049b39-86d9-4006-843b-cf6a5b3f49b9"
-  },
-  {
-    "id": "186436108206297@lid",
-    "pushName": "🫆",
-    "coin": 100,
-    "level": 0,
-    "xp": 0,
-    "winGame": 0,
-    "premium": false,
-    "premiumExpiration": null,
-    "banned": false,
-    "afk": {},
-    "lastClaim": {},
-    "sessionId": {},
-    "lastSentMsg": {
-      "Perintah hanya dapat digunakan oleh owner!": 1788279071175
-    },
-    "botGroupMembership": {},
-    "autodownload": false,
-    "__id": "4e811c1e-1703-4a03-88e5-887beb9f5b7e"
-  },
-  {
-    "id": "220701726388260@lid",
-    "pushName": "root@syaii: ~",
-    "coin": 100,
-    "level": 0,
-    "xp": 0,
-    "winGame": 0,
-    "premium": false,
-    "premiumExpiration": null,
-    "banned": false,
-    "afk": {},
-    "lastClaim": {},
-    "sessionId": {},
-    "lastSentMsg": {
-      "Perintah hanya dapat digunakan oleh owner!": 1788279071175
-    },
-    "botGroupMembership": {},
-    "autodownload": false,
-    "__id": "e432fed1-b92a-49ca-bb5e-39a11d6a9dc8"
-  },
-  {
-    "id": "79444496625700@lid",
-    "pushName": "Unknown",
-    "coin": 100,
-    "level": 0,
-    "xp": 0,
-    "winGame": 0,
-    "premium": false,
-    "premiumExpiration": null,
-    "banned": false,
-    "afk": {},
-    "lastClaim": {},
-    "sessionId": {},
-    "lastSentMsg": {
-      "Perintah hanya dapat digunakan oleh owner!": 1788279071175
-    },
-    "botGroupMembership": {},
-    "autodownload": false,
-    "__id": "04fead53-876b-499d-a937-98c4aeeee28d"
-  },
-  {
-    "id": "180960326906001@lid",
-    "pushName": "dyna",
-    "coin": 100,
-    "level": 0,
-    "xp": 0,
-    "winGame": 0,
-    "premium": false,
-    "premiumExpiration": null,
-    "banned": false,
-    "afk": {},
-    "lastClaim": {},
-    "sessionId": {},
-    "lastSentMsg": {
-      "Perintah hanya dapat digunakan oleh owner!": 1788279071175
-    },
-    "botGroupMembership": {},
-    "autodownload": false,
-    "__id": "48bc701c-4482-427c-b161-e221ebbb653b"
-  },
-  {
-    "id": "231928854786202@lid",
-    "pushName": "Asy",
-    "coin": 100,
-    "level": 0,
-    "xp": 0,
-    "winGame": 0,
-    "premium": false,
-    "premiumExpiration": null,
-    "banned": false,
-    "afk": {},
-    "lastClaim": {},
-    "sessionId": {},
-    "lastSentMsg": {
-      "Perintah hanya dapat digunakan oleh owner!": 1788279071175
-    },
-    "botGroupMembership": {},
-    "autodownload": false,
-    "__id": "fa99e9c2-7503-4103-9b7e-08490890d079"
-  },
-  {
-    "id": "215066628599909@lid",
-    "pushName": "Enggar Saputra",
-    "coin": 100,
-    "level": 0,
-    "xp": 0,
-    "winGame": 0,
-    "premium": false,
-    "premiumExpiration": null,
-    "banned": false,
-    "afk": {},
-    "lastClaim": {},
-    "sessionId": {},
     "lastSentMsg": {},
     "botGroupMembership": {},
     "autodownload": false,
-    "__id": "f9e19dec-226c-4b0f-87b4-5fa3f5d71a70"
-  },
-  {
-    "id": "64283413094616@lid",
-    "pushName": "SpawnShrawns",
-    "coin": 100,
-    "level": 0,
-    "xp": 0,
-    "winGame": 0,
-    "premium": false,
-    "premiumExpiration": null,
-    "banned": false,
-    "afk": {},
-    "lastClaim": {},
-    "sessionId": {},
-    "lastSentMsg": {},
-    "botGroupMembership": {},
-    "autodownload": false,
-    "__id": "7cbb1c3b-9b85-47ea-980d-e58938f19e11"
-  },
-  {
-    "id": "180187283083506@lid",
-    "pushName": "Kachina-MD",
-    "coin": 100,
-    "level": 0,
-    "xp": 0,
-    "winGame": 0,
-    "premium": false,
-    "premiumExpiration": null,
-    "banned": false,
-    "afk": {},
-    "lastClaim": {},
-    "sessionId": {},
-    "lastSentMsg": {},
-    "botGroupMembership": {},
-    "autodownload": false,
-    "__id": "da583b26-efc4-4cd1-a6d3-4a07b3ac43fb"
+    "__id": "6eaa4b4c-2dbb-4236-98b3-23b3da665df9"
   },
   {
     "id": "138350124113923@lid",
     "pushName": "Kryz",
     "coin": 100,
-    "level": 11,
+    "level": 9,
     "xp": 40,
-    "winGame": 0,
+    "winGame": 4,
     "premium": false,
     "premiumExpiration": null,
     "banned": false,
     "afk": {},
-    "lastClaim": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
     "sessionId": {},
-    "lastSentMsg": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
+    },
     "botGroupMembership": {},
     "autodownload": false,
-    "__id": "39e354bd-240d-4e40-a9d6-b384d1c61994"
+    "__id": "c138e231-3cc8-41b4-b2bc-b521e2d26bdb"
   }
 ]

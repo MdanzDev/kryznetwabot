@@ -71,7 +71,9 @@
   "telegram": {
     "enabled": true,
     "token": "8772760116:AAGnjDCigs_5uQaFzAXbGdKcsbpQfFkhBvk",
-    "ownerIds": [],
+    "ownerIds": [
+      7619774967
+    ],
     "waOwnerNumber": "60137345871",
     "ai": {
       "baseURL": "https://modelnyaw.xyz/v1",
