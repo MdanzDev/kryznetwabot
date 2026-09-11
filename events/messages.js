@@ -1,5 +1,6 @@
 const util = require("node:util");
 const moment = require("moment-timezone");
+const kryzai = require("../lib/kryzai.js");
 
 async function handleWarning(ctx, senderLid, senderLidId, groupJid, groupDb) {
     const maxWarnings = groupDb?.maxwarnings || 3;
@@ -103,6 +104,15 @@ module.exports = (bot) => {
                     id: `${isCmd.prefix}menu`
                 }]
             });
+
+        if (!isCmd && msg.body) {
+            const kryzzPrompt = kryzai.matchTrigger(msg.body);
+            if (kryzzPrompt) {
+                console.log(util.styleText("magenta", "[~]"), `Kryzz AI triggered by: ${senderId}`);
+                await kryzai.handleKryzz(bot, ctx, kryzzPrompt);
+                return;
+            }
+        }
 
         const autodownloadEnabled = senderDb?.autodownload || false;
         if (autodownloadEnabled && !isCmd) {
