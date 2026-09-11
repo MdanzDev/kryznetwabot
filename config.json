@@ -4,7 +4,7 @@
     "phoneNumber": "60137345871",
     "thumbnail": "https://cdn.phototourl.com/free/2026-09-03-14d11d1f-0e05-4ba1-a673-7c10e19092cf.jpg",
     "groupJid": "",
-    "groupLink": "https://chat.whatsapp.com/D34ldONHTL4HVc4Sfc1x7Y"
+    "groupLink": "https://chat.whatsapp.com/FxEYZl2UyzAEI2yhaH34Ye"
   },
   "msg": {
     "admin": "(｡•́︿•̀｡) Perintah ini cuma buat admin grup ya~ ♡",
@@ -67,5 +67,15 @@
     "customPairingCode": "KRYZNETZ",
     "useStore": false,
     "useServer": false
+  },
+  "telegram": {
+    "enabled": true,
+    "token": "8772760116:AAGnjDCigs_5uQaFzAXbGdKcsbpQfFkhBvk",
+    "ownerIds": [],
+    "waOwnerNumber": "60137345871",
+    "ai": {
+      "baseURL": "https://modelnyaw.xyz/v1",
+      "apiKey": "sk-qwen-256669d9db30e826bc2490c373295b8d8a5a812db5246aaf"
+    }
   }
 }

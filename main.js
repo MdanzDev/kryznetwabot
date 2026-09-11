@@ -98,3 +98,9 @@ const cmd = new CommandHandler(bot, directory.command);
 cmd.load();
 
 bot.launch().catch(error => console.error(util.styleText("red", "[x]"), `Error: ${util.format(error)}`));
+
+if (config.telegram?.enabled && config.telegram?.token) {
+    const { TelegramBot } = require("./lib/telegram");
+    const tgBot = new TelegramBot(bot, config.telegram);
+    tgBot.start().catch(error => console.error(util.styleText("red", "[x]"), `Telegram error: ${util.format(error)}`));
+}
