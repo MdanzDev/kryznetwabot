@@ -77,7 +77,7 @@
     "waOwnerNumber": "60137345871",
     "ai": {
       "baseURL": "https://modelnyaw.xyz/v1",
-      "apiKey": "sk-qwen-256669d9db30e826bc2490c373295b8d8a5a812db5246aaf"
+      "apiKey": "sk-qwen-e458f48d444226bf5c4c3e55d6bf146da4fddff8fbc83834"
     }
   }
 }

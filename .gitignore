@@ -2,3 +2,6 @@ node_modules/
 state/
 .env
 *.log
+database/alya.db
+database/alya.db-shm
+database/alya.db-wal
