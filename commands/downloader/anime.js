@@ -67,8 +67,8 @@ module.exports = {
                 return await ctx.reply({
                     text: fmtHeader("🎬 PILIH KUALITI") +
                         `❖ ${cleanTitle}\n\n` +
-                        `✦ Pilih kualiti + server dari senarai bawah.\n` +
-                        `✦ Video akan dihantar selepas siap dimuat (30s-2min).`,
+                        `✦ 480p laju (70MB), 720p perlahan (133MB).\n` +
+                        `✦ Pilih kualiti + server dari senarai bawah.`,
                     optionText: "♡ Pilih Kualiti",
                     optionTitle: "୨୧ Kualiti & Server",
                     nativeFlow: [{ text: "♡ Pilih Kualiti & Server", sections }]
