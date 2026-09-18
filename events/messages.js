@@ -71,7 +71,8 @@ module.exports = (bot) => {
         const botDb = ctx.db.bot;
         const senderDb = ctx.db.user;
         const groupDb = ctx.db.group;
-        if (!senderDb || !groupDb) return;
+        // NOTE: ctx.db.group is null in private chats by design — only require it in groups.
+        if (!senderDb || (isGroup && !groupDb)) return;
 
         if (senderDb?.premium && senderDb?.premiumExpiration && Date.now() >= senderDb.premiumExpiration) {
             senderDb.premium = false;
