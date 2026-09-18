@@ -103,4 +103,10 @@ if (config.telegram?.enabled && config.telegram?.token) {
     const { TelegramBot } = require("./lib/telegram");
     const tgBot = new TelegramBot(bot, config.telegram);
     tgBot.start().catch(error => console.error(util.styleText("red", "[x]"), `Telegram error: ${util.format(error)}`));
+    // Alya on WhatsApp — same brain as Telegram (mood, memory, humanizer)
+    if (config.telegram?.waAlya?.enabled !== false) {
+        const { WaAlya } = require("./lib/telegram/wa-bridge");
+        bot.waAlya = new WaAlya(tgBot);
+        console.log(util.styleText("magenta", "[~]"), "Alya WhatsApp bridge armed (private: always, group: tag/reply only)");
+    }
 }

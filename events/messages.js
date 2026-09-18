@@ -112,6 +112,16 @@ module.exports = (bot) => {
                 await kryzai.handleKryzz(bot, ctx, kryzzPrompt);
                 return;
             }
+
+            // Alya (same brain as Telegram). Private: always replies.
+            // Group: ONLY when the bot is tagged or its message is replied to — saves tokens.
+            if (bot.waAlya) {
+                const groupHit = isGroup && await bot.waAlya.isTriggered(ctx);
+                if (!isGroup || groupHit) {
+                    await bot.waAlya.handle(ctx, { isGroup });
+                    return;
+                }
+            }
         }
 
         const autodownloadEnabled = senderDb?.autodownload || false;
