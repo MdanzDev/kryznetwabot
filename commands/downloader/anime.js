@@ -15,34 +15,6 @@ function fmtHeader(title) {
            "╰───────────────୨୧\n\n";
 }
 
-// YouTube fallback: search "<title> episode <n>" then get a video mp4 via savetube
-async function ytVideoForEpisode(title, eps) {
-    try {
-        const q = `${title} episode ${eps}`;
-        const s = await axios.get("https://api.nexray.eu.cc/search/youtube?"+ new URLSearchParams({ q }), { timeout: 20000, headers: UA, validateStatus: () => true });
-        const items = s.data?.result || [];
-        if (!items.length) return null;
-        // prefer the first result whose title mentions the episode number
-        const ytUrl = items[0].url || items[0].link;
-        if (!ytUrl) return null;
-        for (const quality of ["360", "480", "720"]) {
-            try {
-                const r = await axios.get("https://api.nexray.eu.cc/downloader/savetube?" +
-                    new URLSearchParams({ url: ytUrl, type: "video", quality }), { timeout: 30000, headers: UA, validateStatus: () => true });
-                const d = r.data?.result;
-                if (d?.url && d.type === "video") {
-                    // validate the CDN link actually serves video
-                    const h = await axios.head(d.url, { timeout: 15000, headers: UA, validateStatus: () => true });
-                    if (h.status === 200 && /video/.test(h.headers["content-type"] || "")) {
-                        return { url: d.url, source: "YouTube", ytTitle: d.title || items[0].title, thumb: d.thumbnail || items[0].thumbnail };
-                    }
-                }
-            } catch { /* try next quality */ }
-        }
-        return null;
-    } catch { return null; }
-}
-
 module.exports = {
     name: "anime",
     aliases: ["animes", "nonton"],
@@ -63,23 +35,61 @@ module.exports = {
             );
 
         // ---------- /anime watch:<episodeId> ----------
+        // Shows a quality/server selection list (nativeFlow). The actual fetch
+        // happens in get:<episodeId>:<quality>:<server>.
         if (input.startsWith("watch:")) {
             const episodeId = input.slice(6).trim();
             try {
                 const ep = await anime.episode(episodeId);
-                const nav = [];
-                if (ep.prevEpisodeId) nav.push({ text: "❮ Ep Sebelum", id: `${prefix}anime watch:${ep.prevEpisodeId}` });
-                if (ep.nextEpisodeId) nav.push({ text: "Ep Seterusnya ❯", id: `${prefix}anime watch:${ep.nextEpisodeId}` });
                 const cleanTitle = ep.title.replace(/Subtitle Indonesia/gi, "").trim();
 
-                await ctx.reply({ text: `(｡･ω･｡) Ambil video ${cleanTitle.slice(0, 50)}...\n(bergantung kualiti, 30s-2min)` });
+                // Group servers by quality
+                const byQuality = {};
+                for (const s of ep.servers) {
+                    (byQuality[s.quality] ||= []).push(s.name);
+                }
 
-                // Path 1: resolve FRESH mp4 from Sanka's own servers (yourupload chain
-                // first, then mp4load, then desudesu2) — downloaded server-side with
-                // the correct Referer and sent as buffer (Baileys can't fetch
-                // Referer-bound/expired URLs itself).
+                const sections = [];
+                for (const [quality, names] of Object.entries(byQuality)) {
+                    sections.push({
+                        title: `୨୧ ${quality}`,
+                        rows: names.slice(0, 4).map(name => ({
+                            title: `❖ ${name}`,
+                            description: `Stream ${quality} dari pelayan ${name}`,
+                            id: `${prefix}anime get:${episodeId}:${quality}:${name}`
+                        }))
+                    });
+                }
+                if (!sections.length) {
+                    return await ctx.reply(ctx.format.info("(╥﹏╥) Tiada server streaming untuk episode ni..."));
+                }
+
+                return await ctx.reply({
+                    text: fmtHeader("🎬 PILIH KUALITI") +
+                        `❖ ${cleanTitle}\n\n` +
+                        `✦ Pilih kualiti + server dari senarai bawah.\n` +
+                        `✦ Video akan dihantar selepas siap dimuat (30s-2min).`,
+                    optionText: "♡ Pilih Kualiti",
+                    optionTitle: "୨୧ Kualiti & Server",
+                    nativeFlow: [{ text: "♡ Pilih Kualiti & Server", sections }]
+                });
+            } catch (e) {
+                return await ctx.reply(ctx.format.info(`(╥﹏╥) Gagal ambil episode: ${String(e.message).slice(0, 100)}`));
+            }
+        }
+
+        // ---------- /anime get:<episodeId>:<quality>:<server> ----------
+        if (input.startsWith("get:")) {
+            const [episodeId, quality, serverName] = input.slice(4).split(":");
+            try {
+                await ctx.reply({ text: `(｡･ω･｡) Ambil ${quality} dari ${serverName}...\n(30s-2min bergantung saiz)` });
                 try {
-                    const v = await anime.resolveEpisodeVideo(episodeId);
+                    const v = await anime.resolveQuality(episodeId, quality, serverName);
+                    const ep = await anime.episode(episodeId);
+                    const cleanTitle = ep.title.replace(/Subtitle Indonesia/gi, "").trim();
+                    const nav = [];
+                    if (ep.prevEpisodeId) nav.push({ text: "❮ Ep Sebelum", id: `${prefix}anime watch:${ep.prevEpisodeId}` });
+                    if (ep.nextEpisodeId) nav.push({ text: "Ep Seterusnya ❯", id: `${prefix}anime watch:${ep.nextEpisodeId}` });
                     await ctx.reply({
                         video: Buffer.from(v.buffer),
                         caption: `❖ ${cleanTitle}\n✦ ${v.quality} • Sumber: Sanka/${v.source}\n\n${nav.length ? "▶ Butang di bawah untuk pindah episode!" : ""}`,
@@ -87,42 +97,22 @@ module.exports = {
                     });
                     return;
                 } catch (e1) {
-                    console.log("[anime] resolveEpisodeVideo failed:", String(e1.message).slice(0, 100));
+                    // Honest error: tell the user which servers exist and suggest another
+                    let avail = "";
+                    try {
+                        const ep = await anime.episode(episodeId);
+                        const byQ = {};
+                        for (const s of ep.servers) (byQ[s.quality] ||= []).push(s.name);
+                        avail = Object.entries(byQ).map(([q, n]) => `${q}: ${n.join(", ")}`).join("\n");
+                    } catch {}
+                    return await ctx.reply(
+                        `(╥﹏╥) Streaming gagal:\n${String(e1.message).slice(0, 150)}\n\n` +
+                        (avail ? `✦ Server lain yang boleh dicuba:\n${avail}\n\n` : "") +
+                        `✦ Tekan semula Episode → pilih kualiti/server lain ya~`
+                    );
                 }
-
-                // Path 2: YouTube fallback (search episode → savetube video mp4)
-                try {
-                    const m = episodeId.match(/episode-(\d+)/);
-                    const epNum = m ? m[1] : "";
-                    const baseTitle = cleanTitle.replace(/\s*Episode\s*\d+.*$/i, "").replace(/\s*\(End\)\s*$/i, "");
-                    const yt = await ytVideoForEpisode(baseTitle, epNum);
-                    if (yt) {
-                        await ctx.reply({
-                            video: { url: yt.url },
-                            caption: `❖ ${cleanTitle}\n✦ Sumber: YouTube\n\n${nav.length ? "▶ Butang di bawah untuk pindah episode!" : ""}`,
-                            buttons: nav.length ? nav : undefined
-                        });
-                        return;
-                    }
-                } catch (e2) {
-                    console.log("[anime] yt fallback failed:", String(e2.message).slice(0, 80));
-                }
-
-                // Fallback card: stream page + download hosts
-                const urlBtns = [];
-                if (ep.defaultStreamingUrl) urlBtns.push({ text: "▶ Tonton Online", url: ep.defaultStreamingUrl });
-                const dl = ep.download[0];
-                if (dl?.urls?.[0]) urlBtns.push({ text: `⬇ ${dl.quality}${dl.size ? " (" + dl.size.trim() + ")" : ""}`, url: dl.urls[0].url });
-                const all = [...nav, ...urlBtns].slice(0, 3);
-                return await ctx.reply({
-                    text: fmtHeader("🎬 TONTON EPISODE") +
-                        `❖ ${cleanTitle}\n\n` +
-                        (ep.download.length ? `✦ Download: ${ep.download.map(q => q.quality).join(", ")}\n` : "") +
-                        `\n✦ Server video tak dapat dihantar terus — guna butang 'Tonton Online' buka dalam browser ya~`,
-                    buttons: all.length ? all : undefined
-                });
             } catch (e) {
-                return await ctx.reply(ctx.format.info(`(╥﹏╥) Gagal ambil episode: ${String(e.message).slice(0, 100)}`));
+                return await ctx.reply(ctx.format.info(`(╥﹏╥) Gagal: ${String(e.message).slice(0, 100)}`));
             }
         }
 
