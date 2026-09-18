@@ -1561,105 +1561,6 @@
     "__id": "a58bc39f-c8c3-435b-bd4e-1a0eee95bc20"
   },
   {
-    "id": "120363431565089925@g.us",
-    "members": [
-      {
-        "id": "16922271862816@lid",
-        "sent": 77,
-        "pushName": "n"
-      },
-      {
-        "id": "89275592888535@lid",
-        "sent": 6,
-        "pushName": "𝑅𝑖𝑒𝑒 𝙈𝙤𝙧𝙚𝙩𝙩𝙞"
-      },
-      {
-        "id": "137387715862755@lid",
-        "sent": 39,
-        "pushName": "."
-      },
-      {
-        "id": "241240410959903@lid",
-        "sent": 17,
-        "pushName": "thx"
-      },
-      {
-        "id": "185431253635160@lid",
-        "sent": 33,
-        "pushName": "r"
-      },
-      {
-        "id": "75355905900582@lid",
-        "sent": 2,
-        "pushName": "فارس"
-      },
-      {
-        "id": "245100915499028@lid",
-        "sent": 2,
-        "pushName": "Sweet Girl 🙂🙂"
-      },
-      {
-        "id": "239569198915754@lid",
-        "sent": 71,
-        "pushName": "Gaga"
-      },
-      {
-        "id": "67251436843065@lid",
-        "sent": 234,
-        "pushName": "ɑrꪱ๋𝘴yy𝗑𝗏ꪱ๋ 𝟕𝙏 ⟡ rest ."
-      },
-      {
-        "id": "95752537800869@lid",
-        "sent": 1,
-        "pushName": "."
-      },
-      {
-        "id": "180187283083506@lid",
-        "sent": 1,
-        "pushName": "Kachina-MD"
-      },
-      {
-        "id": "243069446258800@lid",
-        "sent": 2,
-        "pushName": "jauhariel.id"
-      },
-      {
-        "id": "128991507804290@lid",
-        "sent": 1,
-        "pushName": "."
-      },
-      {
-        "id": "138852266156264@lid",
-        "sent": 1,
-        "pushName": "NUQMAN®"
-      },
-      {
-        "id": "231447248040034@lid",
-        "sent": 73,
-        "pushName": "H."
-      }
-    ],
-    "mute": [],
-    "warnings": [
-      {
-        "id": "67251436843065@lid",
-        "count": 1
-      },
-      {
-        "id": "231447248040034@lid",
-        "count": 1
-      }
-    ],
-    "maxwarnings": 3,
-    "mutebot": false,
-    "option": {},
-    "text": {},
-    "sewa": false,
-    "sewaExpiration": null,
-    "spam": [],
-    "__id": "01118e18-28e5-411e-a5d9-0cc8b61ba717"
-  },
-  {
     "id": "120363428445709727@g.us",
     "members": [
       {
@@ -2284,7 +2185,7 @@
       },
       {
         "id": "138350124113923@lid",
-        "sent": 36,
+        "sent": 39,
         "pushName": "Kryz"
       }
     ],
@@ -2300,5 +2201,109 @@
     "sewaExpiration": null,
     "spam": [],
     "__id": "cc8a0787-c30f-4fa4-ab6c-93c9a6f8da29"
+  },
+  {
+    "id": "120363431565089925@g.us",
+    "members": [
+      {
+        "id": "16922271862816@lid",
+        "sent": 77,
+        "pushName": "n"
+      },
+      {
+        "id": "89275592888535@lid",
+        "sent": 6,
+        "pushName": "𝑅𝑖𝑒𝑒 𝙈𝙤𝙧𝙚𝙩𝙩𝙞"
+      },
+      {
+        "id": "137387715862755@lid",
+        "sent": 39,
+        "pushName": "."
+      },
+      {
+        "id": "241240410959903@lid",
+        "sent": 17,
+        "pushName": "thx"
+      },
+      {
+        "id": "185431253635160@lid",
+        "sent": 33,
+        "pushName": "r"
+      },
+      {
+        "id": "75355905900582@lid",
+        "sent": 2,
+        "pushName": "فارس"
+      },
+      {
+        "id": "245100915499028@lid",
+        "sent": 2,
+        "pushName": "Sweet Girl 🙂🙂"
+      },
+      {
+        "id": "239569198915754@lid",
+        "sent": 71,
+        "pushName": "Gaga"
+      },
+      {
+        "id": "67251436843065@lid",
+        "sent": 234,
+        "pushName": "ɑrꪱ๋𝘴yy𝗑𝗏ꪱ๋ 𝟕𝙏 ⟡ rest ."
+      },
+      {
+        "id": "95752537800869@lid",
+        "sent": 1,
+        "pushName": "."
+      },
+      {
+        "id": "180187283083506@lid",
+        "sent": 1,
+        "pushName": "Kachina-MD"
+      },
+      {
+        "id": "243069446258800@lid",
+        "sent": 2,
+        "pushName": "jauhariel.id"
+      },
+      {
+        "id": "128991507804290@lid",
+        "sent": 1,
+        "pushName": "."
+      },
+      {
+        "id": "138852266156264@lid",
+        "sent": 1,
+        "pushName": "NUQMAN®"
+      },
+      {
+        "id": "231447248040034@lid",
+        "sent": 73,
+        "pushName": "H."
+      },
+      {
+        "id": "138350124113923@lid",
+        "sent": 1,
+        "pushName": "Kryz"
+      }
+    ],
+    "mute": [],
+    "warnings": [
+      {
+        "id": "67251436843065@lid",
+        "count": 1
+      },
+      {
+        "id": "231447248040034@lid",
+        "count": 1
+      }
+    ],
+    "maxwarnings": 3,
+    "mutebot": false,
+    "option": {},
+    "text": {},
+    "sewa": false,
+    "sewaExpiration": null,
+    "spam": [],
+    "__id": "01118e18-28e5-411e-a5d9-0cc8b61ba717"
   }
 ]
