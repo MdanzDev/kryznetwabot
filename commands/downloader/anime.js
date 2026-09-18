@@ -1,10 +1,9 @@
 const anime = require("../../lib/anime.js");
 
-// /anime <query>        — search
-// /anime title:<slug>   — show seasons/episodes of that title
-// /anime eps:<slug>:<page> — episode list (paginated, 8 per page)
-// /anime watch:<episodeId> — stream/download an episode
-// /anime next:<episodeId> / prev:<episodeId> — navigation from a watch card
+// /anime <query>            — search (nativeFlow list: pick a title)
+// /anime title:<slug>       — info card + "Senarai Episode" list button
+// /anime eps:<slug>:<page>  — episode list (nativeFlow rows, 8/page + paging)
+// /anime watch:<episodeId>  — send the mp4 video + prev/next + download buttons
 
 const EPS_PER_PAGE = 8;
 
@@ -39,42 +38,37 @@ module.exports = {
             try {
                 const ep = await anime.episode(episodeId);
 
-                // Try to extract the direct mp4 from the stream page
+                // Direct mp4 from the stream player (googlevideo itag=18)
                 const mp4 = ep.defaultStreamingUrl ? await anime.extractMp4(ep.defaultStreamingUrl) : null;
 
-                // Navigation buttons
+                // Navigation: prev / next (max 2 quick-reply buttons — under the 3 limit)
                 const nav = [];
                 if (ep.prevEpisodeId) nav.push({ text: "❮ Ep Sebelum", id: `${prefix}anime watch:${ep.prevEpisodeId}` });
                 if (ep.nextEpisodeId) nav.push({ text: "Ep Seterusnya ❯", id: `${prefix}anime watch:${ep.nextEpisodeId}` });
-                const buttons = nav.length ? [nav] : [];
-                // quality download links (URL buttons — open in browser)
-                for (const q of ep.download.slice(0, 2)) {
-                    const host = q.urls?.[0];
-                    if (host) buttons.push([{ text: `⬇ ${q.quality}${q.size ? " (" + q.size.trim() + ")" : ""}`, url: host.url }]);
-                }
 
                 if (mp4) {
-                    // Direct video — WhatsApp/Telegram fetch it themselves
-                    await ctx.reply({
+                    return await ctx.reply({
                         video: { url: mp4 },
-                        caption: `❖ ${ep.title.replace(/Subtitle Indonesia/gi, "").trim()}\n\n${nav.length ? "▶ Gunakan butang di bawah untuk pindah episode!" : ""}`,
-                        buttons: buttons.length ? buttons : undefined
+                        caption: `❖ ${ep.title.replace(/Subtitle Indonesia/gi, "").trim()}\n\n${nav.length ? "▶ Butang di bawah untuk pindah episode!" : ""}`,
+                        buttons: nav.length ? nav : undefined
                     });
-                    return;
                 }
 
-                // Fallback: text card with buttons
-                let text = fmtHeader("🎬 TONTON EPISODE") +
-                    `❖ ${ep.title}\n\n`;
-                if (ep.download.length) text += "✦ Pilih kualiti download di bawah ya~\n";
-                else if (ep.defaultStreamingUrl) text += "✦ Klik 'Tonton Online' untuk stream!\n";
-                if (ep.servers.length) text += `✦ Server: ${[...new Set(ep.servers.map(s => s.name))].join(", ")}\n`;
-                if (!buttons.find(b => b.some(x => x.url)) && ep.defaultStreamingUrl)
-                    buttons.push([{ text: "▶ Tonton Online", url: ep.defaultStreamingUrl }]);
-
+                // Fallback: text card. Download links as URL buttons (max 3 total incl nav!)
+                const urlBtns = [];
+                if (ep.defaultStreamingUrl) urlBtns.push({ text: "▶ Tonton Online", url: ep.defaultStreamingUrl });
+                const dl = ep.download[0];
+                if (dl?.urls?.[0]) urlBtns.push({ text: `⬇ ${dl.quality}${dl.size ? " (" + dl.size.trim() + ")" : ""}`, url: dl.urls[0].url });
+                // nav counts toward the 3-button cap: keep nav + at most (3 - nav.length) url buttons
+                const all = [...nav, ...urlBtns].slice(0, 3);
+                const quickReply = all.filter(b => b.id);
+                const urlOnly = all.filter(b => b.url);
                 return await ctx.reply({
-                    text,
-                    buttons: buttons.length ? buttons : undefined
+                    text: fmtHeader("🎬 TONTON EPISODE") +
+                        `❖ ${ep.title.replace(/Subtitle Indonesia/gi, "").trim()}\n\n` +
+                        (ep.download.length ? `✦ Download: ${ep.download.map(q => q.quality).join(", ")}\n` : "") +
+                        (ep.servers.length ? `✦ Server: ${[...new Set(ep.servers.map(s => s.name))].join(", ")}\n` : ""),
+                    buttons: [...quickReply, ...urlOnly].length ? [...quickReply, ...urlOnly] : undefined
                 });
             } catch (e) {
                 return await ctx.reply(ctx.format.info(`(╥﹏╥) Gagal ambil episode: ${String(e.message).slice(0, 100)}`));
@@ -91,23 +85,32 @@ module.exports = {
                 const maxPage = Math.max(1, Math.ceil(total / EPS_PER_PAGE));
                 const slice = d.episodes.slice((page - 1) * EPS_PER_PAGE, page * EPS_PER_PAGE);
 
-                let text = fmtHeader(d.title.slice(0, 40)) +
-                    `✦ Status  › ${d.status || "?"}\n` +
-                    `✦ Episode › ${total} total | halaman ${page}/${maxPage}\n` +
-                    (d.score ? `✦ Skor    › ${d.score}\n` : "") +
-                    `\n╭┈┈┈┈┈┈┈┈୨୧\n`;
-
-                const buttons = slice.map(e => [{
-                    text: `❖ Episode ${e.eps}`,
+                const rows = slice.map(e => ({
+                    title: `❖ Episode ${e.eps}`,
+                    description: (e.title || "").replace(/Subtitle Indonesia/gi, "").trim().slice(0, 40),
                     id: `${prefix}anime watch:${e.episodeId}`
-                }]);
+                }));
 
-                // pagination
-                const pg = [];
-                if (page < maxPage) pg.push({ text: "Seterusnya ❯", id: `${prefix}anime eps:${slug}:${page + 1}` });
-                if (pg.length) buttons.push(pg);
+                const pgRows = [];
+                if (page > 1) pgRows.push({ title: "❮ Halaman Sebelum", id: `${prefix}anime eps:${slug}:${page - 1}` });
+                if (page < maxPage) pgRows.push({ title: "Halaman Seterusnya ❯", id: `${prefix}anime eps:${slug}:${page + 1}` });
 
-                return await ctx.reply({ text, buttons });
+                const sections = [{ title: `୨୧ Episode (halaman ${page}/${maxPage})`, rows }];
+                if (pgRows.length) sections.push({ title: "୨୧ Navigasi", rows: pgRows });
+
+                return await ctx.reply({
+                    text: fmtHeader(d.title.slice(0, 40)) +
+                        `✦ Status  › ${d.status || "?"}\n` +
+                        `✦ Episode › ${total} total | halaman ${page}/${maxPage}\n` +
+                        (d.score ? `✦ Skor    › ${d.score}\n` : "") +
+                        `\n✦ Pilih episode dari senarai bawah ya~ ♡`,
+                    optionText: "♡ Pilih Episode",
+                    optionTitle: "୨୧ Senarai Episode",
+                    nativeFlow: [{
+                        text: "♡ Pilih Episode",
+                        sections
+                    }]
+                });
             } catch (e) {
                 return await ctx.reply(ctx.format.info(`(╥﹏╥) ${String(e.message).slice(0, 100)}`));
             }
@@ -123,9 +126,11 @@ module.exports = {
                     `✦ Episode › ${d.totalEpisodes || d.episodes.length}\n` +
                     `✦ Skor    › ${d.score || "?"}\n` +
                     `✦ Genre   › ${d.genres.slice(0, 5).join(", ")}\n\n` +
-                    `❖ Sinopsis:\n${(d.synopsis || "-").slice(0, 300)}...\n`;
+                    `❖ Sinopsis:\n${String(d.synopsis || "-").slice(0, 300)}...`;
                 return await ctx.reply({
-                    ...(d.poster ? { image: { url: d.poster }, caption: fmtHeader(d.title.slice(0, 45)) + info } : { text: fmtHeader(d.title.slice(0, 45)) + info }),
+                    ...(d.poster
+                        ? { image: { url: d.poster }, caption: fmtHeader(d.title.slice(0, 45)) + info }
+                        : { text: fmtHeader(d.title.slice(0, 45)) + info }),
                     buttons: [{ text: "୨୧ Senarai Episode", id: `${prefix}anime eps:${slug}:1` }]
                 });
             } catch (e) {
@@ -133,23 +138,30 @@ module.exports = {
             }
         }
 
-        // ---------- /anime <query> — SEARCH ----------
+        // ---------- /anime <query> — SEARCH (nativeFlow list, many rows OK) ----------
         try {
             const results = await anime.search(input);
             if (!results.length)
                 return await ctx.reply(ctx.format.info(config.msg.notFound));
 
-            let text = fmtHeader("𝑯𝒂𝒔𝒊𝒍 𝑺𝒆𝒂𝒓𝒄𝒉") +
-                `❖ Kata kunci: ${ctx.format.inlineCode(input)}\n` +
-                `❖ Ditemui: ${results.length} anime\n\n` +
-                "✦ Pilih judul di bawah untuk lihat episode! ♡\n";
-
-            const buttons = results.slice(0, 8).map(r => [{
-                text: `❖ ${r.title.replace(/Subtitle Indonesia|Sub Indo/gi, "").trim().slice(0, 45)}`,
+            const rows = results.slice(0, 10).map(r => ({
+                title: r.title.replace(/Subtitle Indonesia|Sub Indo/gi, "").trim().slice(0, 50),
+                description: `${r.status || "?"} • ⭐${r.score || "?"}`,
                 id: `${prefix}anime title:${r.animeId}`
-            }]);
+            }));
 
-            return await ctx.reply({ text, buttons });
+            return await ctx.reply({
+                text: fmtHeader("𝑯𝒂𝒔𝒊𝒍 𝑺𝒆𝒂𝒓𝒄𝒉") +
+                    `❖ Kata kunci: ${ctx.format.inlineCode(input)}\n` +
+                    `❖ Ditemui: ${results.length} anime\n\n` +
+                    "✦ Pilih judul dari senarai untuk lihat episode! ♡",
+                optionText: "♡ Pilih Anime",
+                optionTitle: "୨୧ Hasil Pencarian",
+                nativeFlow: [{
+                    text: "♡ Pilih Anime",
+                    sections: [{ title: "୨୧ Hasil Pencarian", rows }]
+                }]
+            });
         } catch (e) {
             return await ctx.reply(ctx.format.info(`(╥﹏╥) Pencarian gagal: ${String(e.message).slice(0, 100)}`));
         }
