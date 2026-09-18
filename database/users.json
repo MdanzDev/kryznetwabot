@@ -120,30 +120,6 @@
     "__id": "9ce4176d-af20-419b-b24c-df48c4f013db"
   },
   {
-    "id": "67251436843065@lid",
-    "pushName": "ɑrꪱ๋𝘴yy𝗑𝗏ꪱ๋ 𝟕𝙏 ⟡ rest .",
-    "coin": 100,
-    "level": 0,
-    "xp": 0,
-    "winGame": 0,
-    "premium": false,
-    "premiumExpiration": null,
-    "banned": false,
-    "afk": {},
-    "lastClaim": {
-      "daily": 1788502870250
-    },
-    "sessionId": {},
-    "lastSentMsg": {
-      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
-      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
-      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
-    },
-    "botGroupMembership": {},
-    "autodownload": false,
-    "__id": "28b3c2e0-1f73-4b20-ad51-6521e3ecc7e3"
-  },
-  {
     "id": "113550362177584@lid",
     "pushName": "athars",
     "coin": 100,
@@ -334,30 +310,6 @@
     "botGroupMembership": {},
     "autodownload": false,
     "__id": "9adfac97-7e8f-492c-a498-3f2f24bdaca5"
-  },
-  {
-    "id": "92835986579686@lid",
-    "pushName": "2511",
-    "coin": 219,
-    "level": 3,
-    "xp": 80,
-    "winGame": 15,
-    "premium": true,
-    "premiumExpiration": 1788591972539,
-    "banned": false,
-    "afk": {},
-    "lastClaim": {
-      "daily": 1788502870250
-    },
-    "sessionId": {},
-    "lastSentMsg": {
-      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
-      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
-      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
-    },
-    "botGroupMembership": {},
-    "autodownload": false,
-    "__id": "1352647a-5582-4dda-b9e5-3a4b5b24c067"
   },
   {
     "id": "128991507804290@lid",
@@ -1711,11 +1663,77 @@
     "__id": "6eaa4b4c-2dbb-4236-98b3-23b3da665df9"
   },
   {
+    "id": "156195763536060@lid",
+    "pushName": "Kryz",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {},
+    "sessionId": {},
+    "lastSentMsg": {},
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "c53ce275-60dc-4883-91e3-8aed2096980d"
+  },
+  {
+    "id": "92835986579686@lid",
+    "pushName": "2511",
+    "coin": 100,
+    "level": 3,
+    "xp": 80,
+    "winGame": 15,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
+    "sessionId": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
+    },
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "1352647a-5582-4dda-b9e5-3a4b5b24c067"
+  },
+  {
+    "id": "67251436843065@lid",
+    "pushName": "⏤͟͞͞𝙭𝙚́𝙧𝙮𝙡𝙞𝙚𝙭𝙯𝙑// ☇ 𝙣𝙯𝙭𝙞",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
+    "sessionId": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
+    },
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "28b3c2e0-1f73-4b20-ad51-6521e3ecc7e3"
+  },
+  {
     "id": "138350124113923@lid",
     "pushName": "Kryz",
     "coin": 100,
-    "level": 13,
-    "xp": 90,
+    "level": 14,
+    "xp": 40,
     "winGame": 4,
     "premium": false,
     "premiumExpiration": null,
@@ -1733,23 +1751,5 @@
     "botGroupMembership": {},
     "autodownload": false,
     "__id": "c138e231-3cc8-41b4-b2bc-b521e2d26bdb"
-  },
-  {
-    "id": "156195763536060@lid",
-    "pushName": "Kryz",
-    "coin": 100,
-    "level": 0,
-    "xp": 0,
-    "winGame": 0,
-    "premium": false,
-    "premiumExpiration": null,
-    "banned": false,
-    "afk": {},
-    "lastClaim": {},
-    "sessionId": {},
-    "lastSentMsg": {},
-    "botGroupMembership": {},
-    "autodownload": false,
-    "__id": "c53ce275-60dc-4883-91e3-8aed2096980d"
   }
 ]
