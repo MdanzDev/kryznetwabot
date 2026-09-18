@@ -72,39 +72,40 @@ module.exports = {
                 if (ep.nextEpisodeId) nav.push({ text: "Ep Seterusnya ❯", id: `${prefix}anime watch:${ep.nextEpisodeId}` });
                 const cleanTitle = ep.title.replace(/Subtitle Indonesia/gi, "").trim();
 
-                // Path 1: direct mp4 from the Sanka stream player
-                let videoUrl = null, videoLabel = "Sanka", thumb = null;
-                if (ep.defaultStreamingUrl) {
-                    videoUrl = await anime.extractMp4(ep.defaultStreamingUrl).catch(() => null);
+                await ctx.reply({ text: `(｡･ω･｡) Ambil video ${cleanTitle.slice(0, 50)}...\n(bergantung kualiti, 30s-2min)` });
+
+                // Path 1: resolve FRESH mp4 from Sanka's own servers (yourupload chain
+                // first, then mp4load, then desudesu2) — downloaded server-side with
+                // the correct Referer and sent as buffer (Baileys can't fetch
+                // Referer-bound/expired URLs itself).
+                try {
+                    const v = await anime.resolveEpisodeVideo(episodeId);
+                    await ctx.reply({
+                        video: Buffer.from(v.buffer),
+                        caption: `❖ ${cleanTitle}\n✦ ${v.quality} • Sumber: Sanka/${v.source}\n\n${nav.length ? "▶ Butang di bawah untuk pindah episode!" : ""}`,
+                        buttons: nav.length ? nav : undefined
+                    });
+                    return;
+                } catch (e1) {
+                    console.log("[anime] resolveEpisodeVideo failed:", String(e1.message).slice(0, 100));
                 }
 
                 // Path 2: YouTube fallback (search episode → savetube video mp4)
-                if (!videoUrl) {
+                try {
                     const m = episodeId.match(/episode-(\d+)/);
                     const epNum = m ? m[1] : "";
                     const baseTitle = cleanTitle.replace(/\s*Episode\s*\d+.*$/i, "").replace(/\s*\(End\)\s*$/i, "");
                     const yt = await ytVideoForEpisode(baseTitle, epNum);
                     if (yt) {
-                        videoUrl = yt.url;
-                        videoLabel = "YouTube";
-                        thumb = yt.thumb;
-                    }
-                }
-
-                if (videoUrl) {
-                    const cap = `❖ ${cleanTitle}\n✦ Sumber: ${videoLabel}\n\n${nav.length ? "▶ Butang di bawah untuk pindah episode!" : ""}`;
-                    // video from URL with fallback to caption-only card if upload fails
-                    try {
                         await ctx.reply({
-                            video: { url: videoUrl },
-                            ...(thumb ? { jpegThumbnail: undefined } : {}),
-                            caption: cap,
+                            video: { url: yt.url },
+                            caption: `❖ ${cleanTitle}\n✦ Sumber: YouTube\n\n${nav.length ? "▶ Butang di bawah untuk pindah episode!" : ""}`,
                             buttons: nav.length ? nav : undefined
                         });
                         return;
-                    } catch (sendErr) {
-                        console.log("[anime] video send failed, falling back to link card:", sendErr.message?.slice(0, 80));
                     }
+                } catch (e2) {
+                    console.log("[anime] yt fallback failed:", String(e2.message).slice(0, 80));
                 }
 
                 // Fallback card: stream page + download hosts
