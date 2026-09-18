@@ -5,3 +5,7 @@ state/
 database/alya.db
 database/alya.db-shm
 database/alya.db-wal
+libraries/
+versions/
+logs/
+minecraft/
