@@ -106,16 +106,17 @@ module.exports = (bot) => {
                 }]
             });
 
-        if (!isCmd && msg.body) {
-            const kryzzPrompt = kryzai.matchTrigger(msg.body);
+        if (!isCmd && (msg.body || ctx.msg.media)) {
+            const kryzzPrompt = msg.body ? kryzai.matchTrigger(msg.body) : null;
             if (kryzzPrompt) {
                 console.log(util.styleText("magenta", "[~]"), `Kryzz AI triggered by: ${senderId}`);
                 await kryzai.handleKryzz(bot, ctx, kryzzPrompt);
                 return;
             }
 
-            // Alya (same brain as Telegram). Private: always replies.
-            // Group: ONLY when the bot is tagged or its message is replied to — saves tokens.
+            // Alya (same brain as Telegram). Private: always replies (text, image,
+            // voice, document — caption or bare). Group: ONLY when the bot is
+            // tagged or its message is replied to — saves tokens.
             if (bot.waAlya) {
                 const groupHit = isGroup && await bot.waAlya.isTriggered(ctx);
                 if (!isGroup || groupHit) {
