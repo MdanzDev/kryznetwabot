@@ -1786,8 +1786,8 @@
     "id": "138350124113923@lid",
     "pushName": "Kryz",
     "coin": 100,
-    "level": 33,
-    "xp": 80,
+    "level": 34,
+    "xp": 30,
     "winGame": 4,
     "premium": false,
     "premiumExpiration": null,
@@ -1805,5 +1805,23 @@
     "botGroupMembership": {},
     "autodownload": false,
     "__id": "c138e231-3cc8-41b4-b2bc-b521e2d26bdb"
+  },
+  {
+    "id": "239200301531287@lid",
+    "pushName": "Unknown",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {},
+    "sessionId": {},
+    "lastSentMsg": {},
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "69bd00b3-ab9f-4201-b339-3073d69884ad"
   }
 ]

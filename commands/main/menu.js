@@ -161,14 +161,22 @@ module.exports = {
 
             const userDb = ctx.db.user;
 
-            const groups = Object.values(
-                await ctx.core.groupFetchAllParticipating()
-            ).filter(
-                group =>
-                    !group.announce &&
-                    !group.isCommunity &&
-                    !group.isCommunityAnnounce
-            );
+            let groups = [];
+            try {
+                groups = Object.values(
+                    await Promise.race([
+                        ctx.core.groupFetchAllParticipating(),
+                        new Promise((_, reject) => setTimeout(() => reject(new Error("groupFetch timeout")), 15000))
+                    ])
+                ).filter(
+                    group =>
+                        !group.announce &&
+                        !group.isCommunity &&
+                        !group.isCommunityAnnounce
+                );
+            } catch {
+                // WA connection unstable — continue with empty groups list
+            }
 
             // User status
             let status;
