@@ -3,8 +3,10 @@ module.exports = {
     aliases: ["tokenlimit", "settoken"],
     category: "owner",
     code: async (ctx) => {
-        const input = ctx.flag.input || "";
-        const args = input.split(/\s+/);
+        // FIX: ctx.flag.input was empty/undefined — subcommand parsing must
+        // come from ctx.text, same as group.js does.
+        const input = ctx.text || "";
+        const args = input.trim().split(/\s+/);
         const isOwner = ctx.sender.isOwner();
 
         if (!isOwner) {
