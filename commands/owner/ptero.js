@@ -1,5 +1,5 @@
 // ptero.js command — Pterodactyl management from WhatsApp
-// .ptero setkey <api_key>           — save your client API key (from panel: Account -> API Credentials)
+// .ptero setkey <api_key>           — save your client API key (ptlc_..., from panel: Account -> API Credentials)
 // .ptero servers                    — list your servers
 // .ptero start <id>                 — start server
 // .ptero stop <id>                  — stop server
@@ -288,3 +288,4 @@ module.exports = {
         }
     }
 };
+                            
