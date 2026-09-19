@@ -1741,11 +1741,29 @@
     "__id": "c53ce275-60dc-4883-91e3-8aed2096980d"
   },
   {
+    "id": "15226514739311@lid",
+    "pushName": "Unknown",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {},
+    "sessionId": {},
+    "lastSentMsg": {},
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "d5c15d59-b866-45f9-86f3-0cda6f55c4c3"
+  },
+  {
     "id": "239569198915754@lid",
     "pushName": "Gaga",
-    "coin": 70,
+    "coin": 60,
     "level": 1,
-    "xp": 10,
+    "xp": 20,
     "winGame": 0,
     "premium": false,
     "premiumExpiration": null,
@@ -1768,8 +1786,8 @@
     "id": "138350124113923@lid",
     "pushName": "Kryz",
     "coin": 100,
-    "level": 31,
-    "xp": 90,
+    "level": 32,
+    "xp": 80,
     "winGame": 4,
     "premium": false,
     "premiumExpiration": null,
@@ -1782,7 +1800,7 @@
     "lastSentMsg": {
       "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
       "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
-      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1789694267425
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1789810893409
     },
     "botGroupMembership": {},
     "autodownload": false,
