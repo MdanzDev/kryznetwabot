@@ -4,6 +4,10 @@ module.exports = {
     category: "main",
 
     code: async (ctx) => {
+        const menuTimeout = setTimeout(() => {
+            console.error("[MENU ERROR] command timed out after 20s");
+            ctx.reply({ text: "Menu loading lambat... cuba lagi sebentar ya~" }).catch(() => {});
+        }, 20000);
         try {
             const { cmd } = ctx.bot;
 
@@ -331,6 +335,8 @@ module.exports = {
                 ctx,
                 error
             );
+        } finally {
+            clearTimeout(menuTimeout);
         }
     }
 };
