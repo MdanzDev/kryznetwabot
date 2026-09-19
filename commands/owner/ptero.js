@@ -51,11 +51,12 @@ module.exports = {
     aliases: ["panel", "pterodactyl"],
     category: "owner",
     permissions: {
-        coin: 5
+        coin: 0
     },
     code: async (ctx) => {
         const input = ctx.flag.input || "";
         const [sub, ...args] = input.split(/\s+/);
+        console.log("[ptero] fired! input:", JSON.stringify(input), "sub:", sub);
         const userId = ctx.getId(ctx.sender.jid);
         const isOwner = ctx.sender.isOwner();
 
