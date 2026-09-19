@@ -408,31 +408,6 @@
     "__id": "d45f3774-1d62-4654-af45-79fde79cf110"
   },
   {
-    "id": "220701726388260@lid",
-    "pushName": "root@syaii: ~",
-    "coin": 830,
-    "level": 2,
-    "xp": 90,
-    "winGame": 0,
-    "premium": false,
-    "premiumExpiration": null,
-    "banned": false,
-    "afk": {},
-    "lastClaim": {
-      "daily": 1788502870250
-    },
-    "sessionId": {},
-    "lastSentMsg": {
-      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
-      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
-      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057,
-      "(｡•́︿•̀｡) Koin kamu kurang nih... ⓒ isi dulu ya~": 1788538559766
-    },
-    "botGroupMembership": {},
-    "autodownload": false,
-    "__id": "e4268780-68d7-4b88-ae5b-f14c1a2aceff"
-  },
-  {
     "id": "209856598429778@lid",
     "pushName": "noturfav",
     "coin": 100,
@@ -1663,30 +1638,6 @@
     "__id": "1352647a-5582-4dda-b9e5-3a4b5b24c067"
   },
   {
-    "id": "67251436843065@lid",
-    "pushName": "⏤͟͞͞𝙭𝙚́𝙧𝙮𝙡𝙞𝙚𝙭𝙯𝙑// ☇ 𝙣𝙯𝙭𝙞",
-    "coin": 100,
-    "level": 0,
-    "xp": 0,
-    "winGame": 0,
-    "premium": false,
-    "premiumExpiration": null,
-    "banned": false,
-    "afk": {},
-    "lastClaim": {
-      "daily": 1788502870250
-    },
-    "sessionId": {},
-    "lastSentMsg": {
-      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
-      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
-      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
-    },
-    "botGroupMembership": {},
-    "autodownload": false,
-    "__id": "28b3c2e0-1f73-4b20-ad51-6521e3ecc7e3"
-  },
-  {
     "id": "242605958942965@lid",
     "pushName": "Muhammad Haiqal",
     "coin": 100,
@@ -2071,30 +2022,6 @@
     "__id": "d5c15d59-b866-45f9-86f3-0cda6f55c4c3"
   },
   {
-    "id": "138350124113923@lid",
-    "pushName": "Kryz",
-    "coin": 100,
-    "level": 36,
-    "xp": 10,
-    "winGame": 4,
-    "premium": false,
-    "premiumExpiration": null,
-    "banned": false,
-    "afk": {},
-    "lastClaim": {
-      "daily": 1788502870250
-    },
-    "sessionId": {},
-    "lastSentMsg": {
-      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
-      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
-      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1789810893409
-    },
-    "botGroupMembership": {},
-    "autodownload": false,
-    "__id": "c138e231-3cc8-41b4-b2bc-b521e2d26bdb"
-  },
-  {
     "id": "133058825040116@lid",
     "pushName": "Unknown",
     "coin": 100,
@@ -2129,5 +2056,78 @@
     "botGroupMembership": {},
     "autodownload": false,
     "__id": "9b6f8e4f-a765-42f5-ab4a-b2d234d13f77"
+  },
+  {
+    "id": "220701726388260@lid",
+    "pushName": "Bang syaii",
+    "coin": 830,
+    "level": 2,
+    "xp": 90,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
+    "sessionId": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057,
+      "(｡•́︿•̀｡) Koin kamu kurang nih... ⓒ isi dulu ya~": 1788538559766
+    },
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "e4268780-68d7-4b88-ae5b-f14c1a2aceff"
+  },
+  {
+    "id": "138350124113923@lid",
+    "pushName": "Kryz",
+    "coin": 100,
+    "level": 36,
+    "xp": 80,
+    "winGame": 4,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
+    "sessionId": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1789810893409
+    },
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "c138e231-3cc8-41b4-b2bc-b521e2d26bdb"
+  },
+  {
+    "id": "67251436843065@lid",
+    "pushName": "⏤͟͞͞𝙭𝙚́𝙧𝙮𝙡𝙞𝙚𝙭𝙯𝙑// ☇ 𝙣𝙯𝙭𝙞",
+    "coin": 100,
+    "level": 0,
+    "xp": 10,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
+    "sessionId": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
+    },
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "28b3c2e0-1f73-4b20-ad51-6521e3ecc7e3"
   }
 ]
