@@ -529,30 +529,6 @@
     "__id": "9b9f12cc-4aeb-4c14-a3ff-37ca540b5e15"
   },
   {
-    "id": "239569198915754@lid",
-    "pushName": "Gaga",
-    "coin": 100,
-    "level": 0,
-    "xp": 70,
-    "winGame": 0,
-    "premium": false,
-    "premiumExpiration": null,
-    "banned": false,
-    "afk": {},
-    "lastClaim": {
-      "daily": 1788502870250
-    },
-    "sessionId": {},
-    "lastSentMsg": {
-      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
-      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
-      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
-    },
-    "botGroupMembership": {},
-    "autodownload": false,
-    "__id": "ba339fda-703e-417d-bf5c-57f2ab939e77"
-  },
-  {
     "id": "44947319291911@lid",
     "pushName": "ᅠ",
     "coin": 95,
@@ -1663,24 +1639,6 @@
     "__id": "6eaa4b4c-2dbb-4236-98b3-23b3da665df9"
   },
   {
-    "id": "156195763536060@lid",
-    "pushName": "Kryz",
-    "coin": 100,
-    "level": 0,
-    "xp": 0,
-    "winGame": 0,
-    "premium": false,
-    "premiumExpiration": null,
-    "banned": false,
-    "afk": {},
-    "lastClaim": {},
-    "sessionId": {},
-    "lastSentMsg": {},
-    "botGroupMembership": {},
-    "autodownload": false,
-    "__id": "c53ce275-60dc-4883-91e3-8aed2096980d"
-  },
-  {
     "id": "92835986579686@lid",
     "pushName": "2511",
     "coin": 100,
@@ -1765,11 +1723,53 @@
     "__id": "2905b893-1276-4ff2-9d90-4418a01c9337"
   },
   {
+    "id": "156195763536060@lid",
+    "pushName": "KryzAI Server Manager",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {},
+    "sessionId": {},
+    "lastSentMsg": {},
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "c53ce275-60dc-4883-91e3-8aed2096980d"
+  },
+  {
+    "id": "239569198915754@lid",
+    "pushName": "Gaga",
+    "coin": 70,
+    "level": 1,
+    "xp": 10,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
+    "sessionId": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
+    },
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "ba339fda-703e-417d-bf5c-57f2ab939e77"
+  },
+  {
     "id": "138350124113923@lid",
     "pushName": "Kryz",
     "coin": 100,
-    "level": 29,
-    "xp": 30,
+    "level": 31,
+    "xp": 90,
     "winGame": 4,
     "premium": false,
     "premiumExpiration": null,

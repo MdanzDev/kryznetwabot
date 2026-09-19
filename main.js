@@ -107,6 +107,14 @@ if (config.telegram?.enabled && config.telegram?.token) {
     if (config.telegram?.waAlya?.enabled !== false) {
         const { WaAlya } = require("./lib/telegram/wa-bridge");
         bot.waAlya = new WaAlya(tgBot);
+        // Register WhatsApp as a proactive channel — independent schedule
+        // from Telegram so Alya doesn't ping both at the same time.
+        tgBot.initiated.addChannel({
+            id: "wa",
+            chatId: String(tgBot.config.ownerIds?.[0] || "wa_owner"),
+            platform: "whatsapp",
+            sender: (text) => bot.waAlya.sendInitiated(text)
+        });
         console.log(util.styleText("magenta", "[~]"), "Alya WhatsApp bridge armed (private: always, group: tag/reply only)");
     }
 }

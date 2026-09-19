@@ -343,7 +343,7 @@ class WaAlya {
             // ---- humanized multi-part send (same humanizer as Telegram) ----
             // Provider answered — stop the "waiting" indicator before sending.
             await stopTyping();
-            const parts = this.tg.humanizer.splitResponse(replyText, 3); // WA: force split into separate bubbles, ignore mood cap
+            const parts = this.tg.humanizer.splitResponse(replyText, moodCfg.maxLen);
             for (let i = 0; i < parts.length; i++) {
                 if (i > 0) {
                     await ctx.simulateTyping().catch(() => {});
@@ -371,21 +371,6 @@ class WaAlya {
             return true;
         }
     }
-
-    // ---- proactive (initiated) message to owner's WhatsApp ----
-    // Called by the InitiatedMessenger on a random schedule.
-    async sendInitiated(text) {
-        const ownerJid = (this.tg.config.waOwnerNumber || "") + "@s.whatsapp.net";
-        if (!ownerJid || !this.tg.bot?.core) return;
-        // brief typing presence before sending (feels human)
-        await this.tg.bot.core.sendPresenceUpdate("composing", ownerJid).catch(() => {});
-        await this._sleep(1000 + Math.random() * 2000);
-        await this.tg.bot.core.sendPresenceUpdate("paused", ownerJid).catch(() => {});
-        await this.tg.bot.core.sendMessage(ownerJid, { text }).catch(e =>
-            console.error("[WA-initiated] send failed:", e.message));
-    }
-
-    _sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 }
 
 module.exports = { WaAlya };
