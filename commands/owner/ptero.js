@@ -9,7 +9,7 @@
 // .ptero users                      — admin: list all users
 // .ptero nests                      — admin: list nests (egg categories)
 // .ptero eggs <nest_id>             — admin: list eggs in a nest
-// .ptero newserv <name> <email> <egg_id> <node_id>  — admin: create server for user
+// .ptero newserv <name> <email> <nest_id> <egg_id> <node_id>  — admin: create server for user
 // .ptero delserv <id>               — admin: delete server
 // .ptero nodes                      — admin: list nodes
 
@@ -215,20 +215,20 @@ module.exports = {
                 }
             }
 
-            // ---- .ptero newserv <name> <email> <egg_id> <node_id> ----
+            // ---- .ptero newserv <name> <email> <nest_id> <egg_id> <node_id> ----
             if (sub === "newserv") {
                 if (!isOwner) return await ctx.reply(fmt("Owner Only") + "\n(｡•ˇ‸ˇ•｡) Admin je boleh.");
-                const [name, email, eggId, nodeId] = args;
-                if (!name || !email || !eggId || !nodeId) {
+                const [name, email, nestId, eggId, nodeId] = args;
+                if (!name || !email || !nestId || !eggId || !nodeId) {
                     return await ctx.reply(fmt("Create Server") +
-                        `\n❖ ${ctx.format.inlineCode(ctx.used.prefix + "ptero newserv <name> <email> <egg_id> <node_id>")}\n\n` +
-                        `Cari egg_id: ${ctx.format.inlineCode(ctx.used.prefix + "ptero nests")} lepas ${ctx.format.inlineCode(ctx.used.prefix + "ptero eggs <nest_id>")}\n` +
+                        `\n❖ ${ctx.format.inlineCode(ctx.used.prefix + "ptero newserv <name> <email> <nest_id> <egg_id> <node_id>")}\n\n` +
+                        `Cari nest_id & egg_id: ${ctx.format.inlineCode(ctx.used.prefix + "ptero nests")} lepas ${ctx.format.inlineCode(ctx.used.prefix + "ptero eggs <nest_id>")}\n` +
                         `Cari node_id: ${ctx.format.inlineCode(ctx.used.prefix + "ptero nodes")}`);
                 }
                 const user = await ptero.getUserByEmail(email);
                 if (!user) return await ctx.reply(fmt("User Tak Jumpa") + `\n(｡•́︿•̀｡) Email ${email} takda kat panel.`);
                 try {
-                    const srv = await ptero.createServer(name, user.id, eggId, nodeId);
+                    const srv = await ptero.createServer(name, user.id, nestId, eggId, nodeId);
                     return await ctx.reply(fmt("Server Dibuat!") +
                         `\n♡ Name: ${srv.name}\n♡ ID: ${srv.id}\n♡ UUID: ${srv.uuid}`);
                 } catch (e) {
@@ -279,7 +279,7 @@ module.exports = {
                 `${ctx.format.inlineCode(ctx.used.prefix + "ptero users")} — list semua user\n` +
                 `${ctx.format.inlineCode(ctx.used.prefix + "ptero nests")} — list nests\n` +
                 `${ctx.format.inlineCode(ctx.used.prefix + "ptero eggs <nest_id>")} — list eggs\n` +
-                `${ctx.format.inlineCode(ctx.used.prefix + "ptero newserv <name> <email> <egg_id> <node_id>")} — buat server\n` +
+                `${ctx.format.inlineCode(ctx.used.prefix + "ptero newserv <name> <email> <nest_id> <egg_id> <node_id>")} — buat server\n` +
                 `${ctx.format.inlineCode(ctx.used.prefix + "ptero delserv <id>")} — padam server\n` +
                 `${ctx.format.inlineCode(ctx.used.prefix + "ptero nodes")} — list nodes\n` : "") +
                 `\nPanel: ${ptero.PANEL_URL}`);
@@ -288,4 +288,3 @@ module.exports = {
         }
     }
 };
-                            
