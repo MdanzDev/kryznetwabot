@@ -52,13 +52,7 @@ module.exports = (bot) => {
         const {
             msg
         } = ctx;
-        // Self-bot: the bot runs on the owner's own number. Messages Jack sends
-        // to himself (private chat with the bot) arrive as fromMe=true. Allow
-        // these through so Alya can reply in private chat. Group messages from
-        // the bot itself (e.g. command outputs) are still filtered.
-        if (msg.key.fromMe) {
-            if (!(ctx.isPrivate() && ctx.sender.isOwner())) return;
-        }
+        if (msg.key.fromMe) return;
 
         const isGroup = ctx.isGroup();
         const isPrivate = ctx.isPrivate();
