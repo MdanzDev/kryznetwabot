@@ -73,11 +73,11 @@ module.exports = {
                     return await ctx.reply(fmt("Simpan API Key") +
                         `\n❖ ${ctx.format.inlineCode(ctx.used.prefix + "ptero setkey <api_key>")}\n\n` +
                         `Dapatkan key kau kat:\n${ptero.PANEL_URL}/account/api\n` +
-                        `→ Create API Key (format: ptla_...)`);
+                        `→ Create API Key (format: ptlc_...)`);
                 }
-                if (!key.startsWith("ptla_")) {
+                if (!key.startsWith("ptlc_")) {
                     return await ctx.reply(fmt("Key Tak Valid") +
-                        "\n(｡•́︿•̀｡) Client API key kena start dengan `ptla_`. Buat dari panel: Account → API Credentials.");
+                        "\n(｡•́︿•̀｡) Client API key kena start dengan `ptlc_`. Buat dari panel: Account → API Credentials.");
                 }
                 await ctx.reply({ text: fmt("Sedang check key...") + "\n(｡･ω･｡)ﾉ Bentar ya~" });
                 try {
