@@ -1,12 +1,15 @@
 // ptero.js command — Pterodactyl management from WhatsApp
-// .ptero login <email> <password>  — login, saves client API key
+// .ptero setkey <api_key>           — save your client API key (from panel: Account -> API Credentials)
 // .ptero servers                    — list your servers
 // .ptero start <id>                 — start server
 // .ptero stop <id>                  — stop server
 // .ptero restart <id>               — restart server
 // .ptero status <id>                — server resource state
+// .ptero logout                     — clear saved key
 // .ptero users                      — admin: list all users
-// .ptero newserv <name> <email>     — admin: create server for user
+// .ptero nests                      — admin: list nests (egg categories)
+// .ptero eggs <nest_id>             — admin: list eggs in a nest
+// .ptero newserv <name> <email> <egg_id> <node_id>  — admin: create server for user
 // .ptero delserv <id>               — admin: delete server
 // .ptero nodes                      — admin: list nodes
 
@@ -54,38 +57,39 @@ module.exports = {
         coin: 0
     },
     code: async (ctx) => {
-        // FIX: ctx.flag.input was empty/undefined — subcommand parsing must
-        // come from ctx.text, same as group.js does.
         const input = ctx.text || "";
         const [sub, ...args] = input.trim().split(/\s+/);
-        console.log("[ptero] fired! input:", JSON.stringify(input), "sub:", sub);
         const userId = ctx.getId(ctx.sender.jid);
         const isOwner = ctx.sender.isOwner();
 
         try {
-            // ---- .ptero login <email> <password> ----
-            if (sub === "login") {
-                const email = args[0];
-                const password = args[1];
-                if (!email || !password) {
-                    return await ctx.reply(fmt("Login Pterodactyl") +
-                        `\n❖ ${ctx.format.inlineCode(ctx.used.prefix + "ptero login <email> <password>")}`);
+            // ---- .ptero setkey <api_key> ----
+            // Pterodactyl has no email+password login route on its API — each
+            // user generates their own Client API key from the panel
+            // (Account -> API Credentials -> Create) and pastes it here.
+            if (sub === "setkey") {
+                const key = args[0];
+                if (!key) {
+                    return await ctx.reply(fmt("Simpan API Key") +
+                        `\n❖ ${ctx.format.inlineCode(ctx.used.prefix + "ptero setkey <api_key>")}\n\n` +
+                        `Dapatkan key kau kat:\n${ptero.PANEL_URL}/account/api\n` +
+                        `→ Create API Key (format: ptla_...)`);
                 }
-                await ctx.reply({ text: fmt("Sedang login...") + "\n(｡･ω･｡)ﾉ Bentar ya~" });
+                if (!key.startsWith("ptla_")) {
+                    return await ctx.reply(fmt("Key Tak Valid") +
+                        "\n(｡•́︿•̀｡) Client API key kena start dengan `ptla_`. Buat dari panel: Account → API Credentials.");
+                }
+                await ctx.reply({ text: fmt("Sedang check key...") + "\n(｡･ω･｡)ﾉ Bentar ya~" });
                 try {
-                    // Get JWT via login
-                    const jwt = await ptero.login(email, password);
-                    // Create a client API key for persistent access
-                    const keyInfo = await ptero.createClientApiKey(jwt, `WA Bot ${userId}`);
-                    if (!keyInfo.token) throw new Error("Failed to create API key");
-                    setSession(userId, { clientKey: keyInfo.token, identifier: keyInfo.identifier, email });
-                    return await ctx.reply(fmt("Login Berhasil!") +
-                        `\n♡ Email: ${email}\n♡ Key: ${keyInfo.identifier}\n\nSekarang kau boleh guna:\n` +
+                    const servers = await ptero.listClientServers(key);
+                    setSession(userId, { clientKey: key });
+                    return await ctx.reply(fmt("Key Disimpan!") +
+                        `\n♡ Jumpa ${servers.length} server\n\nSekarang kau boleh guna:\n` +
                         `${ctx.format.inlineCode(ctx.used.prefix + "ptero servers")} — list server\n` +
                         `${ctx.format.inlineCode(ctx.used.prefix + "ptero start <id>")} — start\n` +
                         `${ctx.format.inlineCode(ctx.used.prefix + "ptero status <id>")} — status`);
                 } catch (e) {
-                    return await ctx.reply(fmt("Login Gagal") + `\n(╥﹏╥) ${e.message}`);
+                    return await ctx.reply(fmt("Key Tak Valid") + `\n(╥﹏╥) ${e.message}`);
                 }
             }
 
@@ -99,8 +103,8 @@ module.exports = {
             if (sub === "servers" || sub === "list") {
                 const session = getSession(userId);
                 if (!session) {
-                    return await ctx.reply(fmt("Belum Login") +
-                        `\n(｡•́︿•̀｡) Login dulu: ${ctx.format.inlineCode(ctx.used.prefix + "ptero login <email> <password>")}`);
+                    return await ctx.reply(fmt("Belum Setkey") +
+                        `\n(｡•́︿•̀｡) Simpan key dulu: ${ctx.format.inlineCode(ctx.used.prefix + "ptero setkey <api_key>")}`);
                 }
                 const servers = await ptero.listClientServers(session.clientKey);
                 if (!servers.length) {
@@ -122,8 +126,8 @@ module.exports = {
             if (["start", "stop", "restart", "kill"].includes(sub)) {
                 const session = getSession(userId);
                 if (!session) {
-                    return await ctx.reply(fmt("Belum Login") +
-                        `\n(｡•́︿•̀｡) Login dulu: ${ctx.format.inlineCode(ctx.used.prefix + "ptero login <email> <password>")}`);
+                    return await ctx.reply(fmt("Belum Setkey") +
+                        `\n(｡•́︿•̀｡) Simpan key dulu: ${ctx.format.inlineCode(ctx.used.prefix + "ptero setkey <api_key>")}`);
                 }
                 const serverId = args[0];
                 if (!serverId) {
@@ -144,8 +148,8 @@ module.exports = {
             if (sub === "status") {
                 const session = getSession(userId);
                 if (!session) {
-                    return await ctx.reply(fmt("Belum Login") +
-                        `\n(｡•́︿•̀｡) Login dulu: ${ctx.format.inlineCode(ctx.used.prefix + "ptero login <email> <password>")}`);
+                    return await ctx.reply(fmt("Belum Setkey") +
+                        `\n(｡•́︿•̀｡) Simpan key dulu: ${ctx.format.inlineCode(ctx.used.prefix + "ptero setkey <api_key>")}`);
                 }
                 const serverId = args[0];
                 if (!serverId) {
@@ -178,19 +182,53 @@ module.exports = {
                 return await ctx.reply(text);
             }
 
-            // ---- .ptero newserv <name> <email> ----
+            // ---- .ptero nests ----
+            if (sub === "nests") {
+                if (!isOwner) return await ctx.reply(fmt("Owner Only") + "\n(｡•ˇ‸ˇ•｡) Admin je boleh.");
+                const nests = await ptero.listNests();
+                let text = fmt("Nests") + `\nTotal: ${nests.length}\n`;
+                for (const n of nests) {
+                    text += `\n┊ ❖ ${n.name} (id: ${n.id})\n`;
+                }
+                text += `\nGuna ${ctx.format.inlineCode(ctx.used.prefix + "ptero eggs <nest_id>")} untuk tengok eggs.`;
+                return await ctx.reply(text);
+            }
+
+            // ---- .ptero eggs <nest_id> ----
+            if (sub === "eggs") {
+                if (!isOwner) return await ctx.reply(fmt("Owner Only") + "\n(｡•ˇ‸ˇ•｡) Admin je boleh.");
+                const nestId = args[0];
+                if (!nestId) {
+                    return await ctx.reply(fmt("Nest ID Diperlukan") +
+                        `\n❖ ${ctx.format.inlineCode(ctx.used.prefix + "ptero eggs <nest_id>")}\n` +
+                        `Tengok nest_id dengan ${ctx.format.inlineCode(ctx.used.prefix + "ptero nests")}`);
+                }
+                try {
+                    const eggs = await ptero.listEggs(nestId);
+                    let text = fmt("Eggs") + `\nTotal: ${eggs.length}\n`;
+                    for (const e of eggs) {
+                        text += `\n┊ ❖ ${e.name} (id: ${e.id})\n`;
+                    }
+                    return await ctx.reply(text);
+                } catch (e) {
+                    return await ctx.reply(fmt("Gagal") + `\n(╥﹏╥) ${e.message}`);
+                }
+            }
+
+            // ---- .ptero newserv <name> <email> <egg_id> <node_id> ----
             if (sub === "newserv") {
                 if (!isOwner) return await ctx.reply(fmt("Owner Only") + "\n(｡•ˇ‸ˇ•｡) Admin je boleh.");
-                const name = args[0];
-                const email = args[1];
-                if (!name || !email) {
+                const [name, email, eggId, nodeId] = args;
+                if (!name || !email || !eggId || !nodeId) {
                     return await ctx.reply(fmt("Create Server") +
-                        `\n❖ ${ctx.format.inlineCode(ctx.used.prefix + "ptero newserv <name> <email>")}`);
+                        `\n❖ ${ctx.format.inlineCode(ctx.used.prefix + "ptero newserv <name> <email> <egg_id> <node_id>")}\n\n` +
+                        `Cari egg_id: ${ctx.format.inlineCode(ctx.used.prefix + "ptero nests")} lepas ${ctx.format.inlineCode(ctx.used.prefix + "ptero eggs <nest_id>")}\n` +
+                        `Cari node_id: ${ctx.format.inlineCode(ctx.used.prefix + "ptero nodes")}`);
                 }
                 const user = await ptero.getUserByEmail(email);
                 if (!user) return await ctx.reply(fmt("User Tak Jumpa") + `\n(｡•́︿•̀｡) Email ${email} takda kat panel.`);
                 try {
-                    const srv = await ptero.createServer(name, user.id);
+                    const srv = await ptero.createServer(name, user.id, eggId, nodeId);
                     return await ctx.reply(fmt("Server Dibuat!") +
                         `\n♡ Name: ${srv.name}\n♡ ID: ${srv.id}\n♡ UUID: ${srv.uuid}`);
                 } catch (e) {
@@ -230,7 +268,7 @@ module.exports = {
             // ---- .ptero (no sub) → help ----
             return await ctx.reply(fmt("Pterodactyl Panel") +
                 `\n${ctx.format.bold("User Commands:")}\n` +
-                `${ctx.format.inlineCode(ctx.used.prefix + "ptero login <email> <password>")} — login\n` +
+                `${ctx.format.inlineCode(ctx.used.prefix + "ptero setkey <api_key>")} — simpan key\n` +
                 `${ctx.format.inlineCode(ctx.used.prefix + "ptero servers")} — list server kau\n` +
                 `${ctx.format.inlineCode(ctx.used.prefix + "ptero start <id>")} — start server\n` +
                 `${ctx.format.inlineCode(ctx.used.prefix + "ptero stop <id>")} — stop server\n` +
@@ -239,7 +277,9 @@ module.exports = {
                 `${ctx.format.inlineCode(ctx.used.prefix + "ptero logout")} — logout\n` +
                 (isOwner ? `\n${ctx.format.bold("Admin Commands:")}\n` +
                 `${ctx.format.inlineCode(ctx.used.prefix + "ptero users")} — list semua user\n` +
-                `${ctx.format.inlineCode(ctx.used.prefix + "ptero newserv <name> <email>")} — buat server\n` +
+                `${ctx.format.inlineCode(ctx.used.prefix + "ptero nests")} — list nests\n` +
+                `${ctx.format.inlineCode(ctx.used.prefix + "ptero eggs <nest_id>")} — list eggs\n` +
+                `${ctx.format.inlineCode(ctx.used.prefix + "ptero newserv <name> <email> <egg_id> <node_id>")} — buat server\n` +
                 `${ctx.format.inlineCode(ctx.used.prefix + "ptero delserv <id>")} — padam server\n` +
                 `${ctx.format.inlineCode(ctx.used.prefix + "ptero nodes")} — list nodes\n` : "") +
                 `\nPanel: ${ptero.PANEL_URL}`);
