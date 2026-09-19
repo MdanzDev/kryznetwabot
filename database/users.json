@@ -528,30 +528,6 @@
     "__id": "58784fcd-0700-491b-afc9-775b87a1ea26"
   },
   {
-    "id": "109736766767331@lid",
-    "pushName": "+60 19-766 1697",
-    "coin": 100,
-    "level": 0,
-    "xp": 0,
-    "winGame": 0,
-    "premium": true,
-    "premiumExpiration": 1792410559204,
-    "banned": false,
-    "afk": {},
-    "lastClaim": {
-      "daily": 1788502870250
-    },
-    "sessionId": {},
-    "lastSentMsg": {
-      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
-      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
-      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
-    },
-    "botGroupMembership": {},
-    "autodownload": false,
-    "__id": "7506ba61-cf79-47d3-b62d-36f7ad59c132"
-  },
-  {
     "id": "32075520450693@lid",
     "pushName": "Hazel | Founder Of ZelApi",
     "coin": 100,
@@ -1488,24 +1464,6 @@
     "__id": "34ec87d0-90aa-4c9f-b444-281bf344ccc0"
   },
   {
-    "id": "53910848942302@lid",
-    "pushName": "『VXG』C5|⁷ᴛ|𝐀𝐄𝐒⁰⁹|𝐀𝐅⁰¹/𝘠𝘽7",
-    "coin": 100,
-    "level": 0,
-    "xp": 0,
-    "winGame": 0,
-    "premium": false,
-    "premiumExpiration": null,
-    "banned": false,
-    "afk": {},
-    "lastClaim": {},
-    "sessionId": {},
-    "lastSentMsg": {},
-    "botGroupMembership": {},
-    "autodownload": false,
-    "__id": "24cfaf56-44a0-489e-bb03-4d18632e1cff"
-  },
-  {
     "id": "22029021483050@lid",
     "pushName": "Dhaniz Enterprise",
     "coin": 100,
@@ -2083,30 +2041,6 @@
     "__id": "e4268780-68d7-4b88-ae5b-f14c1a2aceff"
   },
   {
-    "id": "138350124113923@lid",
-    "pushName": "Kryz",
-    "coin": 100,
-    "level": 36,
-    "xp": 80,
-    "winGame": 4,
-    "premium": false,
-    "premiumExpiration": null,
-    "banned": false,
-    "afk": {},
-    "lastClaim": {
-      "daily": 1788502870250
-    },
-    "sessionId": {},
-    "lastSentMsg": {
-      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
-      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
-      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1789810893409
-    },
-    "botGroupMembership": {},
-    "autodownload": false,
-    "__id": "c138e231-3cc8-41b4-b2bc-b521e2d26bdb"
-  },
-  {
     "id": "67251436843065@lid",
     "pushName": "⏤͟͞͞𝙭𝙚́𝙧𝙮𝙡𝙞𝙚𝙭𝙯𝙑// ☇ 𝙣𝙯𝙭𝙞",
     "coin": 100,
@@ -2129,5 +2063,73 @@
     "botGroupMembership": {},
     "autodownload": false,
     "__id": "28b3c2e0-1f73-4b20-ad51-6521e3ecc7e3"
+  },
+  {
+    "id": "109736766767331@lid",
+    "pushName": "+60 19-766 1697",
+    "coin": 100,
+    "level": 0,
+    "xp": 10,
+    "winGame": 0,
+    "premium": true,
+    "premiumExpiration": 1792410559204,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
+    "sessionId": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1788506622057
+    },
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "7506ba61-cf79-47d3-b62d-36f7ad59c132"
+  },
+  {
+    "id": "53910848942302@lid",
+    "pushName": "『VXG』C5|⁷ᴛ|𝐀𝐄𝐒⁰⁹|𝐀𝐅⁰¹/𝘠𝘽7",
+    "coin": 100,
+    "level": 0,
+    "xp": 10,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {},
+    "sessionId": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1789824172043
+    },
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "24cfaf56-44a0-489e-bb03-4d18632e1cff"
+  },
+  {
+    "id": "138350124113923@lid",
+    "pushName": "Kryz",
+    "coin": 100,
+    "level": 37,
+    "xp": 0,
+    "winGame": 4,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {
+      "daily": 1788502870250
+    },
+    "sessionId": {},
+    "lastSentMsg": {
+      "(｡•ˇ‸ˇ•｡) Sabar dulu ya, perintahnya lagi cooldown~ ⏳": 1788502585635,
+      "(｡•ˇ‸ˇ•｡) Perintah spesial ini cuma buat owner aku~ Ⓞ": 1788502629859,
+      "(｡ŏ_ŏ) Aku harus jadi admin grup dulu baru bisa bantu~ ♡": 1789810893409
+    },
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "c138e231-3cc8-41b4-b2bc-b521e2d26bdb"
   }
 ]
