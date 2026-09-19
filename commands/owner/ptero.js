@@ -41,7 +41,7 @@ function clearSession(userId) {
     saveSessions(sessions);
 }
 
-const fmt = (text) => 
+const fmt = (text) =>
     "╭───────────────୨୧\n" +
     "│  ₊˚⊹♡  " + text + "\n" +
     "╰───────────────୨୧";
@@ -54,8 +54,10 @@ module.exports = {
         coin: 0
     },
     code: async (ctx) => {
-        const input = ctx.flag.input || "";
-        const [sub, ...args] = input.split(/\s+/);
+        // FIX: ctx.flag.input was empty/undefined — subcommand parsing must
+        // come from ctx.text, same as group.js does.
+        const input = ctx.text || "";
+        const [sub, ...args] = input.trim().split(/\s+/);
         console.log("[ptero] fired! input:", JSON.stringify(input), "sub:", sub);
         const userId = ctx.getId(ctx.sender.jid);
         const isOwner = ctx.sender.isOwner();
@@ -209,6 +211,44 @@ module.exports = {
                     return await ctx.reply(fmt("Server Dipadam") + `\n(｡･ω･｡) Server ${serverId} dah hapus~`);
                 } catch (e) {
                     return await ctx.reply(fmt("Gagal Padam") + `\n(╥﹏╥) ${e.message}`);
+                }
+            }
+
+            // ---- .ptero nodes ----
+            if (sub === "nodes") {
+                if (!isOwner) return await ctx.reply(fmt("Owner Only") + "\n(｡•ˇ‸ˇ•｡) Admin je boleh.");
+                const nodes = await ptero.listNodes();
+                let text = fmt("Nodes") + `\nTotal: ${nodes.length} node\n`;
+                for (const n of nodes) {
+                    text += `\n┊ ❖ ${n.name} (id: ${n.id})\n` +
+                        `┊   ${n.fqdn}:${n.daemon_listen}\n` +
+                        `┊   RAM: ${n.memory}MB | Disk: ${n.disk}MB\n`;
+                }
+                return await ctx.reply(text);
+            }
+
+            // ---- .ptero (no sub) → help ----
+            return await ctx.reply(fmt("Pterodactyl Panel") +
+                `\n${ctx.format.bold("User Commands:")}\n` +
+                `${ctx.format.inlineCode(ctx.used.prefix + "ptero login <email> <password>")} — login\n` +
+                `${ctx.format.inlineCode(ctx.used.prefix + "ptero servers")} — list server kau\n` +
+                `${ctx.format.inlineCode(ctx.used.prefix + "ptero start <id>")} — start server\n` +
+                `${ctx.format.inlineCode(ctx.used.prefix + "ptero stop <id>")} — stop server\n` +
+                `${ctx.format.inlineCode(ctx.used.prefix + "ptero restart <id>")} — restart\n` +
+                `${ctx.format.inlineCode(ctx.used.prefix + "ptero status <id>")} — status server\n` +
+                `${ctx.format.inlineCode(ctx.used.prefix + "ptero logout")} — logout\n` +
+                (isOwner ? `\n${ctx.format.bold("Admin Commands:")}\n` +
+                `${ctx.format.inlineCode(ctx.used.prefix + "ptero users")} — list semua user\n` +
+                `${ctx.format.inlineCode(ctx.used.prefix + "ptero newserv <name> <email>")} — buat server\n` +
+                `${ctx.format.inlineCode(ctx.used.prefix + "ptero delserv <id>")} — padam server\n` +
+                `${ctx.format.inlineCode(ctx.used.prefix + "ptero nodes")} — list nodes\n` : "") +
+                `\nPanel: ${ptero.PANEL_URL}`);
+        } catch (error) {
+            await ctx.helper.handleError(ctx, error, true);
+        }
+    }
+};
+essage}`);
                 }
             }
 
