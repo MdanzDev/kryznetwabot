@@ -1741,24 +1741,6 @@
     "__id": "c53ce275-60dc-4883-91e3-8aed2096980d"
   },
   {
-    "id": "15226514739311@lid",
-    "pushName": "Unknown",
-    "coin": 100,
-    "level": 0,
-    "xp": 0,
-    "winGame": 0,
-    "premium": false,
-    "premiumExpiration": null,
-    "banned": false,
-    "afk": {},
-    "lastClaim": {},
-    "sessionId": {},
-    "lastSentMsg": {},
-    "botGroupMembership": {},
-    "autodownload": false,
-    "__id": "d5c15d59-b866-45f9-86f3-0cda6f55c4c3"
-  },
-  {
     "id": "239569198915754@lid",
     "pushName": "Gaga",
     "coin": 60,
@@ -1783,11 +1765,29 @@
     "__id": "ba339fda-703e-417d-bf5c-57f2ab939e77"
   },
   {
+    "id": "239200301531287@lid",
+    "pushName": "Unknown",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {},
+    "sessionId": {},
+    "lastSentMsg": {},
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "69bd00b3-ab9f-4201-b339-3073d69884ad"
+  },
+  {
     "id": "138350124113923@lid",
     "pushName": "Kryz",
     "coin": 100,
     "level": 34,
-    "xp": 30,
+    "xp": 50,
     "winGame": 4,
     "premium": false,
     "premiumExpiration": null,
@@ -1807,8 +1807,8 @@
     "__id": "c138e231-3cc8-41b4-b2bc-b521e2d26bdb"
   },
   {
-    "id": "239200301531287@lid",
-    "pushName": "Unknown",
+    "id": "15226514739311@lid",
+    "pushName": "KryzAI Server Manager",
     "coin": 100,
     "level": 0,
     "xp": 0,
@@ -1822,6 +1822,6 @@
     "lastSentMsg": {},
     "botGroupMembership": {},
     "autodownload": false,
-    "__id": "69bd00b3-ab9f-4201-b339-3073d69884ad"
+    "__id": "d5c15d59-b866-45f9-86f3-0cda6f55c4c3"
   }
 ]
