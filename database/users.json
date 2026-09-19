@@ -2131,5 +2131,23 @@
     "botGroupMembership": {},
     "autodownload": false,
     "__id": "c138e231-3cc8-41b4-b2bc-b521e2d26bdb"
+  },
+  {
+    "id": "127088300412993@lid",
+    "pushName": "alip",
+    "coin": 100,
+    "level": 0,
+    "xp": 0,
+    "winGame": 0,
+    "premium": false,
+    "premiumExpiration": null,
+    "banned": false,
+    "afk": {},
+    "lastClaim": {},
+    "sessionId": {},
+    "lastSentMsg": {},
+    "botGroupMembership": {},
+    "autodownload": false,
+    "__id": "100f47ad-7a5c-45e8-85e4-2a594504379c"
   }
 ]
