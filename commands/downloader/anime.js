@@ -1,13 +1,12 @@
 const anime = require("../../lib/anime.js");
-const axios = require("axios");
 
 // /anime <query>            — search (nativeFlow list: pick a title)
 // /anime title:<slug>       — info card + "Senarai Episode" list button
 // /anime eps:<slug>:<page>  — episode list (nativeFlow rows, 8/page + paging)
-// /anime watch:<episodeId>  — send the video + prev/next + download buttons
+// /anime watch:<episodeId>  — quality/server picker
+// /anime get:<episodeId>:<quality>:<server> — resolve + upload to CDN + send link
 
 const EPS_PER_PAGE = 8;
-const UA = { "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)" };
 
 function fmtHeader(title) {
     return "╭───────────────୨୧\n" +
@@ -67,52 +66,74 @@ module.exports = {
                 return await ctx.reply({
                     text: fmtHeader("🎬 PILIH KUALITI") +
                         `❖ ${cleanTitle}\n\n` +
-                        `✦ 480p laju (70MB), 720p perlahan (133MB).\n` +
-                        `✦ Pilih kualiti + server dari senarai bawah.`,
+                        `✦ Pilih kualiti + server. Kalau satu pelayan down, bot auto cuba pelayan lain sebelum give up.\n` +
+                        `✦ Nanti dapat LINK terus (tak perlu tunggu upload ke WhatsApp).`,
                     optionText: "♡ Pilih Kualiti",
                     optionTitle: "୨୧ Kualiti & Server",
                     nativeFlow: [{ text: "♡ Pilih Kualiti & Server", sections }]
                 });
             } catch (e) {
-                return await ctx.reply(ctx.format.info(`(╥﹏╥) Gagal ambil episode: ${String(e.message).slice(0, 100)}`));
+                return await ctx.reply(ctx.format.info(`(╥﹏╥) Gagal ambil episode: ${String(e.message).slice(0, 150)}`));
             }
         }
 
         // ---------- /anime get:<episodeId>:<quality>:<server> ----------
+        // Resolves video (with automatic fallback across servers), uploads it
+        // to cdn.zass.in, and replies with a watchable link instead of a raw
+        // WhatsApp video attachment.
         if (input.startsWith("get:")) {
             const [episodeId, quality, serverName] = input.slice(4).split(":");
             try {
-                await ctx.reply({ text: `(｡･ω･｡) Ambil ${quality} dari ${serverName}...\n(30s-2min bergantung saiz)` });
+                await ctx.reply({ text: `(｡･ω･｡) Cari & proses ${quality} (${serverName})...\n(30s-3min — bot auto cuba pelayan lain kalau yang ni down)` });
+
+                let v;
                 try {
-                    const v = await anime.resolveQuality(episodeId, quality, serverName);
-                    const ep = await anime.episode(episodeId);
-                    const cleanTitle = ep.title.replace(/Subtitle Indonesia/gi, "").trim();
-                    const nav = [];
-                    if (ep.prevEpisodeId) nav.push({ text: "❮ Ep Sebelum", id: `${prefix}anime watch:${ep.prevEpisodeId}` });
-                    if (ep.nextEpisodeId) nav.push({ text: "Ep Seterusnya ❯", id: `${prefix}anime watch:${ep.nextEpisodeId}` });
-                    await ctx.reply({
-                        video: Buffer.from(v.buffer),
-                        caption: `❖ ${cleanTitle}\n✦ ${v.quality} • Sumber: Sanka/${v.source}\n\n${nav.length ? "▶ Butang di bawah untuk pindah episode!" : ""}`,
-                        buttons: nav.length ? nav : undefined
-                    });
-                    return;
+                    v = await anime.resolveQuality(episodeId, quality, serverName);
                 } catch (e1) {
-                    // Honest error: tell the user which servers exist and suggest another
-                    let avail = "";
-                    try {
-                        const ep = await anime.episode(episodeId);
-                        const byQ = {};
-                        for (const s of ep.servers) (byQ[s.quality] ||= []).push(s.name);
-                        avail = Object.entries(byQ).map(([q, n]) => `${q}: ${n.join(", ")}`).join("\n");
-                    } catch {}
                     return await ctx.reply(
-                        `(╥﹏╥) Streaming gagal:\n${String(e1.message).slice(0, 150)}\n\n` +
-                        (avail ? `✦ Server lain yang boleh dicuba:\n${avail}\n\n` : "") +
-                        `✦ Tekan semula Episode → pilih kualiti/server lain ya~`
+                        `(╥﹏╥) Semua pelayan untuk episode ni gagal buat masa ni:\n\n${String(e1.message).slice(0, 500)}\n\n` +
+                        `✦ Cuba lagi sekejap lagi, ke pilih episode lain.`
                     );
                 }
+
+                const ep = await anime.episode(episodeId).catch(() => null);
+                const cleanTitle = ep ? ep.title.replace(/Subtitle Indonesia/gi, "").trim() : "Anime";
+                const fallbackNote = v.usedFallback
+                    ? `\n✦ Nota: pelayan ${serverName} down, bot auto tukar ke ${v.source} (${v.quality}).`
+                    : "";
+
+                // Upload to the link-hosting CDN so the user can just open a URL.
+                let hosted;
+                try {
+                    hosted = await anime.uploadToCdn(v.buffer, `${episodeId}-${v.quality}.mp4`);
+                } catch (eUpload) {
+                    // CDN upload failed — fall back to sending the raw video over
+                    // WhatsApp directly rather than losing the download entirely.
+                    const nav = [];
+                    if (ep?.prevEpisodeId) nav.push({ text: "❮ Ep Sebelum", id: `${prefix}anime watch:${ep.prevEpisodeId}` });
+                    if (ep?.nextEpisodeId) nav.push({ text: "Ep Seterusnya ❯", id: `${prefix}anime watch:${ep.nextEpisodeId}` });
+                    return await ctx.reply({
+                        video: v.buffer,
+                        caption: `❖ ${cleanTitle}\n✦ ${v.quality} • Sumber: Sanka/${v.source}${fallbackNote}\n\n` +
+                            `⚠ Upload ke CDN gagal (${String(eUpload.message).slice(0, 80)}), so ni video terus.`,
+                        buttons: nav.length ? nav : undefined
+                    });
+                }
+
+                const nav = [];
+                if (ep?.prevEpisodeId) nav.push({ text: "❮ Ep Sebelum", id: `${prefix}anime watch:${ep.prevEpisodeId}` });
+                if (ep?.nextEpisodeId) nav.push({ text: "Ep Seterusnya ❯", id: `${prefix}anime watch:${ep.nextEpisodeId}` });
+
+                return await ctx.reply({
+                    text: fmtHeader("🎬 SIAP!") +
+                        `❖ ${cleanTitle}\n` +
+                        `✦ ${v.quality} • Sumber: Sanka/${v.source}${fallbackNote}\n\n` +
+                        `▶ Tonton di sini:\n${hosted.url}\n\n` +
+                        `${nav.length ? "✦ Butang di bawah untuk pindah episode!" : ""}`,
+                    buttons: nav.length ? nav : undefined
+                });
             } catch (e) {
-                return await ctx.reply(ctx.format.info(`(╥﹏╥) Gagal: ${String(e.message).slice(0, 100)}`));
+                return await ctx.reply(ctx.format.info(`(╥﹏╥) Gagal: ${String(e.message).slice(0, 150)}`));
             }
         }
 
@@ -153,7 +174,7 @@ module.exports = {
                     }]
                 });
             } catch (e) {
-                return await ctx.reply(ctx.format.info(`(╥﹏╥) ${String(e.message).slice(0, 100)}`));
+                return await ctx.reply(ctx.format.info(`(╥﹏╥) ${String(e.message).slice(0, 150)}`));
             }
         }
 
@@ -175,7 +196,7 @@ module.exports = {
                     buttons: [{ text: "୨୧ Senarai Episode", id: `${prefix}anime eps:${slug}:1` }]
                 });
             } catch (e) {
-                return await ctx.reply(ctx.format.info(`(╥﹏╥) ${String(e.message).slice(0, 100)}`));
+                return await ctx.reply(ctx.format.info(`(╥﹏╥) ${String(e.message).slice(0, 150)}`));
             }
         }
 
@@ -204,7 +225,7 @@ module.exports = {
                 }]
             });
         } catch (e) {
-            return await ctx.reply(ctx.format.info(`(╥﹏╥) Pencarian gagal: ${String(e.message).slice(0, 100)}`));
+            return await ctx.reply(ctx.format.info(`(╥﹏╥) Pencarian gagal: ${String(e.message).slice(0, 150)}`));
         }
     }
 };
