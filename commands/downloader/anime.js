@@ -7,8 +7,8 @@ const anime = require("../../lib/anime.js");
 // /anime watch:<episodeId>             — quality/server picker
 // /anime get:<episodeId>:<quality>:<server> — resolve (auto-fallback) + upload to CDN + send link
 
-const EPS_PER_PAGE = 12;
-const SEARCH_PER_PAGE = 20;
+const EPS_PER_PAGE = 8;
+const SEARCH_PER_PAGE = 10;
 const PROGRESS_PING_INTERVAL_MS = 20000; // don't ping more often than this during a fallback walk
 
 function fmtHeader(title) {
@@ -269,4 +269,3 @@ module.exports = {
         }
     }
 };
-                                              
