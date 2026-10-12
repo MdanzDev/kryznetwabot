@@ -1,6 +1,14 @@
 module.exports = {
     name: "setoption",
-    aliases: ["setopt"],
+    // Each auto-mod toggle is also its own command name, so `.antilink` works
+    // like it does in other bots (it toggles on/off). `.setoption antilink`
+    // stays valid. When invoked via an alias, the option comes from the alias.
+    aliases: [
+        "setopt",
+        "antiaudio", "antidocument", "antiimage", "antisticker", "antivideo",
+        "antigcsw", "antilink", "antispam", "antitagsw", "antitoxic",
+        "autokick", "gamerestrict", "welcome"
+    ],
     category: "group",
     permissions: {
         admin: true,
@@ -8,7 +16,13 @@ module.exports = {
         group: true
     },
     code: async (ctx) => {
-        const input = ctx.text;
+        const OPTION_ALIASES = new Set([
+            "antiaudio", "antidocument", "antiimage", "antisticker", "antivideo",
+            "antigcsw", "antilink", "antispam", "antitagsw", "antitoxic",
+            "autokick", "gamerestrict", "welcome"
+        ]);
+        const invoked = String(ctx.used.command || "").toLowerCase();
+        const input = OPTION_ALIASES.has(invoked) ? invoked : ctx.text;
         if (!input)
             return await ctx.reply(
                 `${ctx.format.generateInstruction(["send"], ["text"])}\n` +

@@ -1,6 +1,9 @@
 module.exports = {
     name: "group",
-    aliases: ["g"],
+    // Flat aliases so users coming from other bots don't have to learn
+    // `.group close` — both forms work. When invoked through an alias the
+    // action comes from the alias itself.
+    aliases: ["g", "close", "open", "lock", "unlock"],
     category: "group",
     permissions: {
         admin: true,
@@ -8,7 +11,9 @@ module.exports = {
         group: true
     },
     code: async (ctx) => {
-        const input = ctx.text;
+        const ACTION_ALIASES = { close: "close", open: "open", lock: "lock", unlock: "unlock" };
+        const viaAlias = ACTION_ALIASES[String(ctx.used.command || "").toLowerCase()];
+        const input = viaAlias || ctx.text;
         if (!input)
             return await ctx.reply(
                 `${ctx.format.generateInstruction(["send"], ["text"])}\n` +

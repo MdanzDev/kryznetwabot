@@ -1,6 +1,7 @@
 module.exports = {
     name: "mode",
-    alises: ["m"],
+    // NOTE: this was misspelled "alises" so the alias never registered.
+    aliases: ["m", "setmode", "botmode"],
     category: "owner",
     permissions: {
         owner: true

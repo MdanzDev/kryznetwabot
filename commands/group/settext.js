@@ -1,6 +1,8 @@
 module.exports = {
     name: "settext",
-    aliases: ["settxt"],
+    // `.setwelcome <text>` is what other bots call it; keep `.settext welcome`
+    // working too. The key comes from the alias when one is used.
+    aliases: ["settxt", "setwelcome", "setgoodbye", "setintro"],
     category: "group",
     permissions: {
         admin: true,
@@ -8,8 +10,15 @@ module.exports = {
         group: true
     },
     code: async (ctx) => {
-        const key = ctx.args[0];
-        const text = ctx.text.startsWith(`${key} `) ? ctx.text.slice(key.length + 1) : ctx.quoted?.body;
+        const KEY_ALIASES = { setwelcome: "welcome", setgoodbye: "goodbye", setintro: "intro" };
+        const viaAlias = KEY_ALIASES[String(ctx.used.command || "").toLowerCase()];
+
+        // Via alias the whole text is the message; via `.settext` the first word
+        // is the key and the rest is the message.
+        const key = viaAlias || ctx.args[0];
+        const text = viaAlias
+            ? (ctx.text || ctx.quoted?.body)
+            : (ctx.text.startsWith(`${key} `) ? ctx.text.slice(key.length + 1) : ctx.quoted?.body);
 
         if (key?.toLowerCase() === "list") {
             const listText = await ctx.list.get(ctx, "settext");

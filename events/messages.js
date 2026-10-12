@@ -107,6 +107,17 @@ module.exports = (bot) => {
             });
 
         if (!isCmd && (msg.body || ctx.msg.media)) {
+            // Unknown command attempt -> suggest the real command. This runs
+            // BEFORE the AI so a typo gets a deterministic answer instead of a
+            // chatbot guessing. Catches muscle-memory names from other bots
+            // (.close, .setwelcome, .antilink) and near-misses (.kickal).
+            // detectUnknown() stays silent for chatter words (halo, wkwk, ok...).
+            const help = require("../lib/help");
+            const attempted = help.detectUnknown(msg.body);
+            if (attempted && help.throttleUnknown(ctx.id)) {
+                return await ctx.reply(help.suggestCard(ctx, attempted.token, attempted.hit));
+            }
+
             const kryzzPrompt = msg.body ? kryzai.matchTrigger(msg.body) : null;
             if (kryzzPrompt) {
                 console.log(util.styleText("magenta", "[~]"), `Kryzz AI triggered by: ${senderId}`);

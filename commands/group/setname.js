@@ -1,5 +1,6 @@
 module.exports = {
     name: "setname",
+    aliases: ["setgcname", "setgroupname"],
     category: "group",
     permissions: {
         admin: true,

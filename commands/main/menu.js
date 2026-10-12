@@ -1,6 +1,11 @@
+const help = require("../../lib/help");
+
 module.exports = {
     name: "menu",
-    aliases: ["allmenu", "help"],
+    // NOTE: "help" intentionally removed from this list — it is its own command
+    // now (commands/main/help.js). Two commands sharing a token both execute
+    // (handler.js does matched.forEach), which would double-send the menu.
+    aliases: ["allmenu"],
     category: "main",
 
     code: async (ctx) => {
@@ -11,24 +16,11 @@ module.exports = {
         try {
             const { cmd } = ctx.bot;
 
-            // ╭──────────────୨୧
+            // ╭───────────────୨୧
             // │ MENU CATEGORIES
-            // ╰──────────────୨୧
+            // ╰───────────────୨୧
 
-            const categories = {
-                ai: "Artificial Intelligence",
-                converter: "Converter",
-                downloader: "Downloader",
-                game: "Game",
-                group: "Group",
-                maker: "Maker",
-                profile: "Profile",
-                search: "Search",
-                tool: "Tool",
-                owner: "Owner",
-                information: "Information",
-                misc: "Miscellaneous"
-            };
+            const categories = help.CATEGORY_LABELS;
 
             // Get commands from selected categories
             const getCommands = (selectedCategories) => {
@@ -111,6 +103,10 @@ module.exports = {
                         text +=
                             `┊ ❖ ${ctx.used.prefix}${command.name}` +
                             `${formatPerms(command.permissions)}\n`;
+                        // Plain-language line so the menu teaches instead of
+                        // just listing names (that was the old dead end).
+                        const what = help.entry(command.name)?.what;
+                        if (what) text += `┊    ♡ ${what}\n`;
                     }
 
                     text +=
@@ -125,9 +121,16 @@ module.exports = {
                     "│ Ⓞ Owner\n" +
                     "│ Ⓟ Premium\n" +
                     "│ ⓟ Private\n" +
+                    "│ 🛡️ Admin grup\n" +
                     "│\n" +
+                    `│ ♡ Detail: ${ctx.used.prefix}help <perintah>\n` +
                     "│ (｡•̀ᴗ-)✧ Have fun using the bot!\n" +
                     "╰───────────────୨୧";
+
+                // Keep the category picker alive in the category view too —
+                // before this, `.menu group` was a dead end (text only, no way
+                // back to the other categories without retyping the command).
+                const allNames = Object.values(commandsData).flat().map(c => c.name);
 
                 await ctx.reply({
                     caption: text,
@@ -144,15 +147,36 @@ module.exports = {
                             )
                     },
 
-                    buttons: [
+                    footer: config.msg.footer,
+                    optionText: "♡ Menu Selection",
+                    optionTitle: "୨୧ Pilih Opsi",
+
+                    nativeFlow: [
                         {
-                            text: "♡ Hubungi Owner",
-                            id: `${ctx.used.prefix}owner`
+                            text: "♡ Pilih Kategori",
+                            sections: [{
+                                title: "୨୧ Kategori Perintah",
+                                highlight_label: "♡",
+                                rows: help.categoryRows(ctx)
+                            }]
                         },
-                        {
-                            text: "୨୧ Support Developer",
-                            id: `${ctx.used.prefix}donate`
-                        }
+                        // Jump straight to a command's detail card from the list
+                        // that was just shown.
+                        ...(allNames.length && allNames.length <= 30
+                            ? [{
+                                text: "♡ Detail Perintah",
+                                sections: [{
+                                    title: "୨୧ Pilih Perintah",
+                                    rows: allNames.slice(0, 10).map(n => ({
+                                        title: `❖ ${ctx.used.prefix}${n}`,
+                                        description: `୨୧ ${(help.entry(n)?.what || "").slice(0, 50)}`,
+                                        id: `${ctx.used.prefix}help ${n}`
+                                    }))
+                                }]
+                            }]
+                            : []),
+                        { text: "୨୧ Hubungi Owner", id: `${ctx.used.prefix}owner` },
+                        { text: "♡ Donasi", id: `${ctx.used.prefix}donate` }
                     ]
                 });
 
@@ -276,6 +300,14 @@ module.exports = {
                 title: "♡ Semua Kategori",
                 description: "୨୧ Lihat semua perintah sekaligus",
                 id: `${ctx.used.prefix}${ctx.used.command} all`
+            });
+
+            // New users don't know the command names, so give them the
+            // quick-start guide right in the picker.
+            rows.unshift({
+                title: "♡ Panduan Mula",
+                description: "୨୧ Baru guna bot? Baca ni dulu",
+                id: `${ctx.used.prefix}help`
             });
 
             // ╭────────────────────────୨୧
