@@ -60,7 +60,11 @@ module.exports = [{
                         }]
                     });
                     await ctx.helper.delay(delays[i]);
-                } catch {}
+                } catch (error) {
+                    // A group that fails to receive must not abort the whole
+                    // broadcast; record and continue.
+                    console.error("[broadcast] group failed:", groupJids[i], error.message);
+                }
             }
             await ctx.editMessage(ctx.id, waitMsg.key, ctx.format.info(`Berhasil mengirim ke ${groupJids.length} grup.`));
         } catch (error) {
@@ -138,7 +142,11 @@ module.exports = [{
                         groupStatus: true
                     });
                     await ctx.helper.delay(delays[i]);
-                } catch {}
+                } catch (error) {
+                    // A group that fails to receive must not abort the whole
+                    // broadcast; record and continue.
+                    console.error("[broadcast] group failed:", groupJids[i], error.message);
+                }
             }
             await ctx.editMessage(ctx.id, waitMsg.key, ctx.format.info(`Berhasil mengirim ke ${groupJids.length} grup.`));
         } catch (error) {
