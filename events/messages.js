@@ -219,6 +219,12 @@ module.exports = (bot) => {
                 members.push({
                     id: senderLid,
                     sent: 1,
+                    // firstSeen = when this member was first recorded. Set on join
+                    // by events/welcome.js when possible, otherwise here. Used to
+                    // tell a brand-new member apart from a long-time lurker —
+                    // both show sent: 0, which is the difference between "don't
+                    // kick" and "kick" for .kickidle.
+                    firstSeen: Date.now(),
                     pushName: ctx.sender.pushName
                 });
             }

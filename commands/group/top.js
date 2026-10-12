@@ -1,40 +1,56 @@
+// .topyapping / .topsider — activity leaderboards.
+//
+// Ranking lives in lib/group-rank.js and is shared with .kickidle so the board
+// and the kick decision can never disagree.
+const { buildRanking, sortByActivity, ageLabel } = require("../../lib/group-rank");
+
+const BOARD_SIZE = 10;
+
 class TopHandler {
     constructor(option) {
         this.name = option.name;
         this.aliases = option.aliases;
         this.sortDirection = option.sortDirection;
+        this.title = option.title;
         this.permissions = {
             group: true
         };
     }
 
     async handle(ctx) {
-        const currentMembers = await ctx.group().members();
-        const currentMemberIds = currentMembers.map(m => m.id);
-        let members = ctx.db.group?.members || [];
-        const dirtyCount = members.length;
-        members = members.filter(m => currentMemberIds.some(id => ctx.helper.areJidsSameUser(id, m.id)));
-        if (members.length !== dirtyCount) {
-            ctx.db.group.members = members;
-            ctx.db.group.save();
-        }
-        members = members.filter(member => !ctx.helper.areJidsSameUser(member.id, ctx.me.lid));
-        members.sort((a, b) => this.sortDirection === "asc" ? a.sent - b.sent : b.sent - a.sent);
+        const rows = await buildRanking(ctx);
+        // The bot is a member of its own group and always has 0 recorded
+        // messages, so it would otherwise top every "quietest" board.
+        const humans = rows.filter(r => !r.isBot);
+        const sorted = sortByActivity(humans, this.sortDirection);
+        const board = sorted.slice(0, BOARD_SIZE);
 
-        const topMembers = members.slice(0, 10);
-        let text = "";
-        let mentions = [];
-        topMembers.forEach((member, id) => {
+        if (!board.length) return await ctx.reply(ctx.format.info("Tiada data ahli untuk dipaparkan."));
+
+        // Counts are per-message, and tracking only starts when a member is first
+        // seen. Say so rather than implying it is their whole history.
+        const never = humans.filter(r => r.sent === 0).length;
+
+        let text = "╭───────────────୨୧\n" +
+            `│  ₊˚⊹♡  ${this.title}  ♡⊹˚₊\n` +
+            `│ (｡･ω･｡)ﾉ♡ ${humans.length} ahli · ${never} belum pernah bersuara\n` +
+            "╰───────────────୨୧\n\n";
+
+        const mentions = [];
+        board.forEach((member, i) => {
             const isSelf = ctx.helper.areJidsSameUser(member.id, ctx.sender.lid);
-            let displayName = member.pushName || ctx.getId(member.id);
+            let displayName = member.name;
             if (isSelf) {
-                const mentionId = ctx.getId(member.id);
-                displayName = `@${mentionId}`;
+                displayName = `@${ctx.getId(member.id)}`;
                 mentions.push(member.id);
             }
-            const prefix = id === 0 ? "❖" : id === 1 ? "❖" : id === 2 ? "❖" : `❖ ${id + 1}.`;
-            text += `${prefix} ${displayName} - ${member.sent} pesan\n`;
+            if (member.isGroupOwner) displayName += " 👑";
+            else if (member.isAdmin) displayName += " 🛡️";
+            const rank = i < 3 ? "❖" : `❖ ${i + 1}.`;
+            const age = member.firstSeen ? ` · sejak ${ageLabel(member.firstSeen)}` : "";
+            text += `${rank} ${displayName} — ${member.sent} pesan${age}\n`;
         });
+
         await ctx.reply({
             text: text.trim(),
             mentions
@@ -46,12 +62,14 @@ const options = {
     topsider: {
         name: "topsider",
         aliases: ["sider"],
-        sortDirection: "asc"
+        sortDirection: "asc",
+        title: "𝑷𝒂𝒍𝒊𝒏𝒈 𝑺𝒆𝒏𝒚𝒂𝒑"
     },
     topyapping: {
         name: "topyapping",
         aliases: ["yapping"],
-        sortDirection: "desc"
+        sortDirection: "desc",
+        title: "𝑷𝒂𝒍𝒊𝒏𝒈 𝑩𝒂𝒏𝒚𝒂𝒌 𝑪𝒉𝒂𝒕"
     }
 };
 
