@@ -92,25 +92,13 @@ module.exports = {
                     "╰───────────────୨୧\n\n";
 
                 for (const [category, commands] of Object.entries(commandsData)) {
-                    text +=
-                        "╭┈┈┈┈┈┈┈┈୨୧\n" +
-                        `┊ ✦ ${ctx.format.bold(
-                            categories[category] || category
-                        )}\n` +
-                        "┊\n";
-
+                    text += `\n${ctx.format.bold(categories[category] || category)}\n`;
                     for (const command of commands) {
-                        text +=
-                            `┊ ❖ ${ctx.used.prefix}${command.name}` +
-                            `${formatPerms(command.permissions)}\n`;
-                        // Plain-language line so the menu teaches instead of
-                        // just listing names (that was the old dead end).
                         const what = help.entry(command.name)?.what;
-                        if (what) text += `┊    ♡ ${what}\n`;
+                        text += `• ${ctx.used.prefix}${command.name}${formatPerms(command.permissions)}`;
+                        if (what) text += `  ${what}`;
+                        text += "\n";
                     }
-
-                    text +=
-                        "╰┈┈┈┈┈┈┈┈୨୧\n\n";
                 }
 
                 text +=
