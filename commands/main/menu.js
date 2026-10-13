@@ -95,9 +95,8 @@ module.exports = {
                     text += `\n${ctx.format.bold(categories[category] || category)}\n`;
                     for (const command of commands) {
                         const what = help.entry(command.name)?.what;
-                        text += `• ${ctx.used.prefix}${command.name}${formatPerms(command.permissions)}`;
-                        if (what) text += `  ${what}`;
-                        text += "\n";
+                        text += `❖ ${ctx.used.prefix}${command.name}${formatPerms(command.permissions)}\n`;
+                        if (what) text += `  ${what}\n`;
                     }
                 }
 
