@@ -99,11 +99,23 @@ async function WelcomeHandler(bot, welcome, type, isSimulate = false) {
     const botDb = bot.getDb("bot");
     const participantJid = welcome.participant;
 
-    // Record firstSeen on join, regardless of whether welcome messages are on.
-    // lib/group-rank.js needs it to tell a brand-new member (sent: 0, do not
-    // kick) apart from a long-time lurker (sent: 0, fair target for .kickidle).
-    // Without this the two are indistinguishable.
     if (!isSimulate && type === "UserJoin" && participantJid) {
+        // The bot is added to the group the same way a member is, so this event
+        // fires for the bot's own join. Without this check the bot welcomes
+        // itself whenever welcome messages are enabled. Return before recording
+        // firstSeen too — the bot is not a member to track.
+        const botIds = [
+            bot.core?.user?.id,
+            bot.core?.user?.lid,
+            bot.core?.authState?.creds?.me?.lid
+        ].filter(Boolean);
+        const bare = (jid) => String(jid).split("@")[0].split(":")[0];
+        if (botIds.some(id => bare(id) === bare(participantJid))) return;
+
+        // Record firstSeen on join, regardless of whether welcome messages are on.
+        // lib/group-rank.js needs it to tell a brand-new member (sent: 0, do not
+        // kick) apart from a long-time lurker (sent: 0, fair target for .kickidle).
+        // Without this the two are indistinguishable.
         try {
             const members = groupDb?.members || [];
             const existing = members.find(m => bot.helper?.areJidsSameUser
