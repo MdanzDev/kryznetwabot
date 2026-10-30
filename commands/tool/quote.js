@@ -56,6 +56,9 @@ module.exports = {
             // Skip commands and pure links — they read as spam, not memory.
             if (/^[.\/!#]/.test(text)) continue;
             if (/^https?:\/\/\S+$/.test(text)) continue;
+            // Skip the bot's own lines. Quoting Alya back at Alya is how she
+            // ended up arguing with her own words and denying she said them.
+            if (row.sender_id === "bot") continue;
             pick = { text, sender: row.sender_name || row.sender_id || "seseorang", at: row.created_at };
             break;
         }
