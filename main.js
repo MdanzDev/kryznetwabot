@@ -2,6 +2,19 @@ const config = require("./config.json");
 const { Client, CommandHandler } = require("./lib");
 const path = require("node:path");
 const util = require("node:util");
+const fs = require("node:fs");
+
+const statusFile = process.env.MD_BOT_STATUS_FILE;
+function writeInstanceStatus(status, extra = {}) {
+    if (!statusFile) return;
+    try {
+        fs.mkdirSync(path.dirname(statusFile), { recursive: true });
+        fs.writeFileSync(statusFile, JSON.stringify({ status, ...extra, updatedAt: new Date().toISOString() }), "utf8");
+    } catch (error) {
+        console.error("[x] Could not write instance status:", error.message);
+    }
+}
+writeInstanceStatus("connecting");
 
 const Events = require("./events");
 const Middlewares = require("./middlewares");
@@ -11,8 +24,8 @@ const {
     system
 } = config;
 const directory = {
-    auth: path.resolve(__dirname, "state"),
-    database: path.resolve(__dirname, "database"),
+    auth: path.resolve(process.env.MD_BOT_STATE_DIR || path.resolve(__dirname, "state")),
+    database: path.resolve(process.env.MD_BOT_DATABASE_DIR || path.resolve(__dirname, "database")),
     command: path.resolve(__dirname, "commands")
 };
 
@@ -116,5 +129,14 @@ if (config.telegram?.enabled && config.telegram?.token) {
             sender: (text) => bot.waAlya.sendInitiated(text)
         });
         console.log(util.styleText("magenta", "[~]"), "Alya WhatsApp bridge armed (private: always, group: tag/reply only)");
+
+        // Reminders created on WhatsApp must come back on WhatsApp. The job
+        // carries platform:"whatsapp" and the Scheduler routes it here; the
+        // default (Telegram) transport stays untouched.
+        tgBot.scheduler.addChannel("whatsapp", async (chatId, text) => {
+            await bot.sendMessage(chatId, { text });
+        });
     }
 }
+
+module.exports = { bot };
