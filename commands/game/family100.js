@@ -1,4 +1,5 @@
-const sessions = new Map();
+const { createGameSessions } = require("../../lib/game-session");
+const sessions = createGameSessions();
 
 module.exports = {
     name: "family100",
@@ -7,7 +8,7 @@ module.exports = {
         group: true
     },
     code: async (ctx) => {
-        if (sessions.has(ctx.id)) return await ctx.reply(ctx.format.info("Sesi permainan sedang berjalan!"));
+        if (sessions.isActive(ctx.id)) return await ctx.reply(ctx.format.info("Sesi permainan sedang berjalan!"));
 
         try {
             const apiUrl = ctx.api.createUrl("siputzx", "/api/games/family100");
@@ -22,7 +23,7 @@ module.exports = {
                 participants: new Set()
             };
 
-            sessions.set(ctx.id, true);
+            sessions.start(ctx.id);
 
             await ctx.reply({
                 text: `✦ — ${result.soal}\n` +
@@ -59,7 +60,7 @@ module.exports = {
                     await collCtx.reply(ctx.format.info(`${ctx.format.ucwords(participantAnswer)} benar! Jawaban tersisa: ${game.answers.size}`));
 
                     if (game.answers.size === 0) {
-                        sessions.delete(ctx.id);
+                        sessions.end(ctx.id);
                         collector.stop();
                         for (const participant of game.participants) {
                             const allParticipantDb = ctx.getDb("users", participant);
@@ -75,7 +76,7 @@ module.exports = {
                     }
                 } else if (participantAnswer === `surrender_${ctx.used.command}`) {
                     const remaining = [...game.answers].map(ctx.format.ucwords).join(", ").replace(/, ([^,]*)$/, ", dan $1");
-                    sessions.delete(ctx.id);
+                    sessions.end(ctx.id);
                     collector.stop();
                     await collCtx.reply({
                         text: ctx.format.info(`Anda menyerah! Jawaban yang belum terjawab: ${remaining}`),
@@ -84,18 +85,17 @@ module.exports = {
                 }
             });
 
-            collector.on("end", async () => {
+            collector.on("end", async (reason) => {
                 const remaining = [...game.answers].map(ctx.format.ucwords).join(", ").replace(/, ([^,]*)$/, ", dan $1");
-                if (sessions.has(ctx.id)) {
-                    sessions.delete(ctx.id);
+                await sessions.onEnd(ctx.id, reason, async () => {
                     await ctx.reply({
-                        text: ctx.format.info(`Waktu habis! Jawaban yang belum terjawab: ${remaining}`),
+                        text: ctx.format.info(`(｡•́︿•̀｡) Waktu habis! Jawaban yang belum terjawab: ${remaining}`),
                         buttons: playAgain
                     });
-                }
+                });
             });
         } catch (error) {
-            sessions.delete(ctx.id);
+            sessions.end(ctx.id);
             await ctx.helper.handleError(ctx, error, true);
         }
     }

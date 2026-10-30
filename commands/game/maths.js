@@ -1,4 +1,5 @@
-const sessions = new Map();
+const { createGameSessions } = require("../../lib/game-session");
+const sessions = createGameSessions();
 
 const levelBonus = {
     noob: 10,
@@ -29,7 +30,7 @@ module.exports = {
     name: "maths",
     category: "game",
     code: async (ctx) => {
-        if (sessions.has(ctx.id)) return await ctx.reply(ctx.format.info("Sesi permainan sedang berjalan!"));
+        if (sessions.isActive(ctx.id)) return await ctx.reply(ctx.format.info("Sesi permainan sedang berjalan!"));
 
         try {
             const input = ctx.args?.[0] && levels.hasOwnProperty(ctx.args[0]) ? ctx.args[0] : "random";
@@ -44,7 +45,7 @@ module.exports = {
                 answer: String(result.result)
             };
 
-            sessions.set(ctx.id, true);
+            sessions.start(ctx.id);
 
             const promptText =
                 "╭───────────────୨୧\n" +
@@ -87,7 +88,7 @@ module.exports = {
                 const isUnlimited = collCtx.sender.isOwner() || participantDb?.premium;
 
                 if (participantAnswer === game.answer) {
-                    sessions.delete(ctx.id);
+                    sessions.end(ctx.id);
                     collector.stop();
                     if (!isUnlimited) participantDb.coin += game.coin;
                     participantDb.winGame += 1;
@@ -97,7 +98,7 @@ module.exports = {
                         buttons: playAgain
                     });
                 } else if (participantAnswer === `surrender_${ctx.used.command}`) {
-                    sessions.delete(ctx.id);
+                    sessions.end(ctx.id);
                     collector.stop();
                     await collCtx.reply({
                         text: ctx.format.info(`(｡•́︿•̀｡) Kamu menyerah! Jawabannya adalah: ${ctx.format.ucwords(game.answer)}~ ♡`),
@@ -106,17 +107,16 @@ module.exports = {
                 }
             });
 
-            collector.on("end", async () => {
-                if (sessions.has(ctx.id)) {
-                    sessions.delete(ctx.id);
+            collector.on("end", async (reason) => {
+                await sessions.onEnd(ctx.id, reason, async () => {
                     await ctx.reply({
                         text: ctx.format.info(`(｡•́︿•̀｡) Waktu habis! Jawabannya adalah: ${ctx.format.ucwords(game.answer)}~ ♡`),
                         buttons: playAgain
                     });
-                }
+                });
             });
         } catch (error) {
-            sessions.delete(ctx.id);
+            sessions.end(ctx.id);
             await ctx.helper.handleError(ctx, error, true);
         }
     }

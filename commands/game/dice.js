@@ -18,18 +18,21 @@ module.exports = {
         if (!isUnlimited && senderDb?.coin < 500) return await ctx.reply(ctx.format.info("(｡•́︿•̀｡) Koin kamu tidak cukup! Minimal memiliki 500 koin untuk bermain ya~ ♡"));
 
         try {
+            // Fair odds: 1-in-6, so a win must return 6x the stake (EV = 0).
+            // The old 1000/-500 on a 1-in-6 chance was EV -250 per play.
+            const STAKE = 500;
             const result = Math.floor(Math.random() * 6) + 1;
             const isWin = input === result;
             let prizeText = "";
 
             if (isWin) {
-                const prize = 1000;
+                const prize = STAKE * 5; // profit (6x total minus the stake)
                 if (!isUnlimited) senderDb.coin += prize;
+                senderDb.winGame = (senderDb.winGame || 0) + 1;
                 prizeText = `+${prize} koin 🪙`;
             } else {
-                const forfeit = 500;
-                if (!isUnlimited) senderDb.coin -= forfeit;
-                prizeText = `-${forfeit} koin 💔`;
+                if (!isUnlimited) senderDb.coin -= STAKE;
+                prizeText = `-${STAKE} koin 💔`;
             }
 
             if (!isUnlimited) senderDb.save();

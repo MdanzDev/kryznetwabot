@@ -37,9 +37,11 @@ module.exports = {
             if (isJackpot) {
                 responseText = `Jackpot! +${jackpotPrize} koin (5x lipat) 🎉`;
                 if (!isUnlimited) senderDb.coin += jackpotPrize;
+                senderDb.winGame = (senderDb.winGame || 0) + 1;
             } else if (isWin) {
                 responseText = `Menang! +${winPrize} koin (2x lipat) ✨`;
                 if (!isUnlimited) senderDb.coin += winPrize;
+                senderDb.winGame = (senderDb.winGame || 0) + 1;
             } else {
                 responseText = `Kalah! Semoga beruntung lain kali. -${input} koin 💔`;
                 if (!isUnlimited) senderDb.coin -= input;

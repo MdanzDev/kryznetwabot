@@ -1,4 +1,5 @@
-const sessions = new Map();
+const { createGameSessions } = require("../../lib/game-session");
+const sessions = createGameSessions();
 
 class QuizGame {
     constructor(option) {
@@ -40,7 +41,7 @@ class QuizGame {
 
     async handle(ctx) {
         const sessionKey = `${ctx.id}_${this.name}`;
-        if (sessions.has(sessionKey)) return await ctx.reply(ctx.format.info("Sesi permainan sedang berjalan!"));
+        if (sessions.isActive(sessionKey)) return await ctx.reply(ctx.format.info("Sesi permainan sedang berjalan!"));
 
         try {
             let data = await this.getQuestionData(ctx);
@@ -64,7 +65,7 @@ class QuizGame {
                 answer: data[this.answerKey]?.toLowerCase() || ""
             };
 
-            sessions.set(sessionKey, true);
+            sessions.start(sessionKey);
 
             const messageContent = {
                 text: this.formatQuestion(ctx, data),
@@ -110,7 +111,7 @@ class QuizGame {
                 const isUnlimited = collCtx.sender.isOwner() || participantDb?.premium;
 
                 if (participantAnswer === game.answer) {
-                    sessions.delete(sessionKey);
+                    sessions.end(sessionKey);
                     collector.stop();
                     if (!isUnlimited) participantDb.coin += game.coin;
                     participantDb.winGame += 1;
@@ -128,7 +129,7 @@ class QuizGame {
                     const clue = game.answer.replace(/[aiueo]/g, "_");
                     await collCtx.reply(ctx.format.monospace(clue.toUpperCase()));
                 } else if (participantAnswer === `surrender_${ctx.used.command}`) {
-                    sessions.delete(sessionKey);
+                    sessions.end(sessionKey);
                     collector.stop();
                     const formattedAnswer = this.formatAnswer(ctx, game.answer);
                     await collCtx.reply({
@@ -140,18 +141,20 @@ class QuizGame {
                 }
             });
 
-            collector.on("end", async () => {
-                if (sessions.has(ctx.id)) {
-                    sessions.delete(sessionKey);
-                    const formattedAnswer = this.formatAnswer(ctx, game.answer);
+            collector.on("end", async (reason) => {
+                // Only a real timeout is announced; "limit"/"" mean the game
+                // ended because someone answered or gave up.
+                const self = this;
+                await sessions.onEnd(sessionKey, reason, async () => {
+                    const formattedAnswer = self.formatAnswer(ctx, game.answer);
                     await ctx.reply({
-                        text: ctx.format.info(`Waktu habis! Jawaban: ${formattedAnswer}.`),
+                        text: ctx.format.info(`(｡•́︿•̀｡) Waktu habis! Jawaban: ${formattedAnswer}.`),
                         buttons: playAgain
                     });
-                }
+                });
             });
         } catch (error) {
-            sessions.delete(sessionKey);
+            sessions.end(sessionKey);
             await ctx.helper.handleError(ctx, error, true);
         }
     }

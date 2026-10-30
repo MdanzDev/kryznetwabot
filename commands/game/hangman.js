@@ -1,4 +1,5 @@
-const sessions = new Map();
+const { createGameSessions } = require("../../lib/game-session");
+const sessions = createGameSessions();
 
 const render = (word, guessed) => word.split("").map(c => guessed.has(c) ? c : "_").join(" ");
 
@@ -7,7 +8,7 @@ module.exports = {
     category: "game",
     code: async (ctx) => {
         const sessionsKey = `${ctx.id}_${ctx.sender.lid}`;
-        if (sessions.has(sessionsKey)) return await ctx.reply(ctx.format.info("Sesi permainan sedang berjalan!"));
+        if (sessions.isActive(sessionsKey)) return await ctx.reply(ctx.format.info("Sesi permainan sedang berjalan!"));
 
         try {
             const words = (await ctx.request.get("https://raw.githubusercontent.com/siuspsrb/database/main/game/kbbi.json")).data.filter(w => w.length > 1);
@@ -19,7 +20,7 @@ module.exports = {
                 lives: 6
             };
 
-            sessions.set(sessionsKey, true);
+            sessions.start(sessionsKey, { timeoutMs: game.timeout });
 
             await ctx.reply({
                 text: `✦ — ${render(word, new Set())}\n` +
@@ -37,7 +38,9 @@ module.exports = {
             const collector = ctx.MessageCollector({
                 time: game.timeout,
                 filter: (collCtx) => {
-                    if (ctx.helper.areJidsSameUser(collCtx.sender.lid, ctx.sender.lid)) return false;
+                    // Anyone in the chat may guess, INCLUDING whoever started it.
+                    // (This used to reject the starter's own guesses, making
+                    // .hangman unplayable for the person who typed it.)
                     if (collCtx.msg.body?.startsWith(`surrender_`)) return true;
                     const body = collCtx.msg.body?.toLowerCase() || "";
                     return body.length === 1 && /[a-z]/.test(body);
@@ -58,7 +61,7 @@ module.exports = {
 
                 const display = render(word, game.guessed);
                 if (!display.includes("_")) {
-                    sessions.delete(sessionsKey);
+                    sessions.end(sessionsKey);
                     collector.stop();
                     const senderDb = collCtx.db.user;
                     if (!isUnlimited) senderDb.coin += game.coin;
@@ -71,7 +74,7 @@ module.exports = {
                 } else if (!word.includes(answer)) {
                     game.lives--;
                     if (game.lives <= 0) {
-                        sessions.delete(sessionsKey);
+                        sessions.end(sessionsKey);
                         collector.stop();
                         await collCtx.reply({
                             text: ctx.format.info(`Permainan berakhir! Jawaban: ${word}`),
@@ -79,7 +82,7 @@ module.exports = {
                         });
                     }
                 } else if (answer === `surrender_${ctx.used.command}`) {
-                    sessions.delete(sessionsKey);
+                    sessions.end(sessionsKey);
                     collector.stop();
                     return await collCtx.reply({
                         text: ctx.format.info(`Anda menyerah! Jawaban: ${word}`),
@@ -96,17 +99,19 @@ module.exports = {
                 );
             });
 
-            collector.on("end", async () => {
-                if (sessions.has(ctx.id)) {
-                    sessions.delete(sessionsKey);
+            collector.on("end", async (reason) => {
+                // reason is "timeout" | "limit" | ""; only a real timeout
+                // deserves a message, otherwise a correct answer would be
+                // followed by a bogus "time is up".
+                await sessions.onEnd(sessionsKey, reason, async () => {
                     await ctx.reply({
-                        text: ctx.format.info(`Waktu habis! Jawaban: ${word}`),
+                        text: ctx.format.info(`(｡•́︿•̀｡) Waktu habis! Jawaban: ${word}`),
                         buttons: playAgain
                     });
-                }
+                });
             });
         } catch (error) {
-            sessions.delete(sessionsKey);
+            sessions.end(sessionsKey);
             await ctx.helper.handleError(ctx, error, true);
         }
     }
