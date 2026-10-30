@@ -274,7 +274,7 @@ module.exports = (bot) => {
                     groupDb.spam = spamData;
 
                     if (newCount > 5) {
-                        await handleAntiViolation(ctx, "antispam", "(｡•ˇ‸ˇ•｡) Jangan spam chat ya, nanti bot pusing~ ♡");
+                        await handleAntiViolation(ctx, "antispam", "(｡•ˇ‸ˇ•｡) Jangan spam chat ya, nanti bot pusing~ ♡", senderLid, senderLidId, groupJid, groupDb);
                         groupDb.spam = spamData.filter(spam => spam.id !== senderLid);
                     }
                     groupDb.save();
