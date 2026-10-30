@@ -136,6 +136,17 @@ if (config.telegram?.enabled && config.telegram?.token) {
         tgBot.scheduler.addChannel("whatsapp", async (chatId, text) => {
             await bot.sendMessage(chatId, { text });
         });
+
+        // Watchdog: the recurring failure mode on this box is something dying
+        // silently (a stopped pm2 app, a dead webhook) with nobody told. This
+        // probes the things that must be alive and messages the owner only on
+        // state changes, so an outage pings once rather than every tick.
+        const { Watchdog } = require("./lib/watchdog");
+        bot.watchdog = new Watchdog({
+            notify: (text) => bot.waAlya.sendInitiated(text),
+            waReady: () => Boolean(bot.core?.user?.id)
+        });
+        bot.watchdog.start();
     }
 }
 
