@@ -9,3 +9,8 @@ libraries/
 versions/
 logs/
 minecraft/
+core.*
+*.bak
+*.bak-*
+.patch-backups/
+cookies.txt*
