@@ -19,7 +19,7 @@ const SWITCHES = {
         set: (id, v) => autoAi.setAudioEnabled(id, v)
     },
     roast: {
-        label: "Roast AI (Alya sindir ahli grup sekali-sekala)",
+        label: "Roast AI (Alya sindir kau setiap kali balas + drama tiap 10 min)",
         get: (id) => autoAi.isRoastEnabled(id),
         set: (id, v) => autoAi.setRoastEnabled(id, v)
     }

@@ -147,6 +147,22 @@ if (config.telegram?.enabled && config.telegram?.token) {
             waReady: () => Boolean(bot.core?.user?.id)
         });
         bot.watchdog.start();
+
+        // Drama timer: every 10 min, pick one group that has `.aiconfig roast`
+        // on and start something — a hot take or a roast of a random member.
+        // Wired here because main.js owns the process lifecycle and the bridge
+        // owns group discovery; roast-mode.js only decides what to say.
+        try {
+            const { startDramaTimer } = require("./lib/telegram/roast-mode");
+            const { isRoastEnabled } = require("./lib/wa-autoai");
+            startDramaTimer({
+                collect: () => bot.waAlya.collectRoastGroups({ isRoastEnabled }),
+                wa: bot.waAlya,
+                autoAi: { isRoastEnabled }
+            });
+        } catch (e) {
+            console.log(`[drama] timer not started: ${e.message}`);
+        }
     }
 }
 
