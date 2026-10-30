@@ -1,3 +1,4 @@
+require("./lib/error-handler")();
 require("node:process").loadEnvFile();
 const { Config } = require("./lib");
 const http = require("node:http");
@@ -22,9 +23,13 @@ cfonts.say(`${pkg.description} - By ${pkg.author}`, {
     align: "center"
 });
 
-if (config.system && config.system.useServer) {
-    const port = config.system.port;
-    http.createServer((_, res) => res.end(`${pkg.name} berjalan di port ${port}`)).listen(port, () => console.log(util.styleText("blue", "[>]"), `${pkg.name} runs on port ${port}`));
-}
+const { bot } = require("./main");
 
-require("./main");
+if (config.system?.useServer) {
+    const { createInternalApi } = require("./lib/internal-api");
+    createInternalApi({
+        bot,
+        apiKey: process.env.BOT_API_KEY,
+        port: config.system.port
+    });
+}
