@@ -1,84 +1,137 @@
 // aiconfig.js — per-chat AI switches for WhatsApp.
 //
-// Mirrors the Telegram bot's /voice toggle, but as one namespaced command so
-// further switches have a home instead of spawning .audioconfig, .xyzconfig...
+// One namespaced command instead of spawning .audioconfig, .roastconfig,
+// .dramaconfig... Each setting is either a boolean switch or a value (the drama
+// delay), described once in SETTINGS and rendered generically.
 //
-//   .aiconfig                 -> show all switches for this chat
-//   .aiconfig audio           -> toggle audio replies on/off
-//   .aiconfig audio on|off    -> set explicitly
-//
-// Audio mode sends a voice note IN ADDITION to the text reply, exactly like the
-// Telegram /voice behaviour ("teks tetap ada"), so a TTS failure never costs the
-// answer.
+//   .aiconfig                    -> show every setting for this chat
+//   .aiconfig audio              -> toggle
+//   .aiconfig audio on|off       -> set explicitly
+//   .aiconfig drama off          -> stop timed drama, keep roasts
+//   .aiconfig dramadelay 30m     -> drama every 30 minutes in this chat
 const autoAi = require("/root/kryznetwabot/lib/wa-autoai");
+const { parseDuration, convertMsToDuration } = require("/root/kryznetwabot/lib/format");
 
-const SWITCHES = {
+// kind: "switch" toggles; "value" takes an argument (duration).
+const SETTINGS = {
     audio: {
-        label: "Audio (balas dengan voice note)",
+        kind: "switch",
+        label: "Audio — balas dengan voice note",
         get: (id) => autoAi.isAudioEnabled(id),
         set: (id, v) => autoAi.setAudioEnabled(id, v)
     },
     roast: {
-        label: "Roast AI (Alya sindir kau setiap kali balas + drama tiap 10 min)",
+        kind: "switch",
+        label: "Roast — sindir kau setiap kali Alya balas",
         get: (id) => autoAi.isRoastEnabled(id),
-        set: (id, v) => autoAi.setRoastEnabled(id, v)
+        set: (id, v) => autoAi.setRoastEnabled(id, v),
+        note: "Drama ikut sama: kalau roast mati, drama pun mati."
+    },
+    drama: {
+        kind: "switch",
+        label: "Drama — Alya mula drama secara berkala",
+        get: (id) => autoAi.isDramaEnabled(id),
+        set: (id, v) => autoAi.setDramaEnabled(id, v),
+        note: "Perlu roast ON juga."
+    },
+    dramadelay: {
+        kind: "value",
+        label: "Drama delay — berapa kerap drama bermula",
+        get: (id) => autoAi.getDramaInterval(id),
+        set: (id, v) => autoAi.setDramaInterval(id, v),
+        render: (v) => convertMsToDuration(v),
+        example: "30m"
     }
 };
 
-const help = (ctx) => {
-    const p = ctx.used?.prefix || ".";
+const p = (ctx) => ctx.used?.prefix || ".";
+
+const render = (ctx) => {
+    const lines = Object.entries(SETTINGS).map(([k, s]) => {
+        const v = s.get(ctx.id);
+        const state = s.kind === "switch"
+            ? (v ? "AKTIF ✅" : "MATI ❌")
+            : (s.render ? s.render(v) : String(v));
+        return `♡ ${p(ctx)}aiconfig ${k} — ${state}\n   ${s.label}${s.note ? `\n   ${s.note}` : ""}`;
+    });
+
     return ctx.format.info(
-        `❖ AI config — chat ni\n\n` +
-        Object.entries(SWITCHES)
-            .map(([k, s]) => `♡ ${p}aiconfig ${k} — ${s.get(ctx.id) ? "AKTIF ✅" : "MATI ❌"}\n   ${s.label}`)
-            .join("\n") +
-        `\n\n♡ Tukar: ${p}aiconfig audio on|off`
+        `❖ AI config — chat ni\n\n${lines.join("\n")}\n\n` +
+        `♡ Tukar: ${p(ctx)}aiconfig audio on|off\n` +
+        `♡ Delay: ${p(ctx)}aiconfig dramadelay 30m`
     );
 };
 
+const TRUE_VALS = ["on", "true", "1", "ya", "aktif"];
+const FALSE_VALS = ["off", "false", "0", "tak", "mati"];
+
 module.exports = [{
     name: "aiconfig",
-    aliases: ["aiconf", "aiconfig"],
+    aliases: ["aiconf"],
     category: "tool",
-    description: "Tetapan AI per-chat (audio on/off)",
+    description: "Tetapan AI per-chat (audio / roast / drama / delay)",
     cooldown: 3,
     code: async (ctx) => {
         const args = (ctx.args || []).map((a) => String(a).toLowerCase());
         const key = args[0];
         const val = args[1];
 
-        // No args (or "list") -> show current state.
-        if (!key || key === "list") return await ctx.reply(help(ctx));
+        if (!key || key === "list") return await ctx.reply(render(ctx));
 
-        const sw = SWITCHES[key];
-        if (!sw) {
-            const p = ctx.used?.prefix || ".";
+        const s = SETTINGS[key];
+        if (!s) {
             return await ctx.reply(ctx.format.info(
                 `(｡•́︿•̀｡) Tetapan "${key}" tak ada.\n\n` +
-                `♡ Yang ada: ${Object.keys(SWITCHES).join(", ")}\n` +
-                `♡ Contoh: ${p}aiconfig audio on`
+                `♡ Yang ada: ${Object.keys(SETTINGS).join(", ")}\n` +
+                `♡ Contoh: ${p(ctx)}aiconfig drama off`
             ));
         }
 
-        // Bare key -> toggle (same feel as Telegram's /voice).
-        let next;
-        if (!val) next = !sw.get(ctx.id);
-        else if (["on", "true", "1", "ya"].includes(val)) next = true;
-        else if (["off", "false", "0", "tak"].includes(val)) next = false;
-        else {
-            const p = ctx.used?.prefix || ".";
+        // ---- value setting (duration) ----
+        if (s.kind === "value") {
+            if (!val) {
+                return await ctx.reply(ctx.format.info(
+                    `(｡•́︿•̀｡) ${key} sekarang: ${s.render(s.get(ctx.id))}\n` +
+                    `♡ Set: ${p(ctx)}aiconfig ${key} ${s.example || "30m"}`
+                ));
+            }
+            const ms = parseDuration(val);
+            if (!ms) {
+                return await ctx.reply(ctx.format.info(
+                    `(｡•́︿•̀｡) "${val}" bukan masa yang aku faham.\n` +
+                    `♡ Contoh: ${p(ctx)}aiconfig ${key} 30m\n` +
+                    `♡ Atau: 1j, 2 jam, 90 minit\n` +
+                    `♡ Minimum: ${convertMsToDuration(autoAi.MIN_DRAMA_MS)}`
+                ));
+            }
+            s.set(ctx.id, ms);
             return await ctx.reply(ctx.format.info(
-                `(｡•́︿•̀｡) Nilai "${val}" tak faham.\n♡ Guna: ${p}aiconfig ${key} on|off`
+                `(｡･ω･｡)⁠ﾉ♡ Siap! Drama akan mula setiap ${convertMsToDuration(ms)} dalam chat ni.\n\n` +
+                render(ctx)
             ));
         }
 
-        sw.set(ctx.id, next);
-
-        if (key === "audio") {
-            return await ctx.reply(ctx.format.info(next
-                ? `(｡･ω･｡)⁠ﾉ♡ Siap! Alya akan balas dengan voice note juga, teks tetap ada.\n♡ Matikan: ${ctx.used?.prefix || "."}aiconfig audio off`
-                : `(｡･ω･｡) Audio reply dah dimatikan. Balas teks sahaja.`));
+        // ---- boolean switch ----
+        let next;
+        if (!val) next = !s.get(ctx.id);                 // bare key toggles
+        else if (TRUE_VALS.includes(val)) next = true;
+        else if (FALSE_VALS.includes(val)) next = false;
+        else {
+            return await ctx.reply(ctx.format.info(
+                `(｡•́︿•̀｡) Nilai "${val}" tak faham.\n♡ Guna: ${p(ctx)}aiconfig ${key} on|off`
+            ));
         }
-        return await ctx.reply(help(ctx));
+
+        s.set(ctx.id, next);
+
+        // Drama is gated on roast; say so when it would have no effect.
+        if (key === "drama" && next && !autoAi.isRoastEnabled(ctx.id)) {
+            return await ctx.reply(ctx.format.info(
+                `(｡•́︿•̀｡) Drama dah ON, tapi roast masih MATI — drama takkan jalan.\n\n` +
+                `♡ Hidupkan roast: ${p(ctx)}aiconfig roast on`
+            ));
+        }
+
+        return await ctx.reply(render(ctx));
     }
 }];

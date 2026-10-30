@@ -154,11 +154,12 @@ if (config.telegram?.enabled && config.telegram?.token) {
         // owns group discovery; roast-mode.js only decides what to say.
         try {
             const { startDramaTimer } = require("./lib/telegram/roast-mode");
-            const { isRoastEnabled } = require("./lib/wa-autoai");
+            const autoAi = require("./lib/wa-autoai");
             startDramaTimer({
-                collect: () => bot.waAlya.collectRoastGroups({ isRoastEnabled }),
+                collect: () => bot.waAlya.collectRoastGroups(autoAi),
                 wa: bot.waAlya,
-                autoAi: { isRoastEnabled }
+                autoAi,
+                intervalFor: (chatId) => autoAi.getDramaInterval(chatId)
             });
         } catch (e) {
             console.log(`[drama] timer not started: ${e.message}`);
