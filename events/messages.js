@@ -119,11 +119,14 @@ module.exports = (bot) => {
             }
 
             const kryzzPrompt = msg.body ? kryzai.matchTrigger(msg.body) : null;
-            if (kryzzPrompt) {
+            if (kryzzPrompt && ctx.sender.isOwner()) {
                 console.log(util.styleText("magenta", "[~]"), `Kryzz AI triggered by: ${senderId}`);
                 await kryzai.handleKryzz(bot, ctx, kryzzPrompt);
                 return;
             }
+            // Non-owner writing "kryz ..." is not special: no console claim, no
+            // swallow. It falls through to Alya below, so the message still gets
+            // an answer like any other chat.
 
             // Alya (same brain as Telegram). Private: always replies (text, image,
             // voice, document — caption or bare). Group: ONLY when the bot is
