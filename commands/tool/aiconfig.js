@@ -27,6 +27,13 @@ const SETTINGS = {
         set: (id, v) => autoAi.setRoastEnabled(id, v),
         note: "Drama ikut sama: kalau roast mati, drama pun mati."
     },
+    toxic: {
+        kind: "switch",
+        label: "Toxic — Alya lawan balik orang biadab/ragebait",
+        get: (id) => autoAi.isToxicEnabled(id),
+        set: (id, v) => autoAi.setToxicEnabled(id, v),
+        note: "Masih tak sentuh rupa/agama/bangsa/keluarga. Off = Alya sabar macam biasa."
+    },
     drama: {
         kind: "switch",
         label: "Drama — Alya mula drama secara berkala",
